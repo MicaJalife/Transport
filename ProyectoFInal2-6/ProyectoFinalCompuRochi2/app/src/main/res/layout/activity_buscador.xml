@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:design="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DFEFF0"
+    tools:context="com.example.rocio.proyectofinalcompurochi.ActivityBuscador">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="450dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="#264E86"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="3dp"
+                        android:text="FILTROS"
+                        android:textColor="#FFFF"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="-Barrios"
+                        android:textColor="#FFFF"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="    Almagro
+                    Caballito
+                    Flores
+                    (Ver más..)
+"
+                        android:textColor="#FFFF"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="-Año"
+                        android:textColor="#FFFF"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="   1°Año
+                    2°Año
+                    3°Año
+                    4°Año
+                    5°Año
+                    6°Año
+                "
+                        android:textColor="#FFFF"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="-Transporte"
+                        android:textColor="#FFFF"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="   Auto
+   Colectivo
+   Subte
+   Caminar
+   Bicicleta
+                   "
+                        android:textColor="#FFFF"
+                        android:textSize="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#264E86"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/foto"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginTop="15dp"
+                            android:background="#264E86"
+                            android:onClick="BotonBusqueda"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_buscador" />
+
+                        <LinearLayout
+                            android:layout_width="205dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/BusquedaDireccion1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=" Direccion de ORT"
+                                android:textColor="#FFFF"
+                                android:textSize="15dp" />
+
+                            <EditText
+                                android:id="@+id/BusquedaDireccion2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=" Mi direccion"
+                                android:textColor="#FFFF"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                        <ImageButton
+                            android:layout_width="30dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="13dp"
+                            android:background="#264E86"
+                            android:onClick="BotonCambiarDirecciones"
+                            android:src="@drawable/flechascambio" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="19dp"
+                        android:background="#74DBEF"
+                        android:orientation="horizontal"
+                        android:id="@+id/LinearPerfil1">
+
+                        <ImageView
+                            android:id="@+id/FotoPerfilBusqueda1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/fotoperfil" />
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/NombreBusqueda1"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Micaela Jalife"
+                                android:textSize="20dp" />
+
+                            <Button
+                                android:id="@+id/button8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="1dp"
+                                android:background="#74DBEF"
+                                android:onClick="VerPerfilBusqueda1"
+                                android:text="Ver recorrido"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                        <ImageButton
+                            android:id="@+id/imageButton"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#74DBEF"
+                            android:onClick="BotonChatPerfil1"
+                            android:src="@drawable/iconochatrojo" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#74DBEF"
+                        android:orientation="horizontal"
+                        android:id="@+id/LinearPerfil2">
+
+                        <ImageView
+                            android:id="@+id/FotoPerfilBusqueda2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/fotoperfil" />
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/NombreBusqueda2"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Rocio Tarda"
+                                android:textSize="20dp" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="1dp"
+                                android:background="#74DBEF"
+                                android:onClick="VerPerfilBusqueda2"
+                                android:text="Ver recorrido"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                        <ImageButton
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#74DBEF"
+                            android:onClick="BotonChatPerfil2"
+                            android:src="@drawable/iconochatverde" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#74DBEF"
+                        android:orientation="horizontal"
+                        android:id="@+id/LinearPerfil3">
+
+                        <ImageView
+                            android:id="@+id/FotoPerfilBusqueda3"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/fotoperfil" />
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/NombreBusqueda3"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Felipe Sasiain"
+                                android:textSize="20dp" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="1dp"
+                                android:background="#74DBEF"
+                                android:onClick="VerPerfilBusqueda3"
+                                android:text="Ver recorrido"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                        <ImageButton
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#74DBEF"
+                            android:onClick="BotonChatPerfil3"
+                            android:src="@drawable/iconochatverde" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#74DBEF"
+                        android:orientation="horizontal"
+                        android:id="@+id/LinearPerfil4">
+
+                        <ImageView
+                            android:id="@+id/FotoPerfilBusqueda4"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/fotoperfil" />
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/NombreBusqueda4"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Simon Oliva"
+                                android:textSize="20dp" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="2dp"
+                                android:background="#74DBEF"
+                                android:onClick="VerPerfilBusqueda4"
+                                android:text="Ver recorrido"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                        <ImageButton
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#74DBEF"
+                            android:onClick="BotonChatPerfil4"
+                            android:src="@drawable/iconochatrojo" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#74DBEF"
+                        android:orientation="horizontal"
+                        android:id="@+id/LinearPerfil5">
+
+                        <ImageView
+                            android:id="@+id/FotoPerfilBusqueda5"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/fotoperfil" />
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/NombreBusqueda5"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Uriel Paluch"
+                                android:textSize="20dp" />
+
+                            <Button
+                                android:id="@+id/button7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="1dp"
+                                android:background="#74DBEF"
+                                android:onClick="VerPerfilBusqueda5"
+                                android:text="Ver recorrido"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                        <ImageButton
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#74DBEF"
+                            android:onClick="BotonChatPerfil3"
+                            android:src="@drawable/iconochatverde" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_weight="7"
+            android:background="#74DBEF"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="45dp"
+                android:background="#74DBEF"
+                android:onClick="BotonBuscador"
+                android:src="@drawable/ic_buscador" />
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="65dp"
+                android:background="#74DBEF"
+                android:onClick="BotonPerfil"
+                android:src="@drawable/ic_perfil" />
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="70dp"
+                android:background="#74DBEF"
+                android:onClick="BotonChats"
+                android:src="@drawable/ic_chat" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
