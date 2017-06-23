@@ -123,14 +123,21 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
-    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\TrasportController.cs" />
     <Compile Include="Data\DBHelper.cs" />
     <Compile Include="Data\PersonaData.cs" />
+    <Compile Include="Data\TransportData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Amigos.cs" />
+    <Compile Include="Models\Dias.cs" />
+    <Compile Include="Models\DiasViajes.cs" />
+    <Compile Include="Models\Horarios.cs" />
     <Compile Include="Models\Persona.cs" />
+    <Compile Include="Models\Transportes.cs" />
     <Compile Include="Models\Usuarios.cs" />
+    <Compile Include="Models\Viajes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
