@@ -102,33 +102,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="5dp"
-                android:background="#264E86"
-                android:orientation="vertical">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <EditText
-                        android:id="@+id/IngresoEstado"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Ingrese su estado"
-                        android:inputType="textShortMessage"
-                        android:singleLine="true"
-                        android:textColor="#FFFFFF"
-                        android:textColorHint="#74DBEF"
-                        android:textSize="15dp" />
-                </android.support.design.widget.TextInputLayout>
-
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -143,14 +116,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                     <RadioGroup
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                    android:layout_height="wrap_content">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+
+
 
                         <RadioButton
                         android:id="@+id/RadioButtonIda"
@@ -164,16 +139,17 @@
                             android:layout_height="wrap_content"
                             android:text="Vuelta" />
 
-                        </LinearLayout>
-                    </RadioGroup>
 
+                    </RadioGroup>
+                </LinearLayout>
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -181,7 +157,9 @@
                         android:layout_marginLeft="3dp"
                         android:layout_marginTop="2dp"
                         android:text="Seleccione dia: "
-                        android:textSize="15dp" />
+                        android:textSize="15dp"/>
+
+
 
                     <Spinner
                         android:id="@+id/SpinnerDia"
@@ -189,6 +167,8 @@
                         android:layout_height="wrap_content">
 
                     </Spinner>
+
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -247,8 +227,8 @@
 
                     <ImageButton
                         android:id="@+id/ElegirTransporteSubte"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
                         android:background="#264E86"
                         android:onClick="EligioSubte"
@@ -257,8 +237,8 @@
 
                     <ImageButton
                         android:id="@+id/ElegirTransporteBicicleta"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
                         android:background="#264E86"
                         android:onClick="EligioBicicleta"
@@ -267,8 +247,8 @@
 
                     <ImageButton
                         android:id="@+id/ElegirTransporteCaminando"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_marginBottom="5dp"
                         android:layout_marginLeft="10dp"
                         android:background="#264E86"

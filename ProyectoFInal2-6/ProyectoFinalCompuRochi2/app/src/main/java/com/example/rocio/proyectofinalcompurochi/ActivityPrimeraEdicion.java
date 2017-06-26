@@ -77,6 +77,8 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     int Transporte2J=0;
     int Transporte2V=0;
     boolean EligioTranspPublic = false;
+    String DatosAMostrar="";
+    boolean ErrorLineas=false;
 
     public void BotonAgregarDireccion (View Vista)
     {
@@ -114,57 +116,181 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
                   EligioTranspPublic = true;
               }
-              if (EligioTranspPublic == true && LineasFrec.length() > 0) {
+              if (EligioTranspPublic==false)
+              {}
+              else{
+                  if (EligioTranspPublic == true && LineasFrec.length() > 0) {
 
+                  } else {
+                      ErrorLineas = true;
+                      Cartelito = Toast.makeText(this, "Si elige un transporte publico debe especificar las lineas que utiliza", Toast.LENGTH_SHORT);
+                      Cartelito.show();
+                  }
+              }
+
+
+
+              if (ErrorLineas == false)
+              {
 
                   if (RadioIda.isChecked() == true) {
 
                       String DiasSeleccionado = spinnerDia.getSelectedItem().toString();
-
+                      String NombreTransp="";
                       switch (DiasSeleccionado) {
                           case "Lunes":
                               HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                              DireccionSeleccionada = DireccionValidada.toString();
+                              DireccionSeleccionada = Direc.toString();
                               Horario1L = HoraSeleccionada;
                               Transporte1L = TransporteSeleccionado;
                               Direccion1L = DireccionSeleccionada;
-                              DatosCompletos.setText("Los lunes a las " + Horario1L + " va a " + Direccion1L +" con el transporte ...");
+
+
+
+                              switch (TransporteSeleccionado) {
+                                  case 1:
+                                      NombreTransp = "Auto";
+                                      break;
+                                  case 2:
+                                      NombreTransp = "Colectivo";
+                                      break;
+                                  case 3:
+                                      NombreTransp = "Subte";
+                                      break;
+                                  case 4:
+                                      NombreTransp = "Bicicleta";
+                                      break;
+                                  case 5:
+                                      NombreTransp = "Caminando";
+                                      break;
+                              }
+
+
+                              DatosAMostrar =DatosAMostrar + "\n"+ "Los lunes a las " + Horario1L + " va a " + Direccion1L + " con el transporte "+ NombreTransp;
+                              DatosCompletos.setText(DatosAMostrar);
 
                               break;
                           case "Martes":
                               HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                              DireccionSeleccionada = DireccionValidada.toString();
+                              DireccionSeleccionada = Direc.toString();
                               Horario1M = HoraSeleccionada;
                               Transporte1M = TransporteSeleccionado;
                               Direccion1M = DireccionSeleccionada;
-                              DatosCompletos.setText("Los lunes a las " + Horario1M + " va a " + Direccion1M +" con el transporte ...");
+
+
+
+
+                              switch (TransporteSeleccionado) {
+                                  case 1:
+                                      NombreTransp = "Auto";
+                                      break;
+                                  case 2:
+                                      NombreTransp = "Colectivo";
+                                      break;
+                                  case 3:
+                                      NombreTransp = "Subte";
+                                      break;
+                                  case 4:
+                                      NombreTransp = "Bicicleta";
+                                      break;
+                                  case 5:
+                                      NombreTransp = "Caminando";
+                                      break;
+                              }
+
+
+                              DatosAMostrar =DatosAMostrar + "\n"+ "Los martes a las " + Horario1M + " va a " + Direccion1M + " con el transporte "+ NombreTransp;
+                              DatosCompletos.setText(DatosAMostrar);
                               break;
                           case "Miercoles":
                               HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                              DireccionSeleccionada = DireccionValidada.toString();
+                              DireccionSeleccionada = Direc.toString();
                               Horario1X = HoraSeleccionada;
                               Transporte1X = TransporteSeleccionado;
                               Direccion1X = DireccionSeleccionada;
-                              Cartelito = Toast.makeText(this, "Pudo guardar los datos del Miercoles", Toast.LENGTH_SHORT);
-                              Cartelito.show();
+
+
+
+                              switch (TransporteSeleccionado) {
+                                  case 1:
+                                      NombreTransp = "Auto";
+                                      break;
+                                  case 2:
+                                      NombreTransp = "Colectivo";
+                                      break;
+                                  case 3:
+                                      NombreTransp = "Subte";
+                                      break;
+                                  case 4:
+                                      NombreTransp = "Bicicleta";
+                                      break;
+                                  case 5:
+                                      NombreTransp = "Caminando";
+                                      break;
+                              }
+
+                              DatosAMostrar =DatosAMostrar+ "\n" + "Los miercoles a las " + Horario1X + " va a " + Direccion1X + " con el transporte "+ NombreTransp;
+                              DatosCompletos.setText(DatosAMostrar);
                               break;
                           case "Jueves":
                               HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                              DireccionSeleccionada = DireccionValidada.toString();
+                              DireccionSeleccionada = Direc.toString();
                               Horario1J = HoraSeleccionada;
                               Transporte1J = TransporteSeleccionado;
                               Direccion1J = DireccionSeleccionada;
-                              Cartelito = Toast.makeText(this, "Pudo guardar los datos del Jueves", Toast.LENGTH_SHORT);
-                              Cartelito.show();
+
+
+
+                              switch (TransporteSeleccionado) {
+                                  case 1:
+                                      NombreTransp = "Auto";
+                                      break;
+                                  case 2:
+                                      NombreTransp = "Colectivo";
+                                      break;
+                                  case 3:
+                                      NombreTransp = "Subte";
+                                      break;
+                                  case 4:
+                                      NombreTransp = "Bicicleta";
+                                      break;
+                                  case 5:
+                                      NombreTransp = "Caminando";
+                                      break;
+                              }
+
+
+                              DatosAMostrar =DatosAMostrar +"\n"+ "Los jueves a las " + Horario1J + " va a " + Direccion1J + " con el transporte "+ NombreTransp;
+                              DatosCompletos.setText(DatosAMostrar);
                               break;
                           case "Viernes":
                               HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                              DireccionSeleccionada = DireccionValidada.toString();
+                              DireccionSeleccionada = Direc.toString();
                               Horario1V = HoraSeleccionada;
                               Transporte1V = TransporteSeleccionado;
                               Direccion1V = DireccionSeleccionada;
-                              Cartelito = Toast.makeText(this, "Pudo guardar los datos del Viernes", Toast.LENGTH_SHORT);
-                              Cartelito.show();
+
+
+
+                              switch (TransporteSeleccionado) {
+                                  case 1:
+                                      NombreTransp = "Auto";
+                                      break;
+                                  case 2:
+                                      NombreTransp = "Colectivo";
+                                      break;
+                                  case 3:
+                                      NombreTransp = "Subte";
+                                      break;
+                                  case 4:
+                                      NombreTransp = "Bicicleta";
+                                      break;
+                                  case 5:
+                                      NombreTransp = "Caminando";
+                                      break;
+                              }
+                              DatosAMostrar =DatosAMostrar + "\n"+ "Los viernes a las " + Horario1V + " va a " + Direccion1V + " con el transporte "+ NombreTransp;
+                              DatosCompletos.setText(DatosAMostrar);
                               break;
 
 
@@ -174,6 +300,8 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                       if (RadioVuelta.isChecked() == true) {
                           String DiasSeleccionado = spinnerDia.getSelectedItem().toString();
 
+                          String NombreTransp="";
+
                           switch (DiasSeleccionado) {
                               case "Lunes":
                                   HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
@@ -181,7 +309,29 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                                   Horario2L = HoraSeleccionada;
                                   Transporte2L = TransporteSeleccionado;
                                   Direccion2L = DireccionSeleccionada;
-                                  DatosCompletos.setText("Los lunes a las " + Horario2L + " va a " + Direccion2L +" con el transporte ...");
+
+
+                                  switch (TransporteSeleccionado) {
+                                      case 1:
+                                          NombreTransp = "Auto";
+                                          break;
+                                      case 2:
+                                          NombreTransp = "Colectivo";
+                                          break;
+                                      case 3:
+                                          NombreTransp = "Subte";
+                                          break;
+                                      case 4:
+                                          NombreTransp = "Bicicleta";
+                                          break;
+                                      case 5:
+                                          NombreTransp = "Caminando";
+                                          break;
+                                  }
+
+                                  DatosAMostrar =DatosAMostrar + "\n"+ "Los lunes a las " + Horario2L + " va a " + Direccion2L + " con el transporte "+ NombreTransp;
+                                  DatosCompletos.setText(DatosAMostrar);
+
                                   break;
                               case "Martes":
                                   HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
@@ -189,8 +339,26 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                                   Horario2M = HoraSeleccionada;
                                   Transporte2M = TransporteSeleccionado;
                                   Direccion2M = DireccionSeleccionada;
-                                  Cartelito = Toast.makeText(this, "Pudo guardar los datos del Martes", Toast.LENGTH_SHORT);
-                                  Cartelito.show();
+                                  switch (TransporteSeleccionado) {
+                                      case 1:
+                                          NombreTransp = "Auto";
+                                          break;
+                                      case 2:
+                                          NombreTransp = "Colectivo";
+                                          break;
+                                      case 3:
+                                          NombreTransp = "Subte";
+                                          break;
+                                      case 4:
+                                          NombreTransp = "Bicicleta";
+                                          break;
+                                      case 5:
+                                          NombreTransp = "Caminando";
+                                          break;
+                                  }
+
+                                  DatosAMostrar =DatosAMostrar+ "\n" + "Los martes a las " + Horario2M + " va a " + Direccion2M + " con el transporte "+ NombreTransp;
+                                  DatosCompletos.setText(DatosAMostrar);
                                   break;
                               case "Miercoles":
                                   HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
@@ -198,8 +366,26 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                                   Horario2X = HoraSeleccionada;
                                   Transporte2X = TransporteSeleccionado;
                                   Direccion2X = DireccionSeleccionada;
-                                  Cartelito = Toast.makeText(this, "Pudo guardar los datos del Miercoles", Toast.LENGTH_SHORT);
-                                  Cartelito.show();
+                                  switch (TransporteSeleccionado) {
+                                      case 1:
+                                          NombreTransp = "Auto";
+                                          break;
+                                      case 2:
+                                          NombreTransp = "Colectivo";
+                                          break;
+                                      case 3:
+                                          NombreTransp = "Subte";
+                                          break;
+                                      case 4:
+                                          NombreTransp = "Bicicleta";
+                                          break;
+                                      case 5:
+                                          NombreTransp = "Caminando";
+                                          break;
+                                  }
+
+                                  DatosAMostrar =DatosAMostrar + "\n"+ "Los miercoles a las " + Horario2X + " va a " + Direccion2X + " con el transporte "+ NombreTransp;
+                                  DatosCompletos.setText(DatosAMostrar);
                                   break;
                               case "Jueves":
                                   HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
@@ -207,8 +393,26 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                                   Horario2J = HoraSeleccionada;
                                   Transporte2J = TransporteSeleccionado;
                                   Direccion2J = DireccionSeleccionada;
-                                  Cartelito = Toast.makeText(this, "Pudo guardar los datos del Jueves", Toast.LENGTH_SHORT);
-                                  Cartelito.show();
+                                  switch (TransporteSeleccionado) {
+                                      case 1:
+                                          NombreTransp = "Auto";
+                                          break;
+                                      case 2:
+                                          NombreTransp = "Colectivo";
+                                          break;
+                                      case 3:
+                                          NombreTransp = "Subte";
+                                          break;
+                                      case 4:
+                                          NombreTransp = "Bicicleta";
+                                          break;
+                                      case 5:
+                                          NombreTransp = "Caminando";
+                                          break;
+                                  }
+
+                                  DatosAMostrar =DatosAMostrar + "\n"+ "Los jueves a las " + Horario2J + " va a " + Direccion2J + " con el transporte "+ NombreTransp;
+                                  DatosCompletos.setText(DatosAMostrar);
                                   break;
                               case "Viernes":
                                   HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
@@ -216,19 +420,33 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                                   Horario2V = HoraSeleccionada;
                                   Transporte2V = TransporteSeleccionado;
                                   Direccion2V = DireccionSeleccionada;
-                                  Cartelito = Toast.makeText(this, "Pudo guardar los datos del Viernes", Toast.LENGTH_SHORT);
-                                  Cartelito.show();
+                                  switch (TransporteSeleccionado) {
+                                      case 1:
+                                          NombreTransp = "Auto";
+                                          break;
+                                      case 2:
+                                          NombreTransp = "Colectivo";
+                                          break;
+                                      case 3:
+                                          NombreTransp = "Subte";
+                                          break;
+                                      case 4:
+                                          NombreTransp = "Bicicleta";
+                                          break;
+                                      case 5:
+                                          NombreTransp = "Caminando";
+                                          break;
+                                  }
+
+                                  DatosAMostrar =DatosAMostrar + "\n" +"Los viernes a las " + Horario2V+ " va a " + Direccion2V + " con el transporte "+ NombreTransp;
+                                  DatosCompletos.setText(DatosAMostrar);
                                   break;
 
-                            }
                           }
+                      }
                   }
-              }
-              else
-              {
-                  Cartelito = Toast.makeText(this, "Si elige un transporte publico debe especificar las lineas que utiliza", Toast.LENGTH_SHORT);
-                  Cartelito.show();
-              }
+          }
+
           }
           else
           {
@@ -273,11 +491,6 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
     public void SiguientePrimeraEdicion(View Vista)
     {
-        EditText estado;
-        estado = (EditText) findViewById(R.id.IngresoEstado);
-        String Estado = estado.getText().toString();
-
-
         /*String Horario1L;
         String Horario1M;
         String Horario1X;
@@ -309,9 +522,9 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         int Transporte2J;
         int Transporte2V;*/
 
-        if (Estado.length()== 0 || Horario1L.length()==0 || Horario1M.length()==0 || Horario1X.length()==0 || Horario1J.length()==0 || Horario1V.length()==0 || Horario2L.length()==0 || Horario2M.length()==0 || Horario2X.length()==0 || Horario2J.length()==0 ||Horario2V.length()==0 ||Direccion1L.length()==0 ||Direccion1M.length()==0 ||Direccion1X.length()==0 || Direccion1J.length()==0 ||Direccion1V.length()==0 ||Direccion2L.length()==0 ||Direccion2M.length()==0 ||Direccion2X.length()==0 ||Direccion2J.length()==0 ||Direccion2V.length()==0 || Transporte1L==0 ||Transporte1M==0 ||Transporte1X==0 ||Transporte1J==0 ||Transporte1V==0 ||Transporte2L==0 ||Transporte2M==0 ||Transporte2X ==0 ||Transporte2J==0 ||Transporte2V==0)
+        if ( Horario1L.length()==0 && Horario1M.length()==0&& Horario1X.length()==0 && Horario1J.length()==0 && Horario1V.length()==0 && Horario2L.length()==0 && Horario2M.length()==0 && Horario2X.length()==0 && Horario2J.length()==0 &&Horario2V.length()==0 &&Direccion1L.length()==0 &&Direccion1M.length()==0 &&Direccion1X.length()==0 && Direccion1J.length()==0 &&Direccion1V.length()==0 &&Direccion2L.length()==0 &&Direccion2M.length()==0 &&Direccion2X.length()==0 &&Direccion2J.length()==0 &&Direccion2V.length()==0 && Transporte1L==0 &&Transporte1M==0 &&Transporte1X==0 &&Transporte1J==0 &&Transporte1V==0 &&Transporte2L==0 &&Transporte2M==0 &&Transporte2X ==0 &&Transporte2J==0 &&Transporte2V==0)
         {
-            Cartelito = Toast.makeText(this, "No ingreso su estado o no completo todos los campos", Toast.LENGTH_SHORT);
+            Cartelito = Toast.makeText(this, "Debe ingresar al menos un recorrido", Toast.LENGTH_SHORT);
             Cartelito.show();
         }
         else
