@@ -16,7 +16,8 @@ namespace ApiEjemplo.Models
         public bool DesdeHasta { get; set; }
         public string DetalleTransporte{ get; set; }
 
-        public string Direccion { get; set; }
+        public string DireccionLatitud { get; set; }
+        public string DireccionLongitud { get; set; }
 
     }
 }

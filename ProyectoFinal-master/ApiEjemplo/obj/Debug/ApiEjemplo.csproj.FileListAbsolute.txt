@@ -57,3 +57,4 @@ C:\Users\User\Documents\ProyectoFinal\ProyectoFinal\ApiEjemplo\bin\Microsoft.Cod
 C:\Users\User\Documents\ProyectoFinal\ProyectoFinal\ApiEjemplo\bin\Microsoft.WindowsAzure.Configuration.dll
 C:\Users\User\Documents\ProyectoFinal\ProyectoFinal\ApiEjemplo\bin\Microsoft.WindowsAzure.Configuration.xml
 Z:\github\ProyectoFinal-master\ApiEjemplo\obj\Debug\ApiEjemplo.csprojResolveAssemblyReference.cache
+C:\TranspOrt\ProyectoFinal-master\ApiEjemplo\obj\Debug\ApiEjemplo.csprojResolveAssemblyReference.cache
