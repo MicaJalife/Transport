@@ -18,6 +18,8 @@ namespace ApiEjemplo.Models
 
         public string DireccionLatitud { get; set; }
         public string DireccionLongitud { get; set; }
+        public Horarios horario { get; set; }
+        public Transportes transporte { get; set; }
 
     }
 }

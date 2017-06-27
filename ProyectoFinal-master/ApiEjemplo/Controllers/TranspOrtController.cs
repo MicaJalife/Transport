@@ -13,7 +13,7 @@ namespace ApiEjemplo.Controllers
     public class TranspOrtController
     {
         //GET api/Usuario
-        [ResponseType(typeof(Usuarios))]
+        [Route("api/usuario/{DNI}/{Contraseña}")]
         public IHttpActionResult Get(int DNI, string Contraseña)
         {
             Usuarios usuario = UsuariosData.Login(DNI, Contraseña);
@@ -24,8 +24,18 @@ namespace ApiEjemplo.Controllers
             return Ok(usuario);
         }
 
+        private IHttpActionResult Ok(Usuarios usuario)
+        {
+            throw new NotImplementedException();
+        }
+
+        private IHttpActionResult NotFound()
+        {
+            throw new NotImplementedException();
+        }
+
         //POST : api/Viajes
-        [ResponseType(typeof(Viajes))]
+        [Route("api/ingresarviaje")]
         public IHttpActionResult Post(Viajes viaje)
         {
             if (viaje==null)
@@ -37,7 +47,18 @@ namespace ApiEjemplo.Controllers
             return Ok();
         }
 
+        private IHttpActionResult Ok()
+        {
+            throw new NotImplementedException();
+        }
+
+        private IHttpActionResult BadRequest(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         //GET : api/Viajes
+        [Route("api/traerviaje/{DNI}")]
         public IList<Viajes> Get(int DNI)
         {
             return ViajesData.ObtenerViajesXDNI(DNI);

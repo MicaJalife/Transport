@@ -27,6 +27,9 @@ namespace ApiEjemplo.Data
                 foreach(DataRow row in dt.Rows)
                 {
                     viaje = ObtenerPorRow(row);
+                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
+                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
+                    // 
                     ListaViajes.Add(viaje);
                 }
                 viaje = ObtenerPorRow(dt.Rows[0]);
@@ -56,21 +59,5 @@ namespace ApiEjemplo.Data
 
 
 
-
-        public static Usuarios Login(int DNI, string Contraseña)
-        {
-            string select = "select (Nombre, Año, Curso,Imagen, PrimeraEdicion) from Usuarios where DNI=" + DNI.ToString() + "and Contraseña=" + Contraseña;
-            DataTable dt = DBHelper.EjecutarSelect(select);
-            Usuarios uusuario;
-            if (dt.Rows.Count > 0)
-            {
-                uusuario = ObtenerPorRow(dt.Rows[0]);
-                return uusuario;
-            }
-            else
-            {
-                return null;
-            }
-        }
     }
 }
