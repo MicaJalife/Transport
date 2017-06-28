@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-06-2017 a las 17:25:12
+-- Tiempo de generación: 28-06-2017 a las 11:41:38
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -27,10 +27,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `amigos` (
+  `IdDNIAmigos` int(11) NOT NULL AUTO_INCREMENT,
   `DNI` int(11) NOT NULL,
   `IdAmigo` int(11) NOT NULL,
-  PRIMARY KEY (`IdAmigo`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`IdDNIAmigos`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Volcado de datos para la tabla `amigos`
+--
+
+INSERT INTO `amigos` (`IdDNIAmigos`, `DNI`, `IdAmigo`) VALUES
+(1, 42225260, 42586854),
+(2, 42225260, 11111111),
+(3, 42225260, 22222222),
+(4, 42225260, 33333333),
+(5, 42586854, 11111111),
+(6, 42586854, 22222222),
+(7, 22222222, 33333333),
+(8, 11111111, 33333333);
 
 -- --------------------------------------------------------
 
@@ -133,6 +148,17 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`DNI`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`DNI`, `Nombre`, `Año`, `Curso`, `Contraseña`, `Imagen`, `PrimeraEdicion`) VALUES
+(42225260, 'Rocio Tarda', '6', 'IC', 'rocio123', '', 0),
+(42586854, 'Micaela Jalige', '6', 'IC', 'micaela123', '', 0),
+(11111111, 'Felipe Sasiain', '5', 'KC', 'felipe123', '', 1),
+(22222222, 'Simon Oliva', '4', 'IB', 'simon123', '', 0),
+(33333333, 'Enrico Martella', '5', 'IA', 'enrico123', '', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -149,7 +175,14 @@ CREATE TABLE IF NOT EXISTS `viajes` (
   `DireccionLatitud` varchar(45) NOT NULL,
   `DireccionLonguitud` varchar(45) NOT NULL,
   PRIMARY KEY (`IdViaje`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `viajes`
+--
+
+INSERT INTO `viajes` (`IdViaje`, `DNI`, `IdHorario`, `IdTransporte`, `DesdeHasta`, `DetalleTransporte`, `DireccionLatitud`, `DireccionLonguitud`) VALUES
+(1, 42225260, 1, 2, 1, 'Uso el colectivo 132', '', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
