@@ -13,10 +13,10 @@ namespace ApiEjemplo.Controllers
     public class TranspOrtController
     {
         //GET api/Usuario
-        [Route("api/usuario/{DNI}/{Contraseña}")]
-        public IHttpActionResult Get(int DNI, string Contraseña)
+        [Route("/api/usuario/{DNI}/{Contrasena}")]
+        public IHttpActionResult Get(int DNI, string Contrasena)
         {
-            Usuarios usuario = UsuariosData.Login(DNI, Contraseña);
+            Usuarios usuario = UsuariosData.Login(DNI, Contrasena);
             if(usuario == null )
             {
                 return NotFound();

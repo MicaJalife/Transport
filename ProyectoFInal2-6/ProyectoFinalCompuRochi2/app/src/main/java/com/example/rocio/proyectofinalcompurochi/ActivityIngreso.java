@@ -57,6 +57,9 @@ public class ActivityIngreso extends AppCompatActivity {
                 EnvioDatos.putString("MandoImagen", miUsuario.Imagen);
                 EnvioDatos.putBoolean("MandoPrimeraEdicion", miUsuario.PrimeraEdicion);*/
 
+                miUsuario.DNI= Integer.parseInt(Dni);
+
+
                 Intent LlamadaActivityPrimeraEdicion;
                 LlamadaActivityPrimeraEdicion = new Intent(this, ActivityPrimeraEdicion.class);
                 LlamadaActivityPrimeraEdicion.putExtra("EnvioUsuario",miUsuario);

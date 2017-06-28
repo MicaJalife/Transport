@@ -11,7 +11,7 @@ public class Usuario implements Parcelable{
 
     public int DNI;
     public String Nombre;
-    public String Contrasenia;
+    public String Contraseña;
     public int Año;
     public String Curso;
     public String Imagen;
@@ -25,7 +25,7 @@ public void Usuario (Parcel Dato)
 
         dest.writeInt(DNI);
         dest.writeString(Nombre);
-        dest.writeString(Contrasenia);
+        dest.writeString(Contraseña);
         dest.writeInt(Año);
         dest.writeString(Curso);
         dest.writeString(Imagen);

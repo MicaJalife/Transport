@@ -63,6 +63,8 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     boolean ErrorLineas = false;
     double lat;
     double lng;
+    boolean seIngreso = false;
+    Viaje miviaje = new Viaje();
 
     Usuario usuariorecibido;
 
@@ -102,7 +104,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         Cbox = (CheckBox) findViewById(R.id.CheckBox);
 
 
-        Viaje viaje = new Viaje();
+
 
         if (spinnerDia.isSelected() == false || spinnerBloques.isSelected() == false || TransporteSeleccionado == 0 || DireccionValidada.length() == 0)
         {
@@ -130,13 +132,13 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
                 if (RadioIda.isChecked() == true) {
 
-                    viaje.DesdeHasta = true;
-                    viaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
-                    viaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
-                    viaje.IdTransporte = TransporteSeleccionado;
-                    viaje.DetalleTransporte = LineasFrec;
-                    viaje.DireccionLatitud = lat;
-                    viaje.DireccionLongitud = lng;
+                    miviaje.DesdeHasta = true;
+                    miviaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
+                    miviaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
+                    miviaje.IdTransporte = TransporteSeleccionado;
+                    miviaje.DetalleTransporte = LineasFrec;
+                    miviaje.DireccionLatitud = lat;
+                    miviaje.DireccionLongitud = lng;
 
 
                     DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getSelectedItem().toString() + " a las " + spinnerBloques.getSelectedItem().toString() + " va a " + DireccionValidada + " con el transporte " + TransporteSeleccionado;
@@ -147,13 +149,13 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                 } else
                 {
                     if (RadioVuelta.isChecked() == true) {
-                        viaje.DesdeHasta = false;
-                        viaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
-                        viaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
-                        viaje.IdTransporte = TransporteSeleccionado;
-                        viaje.DetalleTransporte = LineasFrec;
-                        viaje.DireccionLatitud = lat;
-                        viaje.DireccionLongitud = lng;
+                        miviaje.DesdeHasta = false;
+                        miviaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
+                        miviaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
+                        miviaje.IdTransporte = TransporteSeleccionado;
+                        miviaje.DetalleTransporte = LineasFrec;
+                        miviaje.DireccionLatitud = lat;
+                        miviaje.DireccionLongitud = lng;
 
                         DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getSelectedItem().toString() + " a las " + spinnerBloques.getSelectedItem().toString() + " va a " + DireccionValidada + " con el transporte " + TransporteSeleccionado;
                         DatosCompletos.setText(DatosAMostrar);
@@ -207,8 +209,8 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
             Cartelito = Toast.makeText(this, "Debe ingresar al menos un recorrido", Toast.LENGTH_SHORT);
             Cartelito.show();
         } else {
-            String par = "localhost/api/ingresarviaje";
-            new IngresarViaje().execute(par);
+
+            new IngresarViaje().execute(miviaje);
 
 
             Intent LlamadaActivityPerfil;
@@ -369,20 +371,31 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         }
 
     }
-    private class IngresarViaje extends AsyncTask<String, Void, Viaje> {
+    private class IngresarViaje extends AsyncTask<Viaje, Void, Viaje> {
 
         protected void onPostExecute(Viaje datos) {
             super.onPostExecute(datos);
+            if (miviaje == datos)
+            {
+                seIngreso=true;
+            }
 
         }
 
         @Override
-        protected Viaje doInBackground(String... parametros) {
-            String url = parametros[0];
+        protected Viaje doInBackground(Viaje... parametros) {
+
+
+
+            //Convertir viaje a json acaaaa
+
+
+
+
 
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url(url)
+                    .url("localhost/api/ingresarviaje")
                     .build();
 
 

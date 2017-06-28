@@ -18,7 +18,7 @@ namespace ApiEjemplo.Data
             u.Nombre = row.Field<string>("Nombre");
             u.Año = row.Field<string>("Año");
             u.Curso = row.Field<string>("Curso");
-            u.Contraseña = row.Field<string>("Contraseña");
+            u.Contrasena = row.Field<string>("Contrasena");
             u.Imagen = row.Field<string>("Imagen");
             u.PrimeraEdicion = row.Field<bool>("PrimeraEdicion");
             return u;
@@ -40,13 +40,7 @@ namespace ApiEjemplo.Data
             }
         }
         
-        public static void Insert(Persona persona)
-        {
-            string sInsert = "Insert into personas (Nombre,FechaNac) values ('" + persona.Nombre + "','" + persona.FechaNac.ToString("yyyy-MM-dd HH:mm") + "')";
-            DBHelper.EjecutarIUD(sInsert);
-        }
-
-
+       
 
     }
 }

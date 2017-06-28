@@ -1,0 +1,11 @@
+
+
+
+// Como hacer un insert de datos 
+https://www.youtube.com/watch?v=0I11qK2PTiI
+https://www.youtube.com/watch?v=s-C8chZITbU
+https://www.youtube.com/watch?v=pZQqe6Re9KI
+
+
+//Como convertir datos java a Json
+http://www.hermosaprogramacion.com/2015/01/android-json-parsing/

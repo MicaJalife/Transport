@@ -15,6 +15,7 @@ public class Viaje {
     public double DireccionLongitud;
     public int IdDia;
     public int IdTransporte;
+    public String Direccion;
 
 
 

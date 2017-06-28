@@ -151,7 +151,7 @@
     <Compile Include="Models\Amigos.cs" />
     <Compile Include="Models\Dias.cs" />
     <Compile Include="Models\DiasViajes.cs" />
-    <Compile Include="Models\Horarios.cs" />
+    <Compile Include="Data\Horarios.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Transportes.cs" />
     <Compile Include="Models\Usuarios.cs" />
