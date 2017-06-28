@@ -7,26 +7,22 @@
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true">
 
-    <TextView
-        android:id="@+id/login_title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="22dp"
-        android:gravity="center_horizontal"
-        android:text="TranspORT"
-        android:textColor="#2C3E50"
-        android:textSize="26sp"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/logo"
+        android:textAlignment="center"/>
+
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="73dp"
-        android:background="#264E86"
+        android:layout_marginTop="180dp"
+        android:background="#07316b"
         android:elevation="4dp"
         android:orientation="vertical"
         android:padding="20dp"
@@ -47,8 +43,8 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#000"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:text=""
                 android:singleLine="true"
                 android:hint="DNI"
@@ -65,8 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#000"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:text=""
                 android:hint="Contraseña"
                 android:inputType="textPassword"

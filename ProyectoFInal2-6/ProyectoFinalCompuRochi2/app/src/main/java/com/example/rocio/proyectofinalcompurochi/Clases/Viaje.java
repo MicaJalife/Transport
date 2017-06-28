@@ -8,11 +8,13 @@ public class Viaje {
 
     public int DNI;
     public int IdHorario;
-    public String Transporte;
+    public String TipoTransporte;
     public boolean DesdeHasta;
     public String DetalleTransporte;
-    public String DireccionLatitud;
-    public String DireccionLongitud;
+    public double DireccionLatitud;
+    public double DireccionLongitud;
+    public int IdDia;
+    public int IdTransporte;
 
 
 

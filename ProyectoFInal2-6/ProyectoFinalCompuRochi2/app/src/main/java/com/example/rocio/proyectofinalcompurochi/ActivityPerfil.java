@@ -118,11 +118,11 @@ public class ActivityPerfil extends AppCompatActivity {
 
                     v.DNI = jsonViaje.getInt("DNI");
                     v.IdHorario = jsonViaje.getInt("IdHorario");
-                    v.Transporte = jsonViaje.getString("IdTransporte");
+                    v.IdTransporte = jsonViaje.getInt("IdTransporte");
                     v.DesdeHasta = jsonViaje.getBoolean("DesdeHasta");
                     v.DetalleTransporte = jsonViaje.getString("DetalleTransporte");
-                    v.DireccionLatitud = jsonViaje.getString("DireccionLatitud");
-                    v.DireccionLongitud = jsonViaje.getString("DireccionLongitud");
+                    v.DireccionLatitud = jsonViaje.getDouble("DireccionLatitud");
+                    v.DireccionLongitud = jsonViaje.getDouble("DireccionLongitud");
 
 
                     return v;

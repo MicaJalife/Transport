@@ -35,6 +35,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tagmanager.Container;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -48,50 +49,25 @@ import java.util.List;
 
 public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapReadyCallback {
 
+    Funciones funcion = new Funciones();
+
+
     EditText direccion;
     TextView dirEncontrada, coordenadas;
     GoogleMap map;
     Toast Cartelito;
     int TransporteSeleccionado = 0;
-    String HoraSeleccionada;
-    String DireccionSeleccionada;
-    String Horario1L;
-    String Horario1M;
-    String Horario1X;
-    String Horario1J;
-    String Horario1V;
-    String Horario2L;
-    String Horario2M;
-    String Horario2X;
-    String Horario2J;
-    String Horario2V;
-    String Direccion1L;
-    String Direccion1M;
-    String Direccion1X;
-    String Direccion1J;
-    String Direccion1V;
-    String Direccion2L;
-    String Direccion2M;
-    String Direccion2X;
-    String Direccion2J;
-    String Direccion2V;
-    int Transporte1L = 0;
-    int Transporte1M = 0;
-    int Transporte1X = 0;
-    int Transporte1J = 0;
-    int Transporte1V = 0;
-    int Transporte2L = 0;
-    int Transporte2M = 0;
-    int Transporte2X = 0;
-    int Transporte2J = 0;
-    int Transporte2V = 0;
+    boolean IngresoCorrecto=false;
     boolean EligioTranspPublic = false;
     String DatosAMostrar = "";
     boolean ErrorLineas = false;
+    double lat;
+    double lng;
 
     Usuario usuariorecibido;
 
-    public void BotonAgregarDireccion(View Vista) {
+    public void BotonAgregarDireccion(View Vista)
+    {
         TextView Nombre;
         Nombre = (TextView) findViewById(R.id.txtnombreyapellido);
         Nombre.setText(usuariorecibido.Nombre);
@@ -126,13 +102,20 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         Cbox = (CheckBox) findViewById(R.id.CheckBox);
 
 
-        if (spinnerDia.isSelected() == false || spinnerBloques.isSelected() == false || TransporteSeleccionado == 0 || DireccionValidada.length() == 0) {
-            if (TransporteSeleccionado == 2 || TransporteSeleccionado == 3) {
+        Viaje viaje = new Viaje();
+
+        if (spinnerDia.isSelected() == false || spinnerBloques.isSelected() == false || TransporteSeleccionado == 0 || DireccionValidada.length() == 0)
+        {
+            if (TransporteSeleccionado == 2 || TransporteSeleccionado == 3)
+            {
 
                 EligioTranspPublic = true;
             }
-            if (EligioTranspPublic == false) {
-            } else {
+            if (EligioTranspPublic == false)
+            {
+            }
+            else
+            {
                 if (EligioTranspPublic == true && LineasFrec.length() > 0) {
 
                 } else {
@@ -147,317 +130,42 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
                 if (RadioIda.isChecked() == true) {
 
-                    String DiasSeleccionado = spinnerDia.getSelectedItem().toString();
-                    String NombreTransp = "";
-                    switch (DiasSeleccionado) {
-                        case "Lunes":
-                            HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                            DireccionSeleccionada = Direc.toString();
-                            Horario1L = HoraSeleccionada;
-                            Transporte1L = TransporteSeleccionado;
-                            Direccion1L = DireccionSeleccionada;
+                    viaje.DesdeHasta = true;
+                    viaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
+                    viaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
+                    viaje.IdTransporte = TransporteSeleccionado;
+                    viaje.DetalleTransporte = LineasFrec;
+                    viaje.DireccionLatitud = lat;
+                    viaje.DireccionLongitud = lng;
 
 
-                            switch (TransporteSeleccionado) {
-                                case 1:
-                                    NombreTransp = "Auto";
-                                    break;
-                                case 2:
-                                    NombreTransp = "Colectivo";
-                                    break;
-                                case 3:
-                                    NombreTransp = "Subte";
-                                    break;
-                                case 4:
-                                    NombreTransp = "Bicicleta";
-                                    break;
-                                case 5:
-                                    NombreTransp = "Caminando";
-                                    break;
-                            }
+                    DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getSelectedItem().toString() + " a las " + spinnerBloques.getSelectedItem().toString() + " va a " + DireccionValidada + " con el transporte " + TransporteSeleccionado;
+                    DatosCompletos.setText(DatosAMostrar);
 
+                    IngresoCorrecto=true;
 
-                            DatosAMostrar = DatosAMostrar + "\n" + "Los lunes a las " + Horario1L + " va a " + Direccion1L + " con el transporte " + NombreTransp;
-                            DatosCompletos.setText(DatosAMostrar);
-
-                            break;
-                        case "Martes":
-                            HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                            DireccionSeleccionada = Direc.toString();
-                            Horario1M = HoraSeleccionada;
-                            Transporte1M = TransporteSeleccionado;
-                            Direccion1M = DireccionSeleccionada;
-
-
-                            switch (TransporteSeleccionado) {
-                                case 1:
-                                    NombreTransp = "Auto";
-                                    break;
-                                case 2:
-                                    NombreTransp = "Colectivo";
-                                    break;
-                                case 3:
-                                    NombreTransp = "Subte";
-                                    break;
-                                case 4:
-                                    NombreTransp = "Bicicleta";
-                                    break;
-                                case 5:
-                                    NombreTransp = "Caminando";
-                                    break;
-                            }
-
-
-                            DatosAMostrar = DatosAMostrar + "\n" + "Los martes a las " + Horario1M + " va a " + Direccion1M + " con el transporte " + NombreTransp;
-                            DatosCompletos.setText(DatosAMostrar);
-                            break;
-                        case "Miercoles":
-                            HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                            DireccionSeleccionada = Direc.toString();
-                            Horario1X = HoraSeleccionada;
-                            Transporte1X = TransporteSeleccionado;
-                            Direccion1X = DireccionSeleccionada;
-
-
-                            switch (TransporteSeleccionado) {
-                                case 1:
-                                    NombreTransp = "Auto";
-                                    break;
-                                case 2:
-                                    NombreTransp = "Colectivo";
-                                    break;
-                                case 3:
-                                    NombreTransp = "Subte";
-                                    break;
-                                case 4:
-                                    NombreTransp = "Bicicleta";
-                                    break;
-                                case 5:
-                                    NombreTransp = "Caminando";
-                                    break;
-                            }
-
-                            DatosAMostrar = DatosAMostrar + "\n" + "Los miercoles a las " + Horario1X + " va a " + Direccion1X + " con el transporte " + NombreTransp;
-                            DatosCompletos.setText(DatosAMostrar);
-                            break;
-                        case "Jueves":
-                            HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                            DireccionSeleccionada = Direc.toString();
-                            Horario1J = HoraSeleccionada;
-                            Transporte1J = TransporteSeleccionado;
-                            Direccion1J = DireccionSeleccionada;
-
-
-                            switch (TransporteSeleccionado) {
-                                case 1:
-                                    NombreTransp = "Auto";
-                                    break;
-                                case 2:
-                                    NombreTransp = "Colectivo";
-                                    break;
-                                case 3:
-                                    NombreTransp = "Subte";
-                                    break;
-                                case 4:
-                                    NombreTransp = "Bicicleta";
-                                    break;
-                                case 5:
-                                    NombreTransp = "Caminando";
-                                    break;
-                            }
-
-
-                            DatosAMostrar = DatosAMostrar + "\n" + "Los jueves a las " + Horario1J + " va a " + Direccion1J + " con el transporte " + NombreTransp;
-                            DatosCompletos.setText(DatosAMostrar);
-                            break;
-                        case "Viernes":
-                            HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                            DireccionSeleccionada = Direc.toString();
-                            Horario1V = HoraSeleccionada;
-                            Transporte1V = TransporteSeleccionado;
-                            Direccion1V = DireccionSeleccionada;
-
-
-                            switch (TransporteSeleccionado) {
-                                case 1:
-                                    NombreTransp = "Auto";
-                                    break;
-                                case 2:
-                                    NombreTransp = "Colectivo";
-                                    break;
-                                case 3:
-                                    NombreTransp = "Subte";
-                                    break;
-                                case 4:
-                                    NombreTransp = "Bicicleta";
-                                    break;
-                                case 5:
-                                    NombreTransp = "Caminando";
-                                    break;
-                            }
-                            DatosAMostrar = DatosAMostrar + "\n" + "Los viernes a las " + Horario1V + " va a " + Direccion1V + " con el transporte " + NombreTransp;
-                            DatosCompletos.setText(DatosAMostrar);
-                            break;
-
-
-                    }
-
-                } else {
+                } else
+                {
                     if (RadioVuelta.isChecked() == true) {
-                        String DiasSeleccionado = spinnerDia.getSelectedItem().toString();
+                        viaje.DesdeHasta = false;
+                        viaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
+                        viaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
+                        viaje.IdTransporte = TransporteSeleccionado;
+                        viaje.DetalleTransporte = LineasFrec;
+                        viaje.DireccionLatitud = lat;
+                        viaje.DireccionLongitud = lng;
 
-                        String NombreTransp = "";
+                        DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getSelectedItem().toString() + " a las " + spinnerBloques.getSelectedItem().toString() + " va a " + DireccionValidada + " con el transporte " + TransporteSeleccionado;
+                        DatosCompletos.setText(DatosAMostrar);
+                        IngresoCorrecto=true;
 
-                        switch (DiasSeleccionado) {
-                            case "Lunes":
-                                HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                                DireccionSeleccionada = DireccionValidada.toString();
-                                Horario2L = HoraSeleccionada;
-                                Transporte2L = TransporteSeleccionado;
-                                Direccion2L = DireccionSeleccionada;
-
-
-                                switch (TransporteSeleccionado) {
-                                    case 1:
-                                        NombreTransp = "Auto";
-                                        break;
-                                    case 2:
-                                        NombreTransp = "Colectivo";
-                                        break;
-                                    case 3:
-                                        NombreTransp = "Subte";
-                                        break;
-                                    case 4:
-                                        NombreTransp = "Bicicleta";
-                                        break;
-                                    case 5:
-                                        NombreTransp = "Caminando";
-                                        break;
-                                }
-
-                                DatosAMostrar = DatosAMostrar + "\n" + "Los lunes a las " + Horario2L + " va a " + Direccion2L + " con el transporte " + NombreTransp;
-                                DatosCompletos.setText(DatosAMostrar);
-
-                                break;
-                            case "Martes":
-                                HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                                DireccionSeleccionada = DireccionValidada.toString();
-                                Horario2M = HoraSeleccionada;
-                                Transporte2M = TransporteSeleccionado;
-                                Direccion2M = DireccionSeleccionada;
-                                switch (TransporteSeleccionado) {
-                                    case 1:
-                                        NombreTransp = "Auto";
-                                        break;
-                                    case 2:
-                                        NombreTransp = "Colectivo";
-                                        break;
-                                    case 3:
-                                        NombreTransp = "Subte";
-                                        break;
-                                    case 4:
-                                        NombreTransp = "Bicicleta";
-                                        break;
-                                    case 5:
-                                        NombreTransp = "Caminando";
-                                        break;
-                                }
-
-                                DatosAMostrar = DatosAMostrar + "\n" + "Los martes a las " + Horario2M + " va a " + Direccion2M + " con el transporte " + NombreTransp;
-                                DatosCompletos.setText(DatosAMostrar);
-                                break;
-                            case "Miercoles":
-                                HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                                DireccionSeleccionada = DireccionValidada.toString();
-                                Horario2X = HoraSeleccionada;
-                                Transporte2X = TransporteSeleccionado;
-                                Direccion2X = DireccionSeleccionada;
-                                switch (TransporteSeleccionado) {
-                                    case 1:
-                                        NombreTransp = "Auto";
-                                        break;
-                                    case 2:
-                                        NombreTransp = "Colectivo";
-                                        break;
-                                    case 3:
-                                        NombreTransp = "Subte";
-                                        break;
-                                    case 4:
-                                        NombreTransp = "Bicicleta";
-                                        break;
-                                    case 5:
-                                        NombreTransp = "Caminando";
-                                        break;
-                                }
-
-                                DatosAMostrar = DatosAMostrar + "\n" + "Los miercoles a las " + Horario2X + " va a " + Direccion2X + " con el transporte " + NombreTransp;
-                                DatosCompletos.setText(DatosAMostrar);
-                                break;
-                            case "Jueves":
-                                HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                                DireccionSeleccionada = DireccionValidada.toString();
-                                Horario2J = HoraSeleccionada;
-                                Transporte2J = TransporteSeleccionado;
-                                Direccion2J = DireccionSeleccionada;
-                                switch (TransporteSeleccionado) {
-                                    case 1:
-                                        NombreTransp = "Auto";
-                                        break;
-                                    case 2:
-                                        NombreTransp = "Colectivo";
-                                        break;
-                                    case 3:
-                                        NombreTransp = "Subte";
-                                        break;
-                                    case 4:
-                                        NombreTransp = "Bicicleta";
-                                        break;
-                                    case 5:
-                                        NombreTransp = "Caminando";
-                                        break;
-                                }
-
-                                DatosAMostrar = DatosAMostrar + "\n" + "Los jueves a las " + Horario2J + " va a " + Direccion2J + " con el transporte " + NombreTransp;
-                                DatosCompletos.setText(DatosAMostrar);
-                                break;
-                            case "Viernes":
-                                HoraSeleccionada = spinnerBloques.getSelectedItem().toString();
-                                DireccionSeleccionada = DireccionValidada.toString();
-                                Horario2V = HoraSeleccionada;
-                                Transporte2V = TransporteSeleccionado;
-                                Direccion2V = DireccionSeleccionada;
-                                switch (TransporteSeleccionado) {
-                                    case 1:
-                                        NombreTransp = "Auto";
-                                        break;
-                                    case 2:
-                                        NombreTransp = "Colectivo";
-                                        break;
-                                    case 3:
-                                        NombreTransp = "Subte";
-                                        break;
-                                    case 4:
-                                        NombreTransp = "Bicicleta";
-                                        break;
-                                    case 5:
-                                        NombreTransp = "Caminando";
-                                        break;
-                                }
-
-                                DatosAMostrar = DatosAMostrar + "\n" + "Los viernes a las " + Horario2V + " va a " + Direccion2V + " con el transporte " + NombreTransp;
-                                DatosCompletos.setText(DatosAMostrar);
-                                break;
-
-                        }
                     }
                 }
+            } else {
+                Cartelito = Toast.makeText(this, "Debe seleccionar el dia, el bloque, el transporte y mostrar su direccion", Toast.LENGTH_SHORT);
+                Cartelito.show();
             }
-
-        } else {
-            Cartelito = Toast.makeText(this, "Debe seleccionar el dia, el bloque, el transporte y mostrar su direccion", Toast.LENGTH_SHORT);
-            Cartelito.show();
         }
-
     }
 
 
@@ -495,7 +203,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     public void SiguientePrimeraEdicion(View Vista) {
 
 
-        if (Horario1L.length() == 0 && Horario1M.length() == 0 && Horario1X.length() == 0 && Horario1J.length() == 0 && Horario1V.length() == 0 && Horario2L.length() == 0 && Horario2M.length() == 0 && Horario2X.length() == 0 && Horario2J.length() == 0 && Horario2V.length() == 0 && Direccion1L.length() == 0 && Direccion1M.length() == 0 && Direccion1X.length() == 0 && Direccion1J.length() == 0 && Direccion1V.length() == 0 && Direccion2L.length() == 0 && Direccion2M.length() == 0 && Direccion2X.length() == 0 && Direccion2J.length() == 0 && Direccion2V.length() == 0 && Transporte1L == 0 && Transporte1M == 0 && Transporte1X == 0 && Transporte1J == 0 && Transporte1V == 0 && Transporte2L == 0 && Transporte2M == 0 && Transporte2X == 0 && Transporte2J == 0 && Transporte2V == 0) {
+        if ( IngresoCorrecto==true) {
             Cartelito = Toast.makeText(this, "Debe ingresar al menos un recorrido", Toast.LENGTH_SHORT);
             Cartelito.show();
         } else {
@@ -620,8 +328,8 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                 dirEncontrada.setText(addressStr);
 
                 // Muestro coordenadas
-                double lat = dirRecibida.getLatitude(); //
-                double lng = dirRecibida.getLongitude();
+                lat = dirRecibida.getLatitude(); //
+                lng = dirRecibida.getLongitude();
                 String coordStr = lat + "," + lng;
                 coordenadas.setText(coordStr);  // Muestro coordenadas en pantalla
 
@@ -689,11 +397,11 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
                     v.DNI = jsonViaje.getInt("DNI");
                     v.IdHorario = jsonViaje.getInt("IdHorario");
-                    v.Transporte = jsonViaje.getString("IdTransporte");
+                    v.IdTransporte = jsonViaje.getInt("IdTransporte");
                     v.DesdeHasta = jsonViaje.getBoolean("DesdeHasta");
                     v.DetalleTransporte = jsonViaje.getString("DetalleTransporte");
-                    v.DireccionLatitud = jsonViaje.getString("DireccionLatitud");
-                    v.DireccionLongitud = jsonViaje.getString("DireccionLongitud");
+                    v.DireccionLatitud = jsonViaje.getDouble("DireccionLatitud");
+                    v.DireccionLongitud = jsonViaje.getDouble("DireccionLongitud");
 
 
                     return v;

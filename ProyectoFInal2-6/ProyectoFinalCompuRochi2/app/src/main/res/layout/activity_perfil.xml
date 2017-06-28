@@ -54,7 +54,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#264E86"
+                    android:background="#3F51B5"
                     android:orientation="horizontal"
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="1dp">
@@ -191,7 +191,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#264E86"
+                    android:background="#3F51B5"
                     android:orientation="vertical">
 
                     <TextView
@@ -287,7 +287,6 @@
                             </LinearLayout>
 
 
-
                         </LinearLayout>
 
                         <LinearLayout
@@ -378,7 +377,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:background="#264E86"
+                    android:background="#3F51B5"
                     android:orientation="vertical">
 
                     <TextView
@@ -563,7 +562,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:background="#264E86"
+                    android:background="#3F51B5"
                     android:orientation="vertical">
 
                     <TextView
@@ -748,7 +747,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:background="#264E86"
+                    android:background="#3F51B5"
                     android:orientation="vertical">
 
                     <TextView
@@ -933,7 +932,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:background="#264E86"
+                    android:background="#3F51B5"
                     android:orientation="vertical"
                     android:layout_marginBottom="5dp">
 
