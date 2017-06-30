@@ -12,6 +12,8 @@ namespace ApiEjemplo.Models
 
         public int IdHorario { get; set; }
         public int IdTransporte{ get; set; }
+        
+        public int IdDia { get; set; }
 
         public bool DesdeHasta { get; set; }
         public string DetalleTransporte{ get; set; }
@@ -20,6 +22,7 @@ namespace ApiEjemplo.Models
         public string DireccionLongitud { get; set; }
         public Horarios horario { get; set; }
         public Transportes transporte { get; set; }
+        public Dias dia { get; set; }
 
     }
 }

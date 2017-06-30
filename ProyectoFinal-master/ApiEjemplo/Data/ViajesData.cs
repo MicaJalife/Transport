@@ -29,7 +29,7 @@ namespace ApiEjemplo.Data
                     viaje = ObtenerPorRow(row);
                     viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
                     viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
-                    // 
+                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia); 
                     ListaViajes.Add(viaje);
                 }
                 viaje = ObtenerPorRow(dt.Rows[0]);
