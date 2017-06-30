@@ -12,7 +12,7 @@ namespace ApiEjemplo.Data
     {
         public static Transportes ObtenerPorId(int id)
         {
-            string select = "select TipoTransporte from transportes where id=" + id.ToString();
+            string select = "select TipoTransporte from transportes where IdTransporte=" + id.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             Transportes t;
             if (dt.Rows.Count > 0)
@@ -25,7 +25,7 @@ namespace ApiEjemplo.Data
         private static Transportes ObtenerPorRow(DataRow row)
         {
             Transportes t = new Transportes();
-            t.IdTransporte = row.Field<int>("IdTransporte");
+            //t.IdTransporte = row.Field<int>("IdTransporte");
             t.TipoTransporte = row.Field<string>("TipoTransporte");
             return t;
         }

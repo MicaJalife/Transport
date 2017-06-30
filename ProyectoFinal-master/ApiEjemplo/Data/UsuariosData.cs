@@ -9,8 +9,6 @@ namespace ApiEjemplo.Data
 {
     public class UsuariosData
     {
-
-
         private static Usuarios ObtenerPorRow(DataRow row)
         {
             Usuarios u = new Usuarios();

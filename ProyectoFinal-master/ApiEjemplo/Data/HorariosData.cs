@@ -12,7 +12,7 @@ namespace ApiEjemplo.Data
 
         public static Horarios ObtenerPorId(int id)
         {
-            string select = "select Horario from horarios where id=" + id.ToString();
+            string select = "select Horario from horarios where IdHorario=" + id.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             Horarios h;
             if (dt.Rows.Count > 0)
@@ -25,7 +25,7 @@ namespace ApiEjemplo.Data
         private static Horarios ObtenerPorRow(DataRow row)
         {
             Horarios h = new Horarios();
-            h.IdHorario = row.Field<int>("IdHorario");
+            //h.IdHorario = row.Field<int>("IdHorario");
             h.Horario = row.Field<string>("Horario");            
             return h;
         }

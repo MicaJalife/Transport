@@ -12,7 +12,7 @@ namespace ApiEjemplo.Data
     {
         public static Dias ObtenerPorId(int id)
         {
-            string select = "select Dia from dias where id=" + id.ToString();
+            string select = "select Dia from dias where IdDia=" + id.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             Dias d;
             if (dt.Rows.Count > 0)
@@ -25,7 +25,7 @@ namespace ApiEjemplo.Data
         private static Dias ObtenerPorRow(DataRow row)
         {
             Dias d = new Dias();
-            d.IdDia = row.Field<int>("IdDia");
+            //d.IdDia = row.Field<int>("IdDia");
             d.Dia = row.Field<string>("Dia");
             return d;
         }

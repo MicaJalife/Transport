@@ -46,7 +46,7 @@ namespace ApiEjemplo.Data
                 miConn.Open();
                 MySqlCommand miCommand = new MySqlCommand(select, miConn);
                 MySqlDataAdapter da = new MySqlDataAdapter(miCommand);
-                da.Fill(dt);
+               da.Fill(dt);
                 miConn.Close(); //Nos aseguramos de cerrar la conexion
             }
             return dt;

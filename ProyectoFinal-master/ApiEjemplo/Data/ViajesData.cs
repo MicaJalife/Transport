@@ -27,9 +27,7 @@ namespace ApiEjemplo.Data
                 foreach(DataRow row in dt.Rows)
                 {
                     viaje = ObtenerPorRow(row);
-                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
-                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
-                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia); 
+                
                     ListaViajes.Add(viaje);
                 }
                 viaje = ObtenerPorRow(dt.Rows[0]);
@@ -46,10 +44,14 @@ namespace ApiEjemplo.Data
             v.DNI = row.Field<int>("DNI");
             v.IdHorario = row.Field<int>("IdHorario");
             v.IdTransporte = row.Field<int>("IdTransporte");
+            v.IdDia = row.Field<int>("IdDia");
             v.DesdeHasta = row.Field<bool>("DesdeHasta");
             v.DetalleTransporte= row.Field<string>("DetalleTransporte");
             v.DireccionLatitud = row.Field<string>("DireccionLatitud");
             v.DireccionLongitud = row.Field<string>("DireccionLongitud");
+            v.horario = HorariosData.ObtenerPorId(v.IdHorario);
+            v.transporte = TransportesData.ObtenerPorId(v.IdTransporte);
+            v.dia = DiasData.ObtenerPorId(v.IdDia);
             return v;
         }
 

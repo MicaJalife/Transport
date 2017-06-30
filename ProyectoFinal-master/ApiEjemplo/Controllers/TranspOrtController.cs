@@ -41,12 +41,47 @@ namespace ApiEjemplo.Controllers
      
 
         //GET : api/Viajes
-        [Route("api/traerviaje/{DNI}")]
+        [Route("api/viajes/traerviaje/{DNI}")]
         public IList<Viajes> Get(int DNI)
         {
             return ViajesData.ObtenerViajesXDNI(DNI);
         }
 
+        //GET : api/Horarios
+        [Route("api/horarios/traerhorario/{IdHorario}")]
+        public IHttpActionResult GetHorario(int IdHorario)
+        {
+            Horarios horario = HorariosData.ObtenerPorId(IdHorario);
+            if (horario == null)
+            {
+                return NotFound();
+            }
+            return Ok(horario);
+        }
+
+        //GET : api/Transportes
+        [Route("api/transportes/traertransporte/{IdTransporte}")]
+        public IHttpActionResult GetTransporte(int IdTransporte)
+        {
+            Transportes transporte = TransportesData.ObtenerPorId(IdTransporte);
+            if (transporte == null)
+            {
+                return NotFound();
+            }
+            return Ok(transporte);
+        }
+
+        //GET : api/Dias
+        [Route("api/dias/traerdia/{IdDia}")]
+        public IHttpActionResult GetDia(int IdDia)
+        {
+            Dias dia = DiasData.ObtenerPorId(IdDia);
+            if (dia == null)
+            {
+                return NotFound();
+            }
+            return Ok(dia);
+        }
 
 
 
