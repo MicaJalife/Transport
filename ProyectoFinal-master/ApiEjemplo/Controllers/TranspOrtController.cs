@@ -10,10 +10,10 @@ using System.Web.Http.Description;
 
 namespace ApiEjemplo.Controllers
 {
-    public class TranspOrtController
+    public class TranspOrtController : ApiController
     {
         //GET api/Usuario
-        [Route("/api/usuario/{DNI}/{Contrasena}")]
+        [Route("api/usuario/{DNI}/{Contrasena}")]
         public IHttpActionResult Get(int DNI, string Contrasena)
         {
             Usuarios usuario = UsuariosData.Login(DNI, Contrasena);
@@ -23,16 +23,7 @@ namespace ApiEjemplo.Controllers
             }
             return Ok(usuario);
         }
-
-        private IHttpActionResult Ok(Usuarios usuario)
-        {
-            throw new NotImplementedException();
-        }
-
-        private IHttpActionResult NotFound()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         //POST : api/Viajes
         [Route("api/ingresarviaje")]
@@ -47,15 +38,7 @@ namespace ApiEjemplo.Controllers
             return Ok();
         }
 
-        private IHttpActionResult Ok()
-        {
-            throw new NotImplementedException();
-        }
-
-        private IHttpActionResult BadRequest(string v)
-        {
-            throw new NotImplementedException();
-        }
+     
 
         //GET : api/Viajes
         [Route("api/traerviaje/{DNI}")]

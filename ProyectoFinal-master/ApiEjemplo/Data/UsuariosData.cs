@@ -16,17 +16,17 @@ namespace ApiEjemplo.Data
             Usuarios u = new Usuarios();
             u.DNI = row.Field<int>("DNI");
             u.Nombre = row.Field<string>("Nombre");
-            u.Año = row.Field<string>("Año");
+            u.Anio = row.Field<string>("Anio");
             u.Curso = row.Field<string>("Curso");
-            u.Contrasena = row.Field<string>("Contrasena");
+            u.Contrasenia = row.Field<string>("Contrasenia");
             u.Imagen = row.Field<string>("Imagen");
             u.PrimeraEdicion = row.Field<bool>("PrimeraEdicion");
             return u;
         }
 
-        public static Usuarios Login(int DNI, string Contraseña)
+        public static Usuarios Login(int DNI, string Contrasenia)
         {
-            string select = "select (Nombre, Año, Curso,Imagen, PrimeraEdicion) from usuarios where DNI=" + DNI.ToString() + "and Contraseña=" + Contraseña;
+            string select = "select DNI, Nombre, Anio, Curso, Contrasenia, Imagen, PrimeraEdicion from usuarios where DNI=" + DNI.ToString() + " and Contrasenia='" + Contrasenia+"'";
             DataTable dt = DBHelper.EjecutarSelect(select);
             Usuarios uusuario;
             if (dt.Rows.Count > 0)
