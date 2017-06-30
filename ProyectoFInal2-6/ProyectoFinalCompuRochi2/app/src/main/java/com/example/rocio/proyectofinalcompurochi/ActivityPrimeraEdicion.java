@@ -51,6 +51,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
     Funciones funcion = new Funciones();
 
+    Integer DNI;
 
     EditText direccion;
     TextView dirEncontrada, coordenadas;
@@ -60,21 +61,17 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     boolean IngresoCorrecto=false;
     boolean EligioTranspPublic = false;
     String DatosAMostrar = "";
-    boolean ErrorLineas = false;
     double lat;
     double lng;
     boolean seIngreso = false;
-    Viaje miviaje = new Viaje();
 
-    Usuario usuariorecibido;
+    Viaje miViaje = new Viaje();
+
+
+
 
     public void BotonAgregarDireccion(View Vista)
     {
-        TextView Nombre;
-        Nombre = (TextView) findViewById(R.id.txtnombreyapellido);
-        Nombre.setText(usuariorecibido.Nombre);
-
-
         RadioButton RadioIda;
         RadioIda = (RadioButton) findViewById(R.id.RadioButtonIda);
 
@@ -104,71 +101,56 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         Cbox = (CheckBox) findViewById(R.id.CheckBox);
 
 
-
-
-        if (spinnerDia.isSelected() == false || spinnerBloques.isSelected() == false || TransporteSeleccionado == 0 || DireccionValidada.length() == 0)
+        if (spinnerDia.isSelected() != false && spinnerBloques.isSelected() != false && TransporteSeleccionado != 0 && DireccionValidada.length() != 0)
         {
             if (TransporteSeleccionado == 2 || TransporteSeleccionado == 3)
             {
-
                 EligioTranspPublic = true;
             }
-            if (EligioTranspPublic == false)
+            if (EligioTranspPublic == true && LineasFrec.length() <= 0)
             {
-            }
-            else
-            {
-                if (EligioTranspPublic == true && LineasFrec.length() > 0) {
-
-                } else {
-                    ErrorLineas = true;
-                    Cartelito = Toast.makeText(this, "Si elige un transporte publico debe especificar las lineas que utiliza", Toast.LENGTH_SHORT);
-                    Cartelito.show();
-                }
-            }
-
-
-            if (ErrorLineas == false) {
-
-                if (RadioIda.isChecked() == true) {
-
-                    miviaje.DesdeHasta = true;
-                    miviaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
-                    miviaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
-                    miviaje.IdTransporte = TransporteSeleccionado;
-                    miviaje.DetalleTransporte = LineasFrec;
-                    miviaje.DireccionLatitud = lat;
-                    miviaje.DireccionLongitud = lng;
-
-
-                    DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getSelectedItem().toString() + " a las " + spinnerBloques.getSelectedItem().toString() + " va a " + DireccionValidada + " con el transporte " + TransporteSeleccionado;
-                    DatosCompletos.setText(DatosAMostrar);
-
-                    IngresoCorrecto=true;
-
-                } else
-                {
-                    if (RadioVuelta.isChecked() == true) {
-                        miviaje.DesdeHasta = false;
-                        miviaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
-                        miviaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
-                        miviaje.IdTransporte = TransporteSeleccionado;
-                        miviaje.DetalleTransporte = LineasFrec;
-                        miviaje.DireccionLatitud = lat;
-                        miviaje.DireccionLongitud = lng;
-
-                        DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getSelectedItem().toString() + " a las " + spinnerBloques.getSelectedItem().toString() + " va a " + DireccionValidada + " con el transporte " + TransporteSeleccionado;
-                        DatosCompletos.setText(DatosAMostrar);
-                        IngresoCorrecto=true;
-
-                    }
-                }
-            } else {
-                Cartelito = Toast.makeText(this, "Debe seleccionar el dia, el bloque, el transporte y mostrar su direccion", Toast.LENGTH_SHORT);
+                Cartelito = Toast.makeText(this, "Si elige un transporte publico debe especificar las lineas que utiliza", Toast.LENGTH_SHORT);
                 Cartelito.show();
             }
+            else
+                {
+                    if (RadioIda.isChecked() == true)
+                        {
+                            miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
+                            miViaje.IdTransporte = TransporteSeleccionado;
+                            miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
+                            miViaje.DesdeHasta = true;
+                            miViaje.DetalleTransporte = LineasFrec;
+                            miViaje.DireccionLatitud = lat;
+                            miViaje.DireccionLongitud = lng;
+
+
+                            DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getSelectedItem().toString() + " a las " + spinnerBloques.getSelectedItem().toString() + " va a " + DireccionValidada + " con el transporte " + TransporteSeleccionado;
+                            DatosCompletos.setText(DatosAMostrar);
+                            IngresoCorrecto = true;
+
+                            new IngresarViaje().execute(miViaje);
+                        }
+                    else
+                        {
+                            miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
+                            miViaje.IdTransporte = TransporteSeleccionado;
+                            miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
+                            miViaje.DesdeHasta = false;
+                            miViaje.DetalleTransporte = LineasFrec;
+                            miViaje.DireccionLatitud = lat;
+                            miViaje.DireccionLongitud = lng;
+
+                            DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getSelectedItem().toString() + " a las " + spinnerBloques.getSelectedItem().toString() + " va a " + DireccionValidada + " con el transporte " + TransporteSeleccionado;
+                            DatosCompletos.setText(DatosAMostrar);
+                            IngresoCorrecto = true;
+
+                            new IngresarViaje().execute(miViaje);
+                        }
+                }
         }
     }
+
 
 
     public void EligioAuto(View Vista) {
@@ -202,33 +184,48 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     }
 
 
-    public void SiguientePrimeraEdicion(View Vista) {
-
-
-        if ( IngresoCorrecto==true) {
+    public void SiguientePrimeraEdicion(View Vista)
+    {
+        if  (IngresoCorrecto!=true)
+        {
             Cartelito = Toast.makeText(this, "Debe ingresar al menos un recorrido", Toast.LENGTH_SHORT);
             Cartelito.show();
-        } else {
-
-            new IngresarViaje().execute(miviaje);
-
-
+        }
+        else
+        {
             Intent LlamadaActivityPerfil;
             LlamadaActivityPerfil = new Intent(this, ActivityPerfil.class);
             startActivity(LlamadaActivityPerfil);
             overridePendingTransition(R.anim.left_in, R.anim.left_out);
         }
-
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_primera_edicion);
 
+        TextView Nombre;
+        Nombre = (TextView) findViewById(R.id.txtnombreyapellido);
 
-        Intent intentLlamador = getIntent();
-        usuariorecibido = intentLlamador.getParcelableExtra("EnvioUsuario");
+        TextView Anio;
+        Anio = (TextView) findViewById(R.id.txtaño);
+
+        TextView Curso;
+        Curso = (TextView) findViewById(R.id.txtcurso);
+
+        ImageView Imagen;
+        Imagen = (ImageView) findViewById(R.id.fotoperfil);
+
+        Bundle bundle = getIntent().getExtras();
+        DNI = bundle.getInt("DNI");
+        Nombre.setText(bundle.getString("Nombre"));
+        Anio.setText(bundle.getString("Año"));
+        Curso.setText(bundle.getString("Curso"));
+
+        String Imagenn = bundle.getString("Imagen");
+        Imagen.setBackgroundResource(Integer.parseInt("@drawable/"+Imagenn));
 
 
         RadioButton RadioIda;
@@ -371,11 +368,14 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         }
 
     }
-    private class IngresarViaje extends AsyncTask<Viaje, Void, Viaje> {
+
+
+
+    public class IngresarViaje extends AsyncTask<Viaje, Void, Viaje> {
 
         protected void onPostExecute(Viaje datos) {
             super.onPostExecute(datos);
-            if (miviaje == datos)
+            if (miViaje == datos)
             {
                 seIngreso=true;
             }

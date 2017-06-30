@@ -11,8 +11,12 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="-131dp"
+        android:layout_marginTop="-31dp">
 
 
         <LinearLayout
@@ -34,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="2dp"
-                android:background="#3F51B5"
+                android:background="#07316b"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -56,6 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -64,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:text="Rocio Tarda"
-                        android:textColor="#000000"
+                        android:textColor="#FFFFFF"
                         android:textSize="22dp"
                         android:textStyle="bold" />
 
@@ -78,7 +83,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="6°"
-                            android:textColor="#000000"
+                            android:textColor="#FFFFFF"
                             android:textSize="18dp" />
 
                         <TextView
@@ -86,18 +91,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="IC"
-                            android:textColor="#000000"
+                            android:textColor="#FFFFFF"
                             android:textSize="18dp" />
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txtsede"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
-                        android:text="Sede Almagro"
-                        android:textColor="#000000"
-                        android:textSize="18dp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -108,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="5dp"
-                android:background="#3F51B5"
+                android:background="#07316b"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -131,13 +128,16 @@
                                 android:id="@+id/RadioButtonIda"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Ida" />
+                                android:text="Ida"
+                                android:textColor="#FFFFFF"
+                                />
 
                             <RadioButton
                                 android:id="@+id/RadioButtonVuelta"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Vuelta" />
+                                android:text="Vuelta"
+                                android:textColor="#FFFFFF"/>
 
 
                         </RadioGroup>
@@ -157,7 +157,8 @@
                         android:layout_marginLeft="3dp"
                         android:layout_marginTop="2dp"
                         android:text="Seleccione dia: "
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:textColor="#FFFFFF"/>
 
 
                     <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
@@ -174,13 +175,7 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginTop="2dp"
-                    android:text="Seleccione transportes habituales..."
-                    android:textSize="15dp" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -194,7 +189,8 @@
                         android:layout_marginLeft="3dp"
                         android:layout_marginTop="2dp"
                         android:text="Seleccione bloque: "
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:textColor="#FFFFFF"/>
 
 
                     <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
@@ -208,7 +204,14 @@
 
 
                 </LinearLayout>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="2dp"
+                    android:text="Seleccione transportes habituales..."
+                    android:textSize="15dp"
+                    android:textColor="#FFFFFF"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -219,7 +222,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="60dp"
-                        android:background="#3F51B5"
+                        android:background="#07316b"
                         android:onClick="EligioAuto"
                         android:scaleType="fitCenter"
                         android:src="@drawable/auto" />
@@ -228,7 +231,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
-                        android:background="#3F51B5"
+                        android:background="#07316b"
                         android:onClick="EligioColectivo"
                         android:scaleType="fitCenter"
                         android:src="@drawable/colectivo" />
@@ -238,7 +241,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
-                        android:background="#3F51B5"
+                        android:background="#07316b"
                         android:onClick="EligioSubte"
                         android:scaleType="fitCenter"
                         android:src="@drawable/subte" />
@@ -248,7 +251,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
-                        android:background="#3F51B5"
+                        android:background="#07316b"
                         android:onClick="EligioBicicleta"
                         android:scaleType="fitCenter"
                         android:src="@drawable/bicicleta" />
@@ -259,7 +262,7 @@
                         android:layout_height="30dp"
                         android:layout_marginBottom="5dp"
                         android:layout_marginLeft="10dp"
-                        android:background="#3F51B5"
+                        android:background="#07316b"
                         android:onClick="EligioCaminando"
                         android:scaleType="fitCenter"
                         android:src="@drawable/caminando" />
@@ -277,7 +280,7 @@
                         android:inputType="textShortMessage"
                         android:singleLine="true"
                         android:textColor="#FFFFFF"
-                        android:textColorHint="#74DBEF"
+                        android:textColorHint="#FFFFFF"
                         android:textSize="15dp" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -298,18 +301,18 @@
                             android:inputType="textShortMessage"
                             android:singleLine="true"
                             android:textColor="#FFFFFF"
-                            android:textColorHint="#74DBEF"
+                            android:textColorHint="#FFFFFF"
                             android:textSize="15dp" />
                     </android.support.design.widget.TextInputLayout>
 
                     <Button
                         android:id="@+id/BotonMostrarDireccion"
                         android:layout_width="50dp"
-                        android:layout_height="30dp"
+                        android:layout_height="31dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="15dp"
-                        android:background="#74DBEF"
+                        android:background="#c2e0e2"
                         android:onClick="consultarDireccion"
                         android:text="Mostrar"
                         android:textAllCaps="false"
@@ -330,14 +333,18 @@
                         android:id="@+id/dirEncontrada"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Direccion" />
+                        android:hint="Direccion"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#FFFFFF"/>
 
                     <TextView
                         android:id="@+id/coordenadas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="Coordenadas" />
+                        android:hint="Coordenadas"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#FFFFFF"/>
                 </LinearLayout>
 
                 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -355,7 +362,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
-                        android:text="Mi direccion es correcta" />
+                        android:text="Mi direccion es correcta"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#FFFFFF"/>
 
                     <CheckBox
                         android:id="@+id/CheckBox"
@@ -369,7 +378,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="5dp"
-                        android:background="#74DBEF"
+                        android:background="#c2e0e2"
                         android:onClick="BotonAgregarDireccion"
                         android:text="Agregar"
                         android:textAllCaps="false"
@@ -382,7 +391,8 @@
                     android:id="@+id/DatosCompletos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -394,7 +404,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:background="#74DBEF"
+                android:background="#c2e0e2"
                 android:onClick="SiguientePrimeraEdicion"
                 android:text="Seguir"
                 android:textAllCaps="false"
