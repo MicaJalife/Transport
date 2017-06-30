@@ -6,6 +6,7 @@ package com.example.rocio.proyectofinalcompurochi.Clases;
 
 public class Viaje {
 
+
     public int DNI;
     public int IdHorario;
     public String TipoTransporte;

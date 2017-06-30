@@ -6,14 +6,18 @@
     android:background="#DFEFF0"
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true">
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/logo"
-        android:textAlignment="center"/>
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/logo2"/>
 
 
     <LinearLayout
@@ -21,12 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="10dp"
         android:background="#07316b"
         android:elevation="4dp"
         android:orientation="vertical"
         android:padding="20dp"
-        android:layout_below="@+id/login_title"
         android:layout_centerHorizontal="true">
 
 
@@ -43,8 +46,8 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColor="#DFEFF0"
+                android:textColorHint="#DFEFF0"
                 android:text=""
                 android:singleLine="true"
                 android:hint="DNI"
@@ -61,8 +64,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:singleLine="true"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColor="#DFEFF0"
+                android:textColorHint="#DFEFF0"
                 android:text=""
                 android:hint="Contraseña"
                 android:inputType="textPassword"
@@ -74,14 +77,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="22dp"
-            android:background="#74DBEF"
+            android:background="#c2e0e2"
             android:text="Ingresar"
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="18sp"
             android:onClick="BotonIngresar"/>
     </LinearLayout>
-
+    </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
 
