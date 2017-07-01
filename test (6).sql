@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-06-2017 a las 02:39:03
--- Versión del servidor: 5.5.8
--- Versión de PHP: 5.3.5
+-- Tiempo de generación: 01-07-2017 a las 17:34:20
+-- Versión del servidor: 5.5.24-log
+-- Versión de PHP: 5.4.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -30,10 +31,10 @@ CREATE TABLE IF NOT EXISTS `amigos` (
   `DNI` int(11) NOT NULL,
   `IdAmigo` int(11) NOT NULL,
   PRIMARY KEY (`IdDNIAmigos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Volcar la base de datos para la tabla `amigos`
+-- Volcado de datos para la tabla `amigos`
 --
 
 INSERT INTO `amigos` (`IdDNIAmigos`, `DNI`, `IdAmigo`) VALUES
@@ -44,7 +45,9 @@ INSERT INTO `amigos` (`IdDNIAmigos`, `DNI`, `IdAmigo`) VALUES
 (5, 42586854, 11111111),
 (6, 42586854, 22222222),
 (7, 22222222, 33333333),
-(8, 11111111, 33333333);
+(8, 11111111, 33333333),
+(9, 1, 42225260),
+(10, 1, 11111111);
 
 -- --------------------------------------------------------
 
@@ -59,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `dias` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Volcar la base de datos para la tabla `dias`
+-- Volcado de datos para la tabla `dias`
 --
 
 INSERT INTO `dias` (`IdDia`, `Dia`) VALUES
@@ -82,11 +85,6 @@ CREATE TABLE IF NOT EXISTS `diasviajes` (
   PRIMARY KEY (`IdDiasViajes`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Volcar la base de datos para la tabla `diasviajes`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -100,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `horarios` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Volcar la base de datos para la tabla `horarios`
+-- Volcado de datos para la tabla `horarios`
 --
 
 INSERT INTO `horarios` (`IdHorario`, `Horario`) VALUES
@@ -125,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `transportes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Volcar la base de datos para la tabla `transportes`
+-- Volcado de datos para la tabla `transportes`
 --
 
 INSERT INTO `transportes` (`IdTransporte`, `TipoTransporte`) VALUES
@@ -153,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Volcar la base de datos para la tabla `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`DNI`, `Nombre`, `Anio`, `Curso`, `Contrasenia`, `Imagen`, `PrimeraEdicion`) VALUES
@@ -161,7 +159,8 @@ INSERT INTO `usuarios` (`DNI`, `Nombre`, `Anio`, `Curso`, `Contrasenia`, `Imagen
 (42586854, 'Micaela Jalife', '6', 'IC', 'micaela123', '', 0),
 (11111111, 'Felipe Sasiain', '5', 'KC', 'felipe123', '', 1),
 (22222222, 'Simon Oliva', '4', 'IB', 'simon123', '', 0),
-(33333333, 'Enrico Martella', '5', 'IA', 'enrico123', '', 0);
+(33333333, 'Enrico Martella', '5', 'IA', 'enrico123', '', 0),
+(1, 'Usuario Prueba', '6', 'IC', 'a', '', 1);
 
 -- --------------------------------------------------------
 
@@ -183,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `viajes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Volcar la base de datos para la tabla `viajes`
+-- Volcado de datos para la tabla `viajes`
 --
 
 INSERT INTO `viajes` (`IdViaje`, `DNI`, `IdHorario`, `IdTransporte`, `IdDia`, `DesdeHasta`, `DetalleTransporte`, `DireccionLatitud`, `DireccionLongitud`) VALUES
@@ -191,3 +190,7 @@ INSERT INTO `viajes` (`IdViaje`, `DNI`, `IdHorario`, `IdTransporte`, `IdDia`, `D
 (3, 42225260, 7, 1, 1, 0, 'Tengo auto, y manejo porque soy cra', '', ''),
 (4, 42586854, 1, 3, 2, 1, 'Toma el subte A en puan ;)', '', ''),
 (5, 42586854, 4, 5, 5, 0, 'Caminando por rivadavia', '', '');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

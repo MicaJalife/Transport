@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class ActivityIngreso extends AppCompatActivity {
 
@@ -37,7 +38,7 @@ public class ActivityIngreso extends AppCompatActivity {
     boolean PrimeraEdicion;
     Toast Cartelito;
     Usuario miUsuario = new Usuario();
-
+    AsyncTask<String, Void, Usuario> traerUsuario;
 
     public void BotonIngresar(View Vista)
     {
@@ -53,7 +54,9 @@ public class ActivityIngreso extends AppCompatActivity {
 
 
         //String par = "localhost/api/usuario/"+ Dni+"/"+ Contraseñaa;
-        new TraerUsuario().execute(Dni, Contraseñaa);
+        String Url = "http://transportdale.azurewebsites.net/api/usuario/"+ Dni+"/"+ Contraseñaa;
+        Log.d("Manda url", "ppppp");
+        new TraerUsuario().execute(Url);
 
 
 
@@ -117,41 +120,48 @@ public class ActivityIngreso extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingreso);
+        traerUsuario= new TraerUsuario();
     }
-    public void Loguearse(int DNI, String contraseña) {
-        new TraerUsuario().execute(DNI, contraseña);
-    }
+
 
     private class TraerUsuario extends AsyncTask<String, Void, Usuario>{
 
+
         protected void onPostExecute(Usuario datos) {
             super.onPostExecute(datos);
-        if (datos != null) {
+            Log.d("Devuelve datos", "ppppp");
+
+   /*     if (datos != null) {
             ExisteElUsuario = true;
             miUsuario = datos;
         }
 
+*/
         }
 
 
         @Override
         protected Usuario doInBackground(String... parametros) {
             String url = parametros[0];
-
+            Log.d("entro al doinbackground", "ppppp");
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
                     .url(url)
                     .build();
-
+            Log.d("vuelve desp del build", "ppppp");
 
             try {
                 Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
                 String resultado = response.body().string();
+
+                Log.d("trae el resultado", "ppppp");
                 try {
 
                     JSONObject jsonUsuario = new JSONObject(resultado);
+                    Log.d("crea un nuevo json", "ppppp");
 
                     Usuario u = new Usuario();
+                    Log.d("declara usuario", "ppppp");
 
                     u.DNI = jsonUsuario.getInt("DNI");
                     u.Nombre = jsonUsuario.getString("Nombre");
@@ -159,15 +169,19 @@ public class ActivityIngreso extends AppCompatActivity {
                     u.Curso = jsonUsuario.getString("Curso");
                     u.Imagen = jsonUsuario.getString("Imagen");
                     u.PrimeraEdicion = jsonUsuario.getBoolean("PrimeraEdicion");
-
+                    Log.d("parsea el json", "ppppp");
 
                     return u;
                 }catch (JSONException e){
                     Log.d("Error JSON", e.getMessage());
+                    Log.d("error en el json", "ppppp");
+
                     return null;
                 }
             } catch (IOException e) {
                 Log.d("Error",e.getMessage());             // Error de Network
+                Log.d("error de network" + e.getMessage(), "ppppp");
+
                 return null;
             }
 
