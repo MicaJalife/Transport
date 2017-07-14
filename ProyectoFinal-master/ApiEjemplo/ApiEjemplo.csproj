@@ -134,8 +134,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DiasController.cs" />
+    <Compile Include="Controllers\HorariosController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\TranspOrtController.cs" />
+    <Compile Include="Controllers\TransportesController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\ViajesController.cs" />
     <Compile Include="Data\AmigosData.cs" />
     <Compile Include="Data\DBHelper.cs" />
     <Compile Include="Data\DiasData.cs" />
