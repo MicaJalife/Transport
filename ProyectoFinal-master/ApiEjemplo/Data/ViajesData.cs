@@ -12,7 +12,7 @@ namespace ApiEjemplo.Data
 
        public static void InsertarViaje (Viajes viaje)
         {
-            string sInsert = "INSERT into viajes (DNI, IdHorario, IdTransporte,IdDia, DesdeHasta, DetalleTransporte, DireccionLatitud, DireccionLongitud) values ('" + viaje.DNI.ToString() + "','" + viaje.IdHorario.ToString() + "','" + viaje.IdTransporte.ToString() + "','"+ viaje.IdDia+ "','" +viaje.DesdeHasta.ToString() + "','" + viaje.DetalleTransporte + "','" + viaje.DireccionLatitud + "','"  +viaje.DireccionLongitud +"')";
+            string sInsert = "INSERT into viajes (DNI, IdHorario, IdTransporte,IdDia, DesdeHasta, DetalleTransporte, DireccionLatitud, DireccionLongitud) values ('" + viaje.DNI.ToString() + "','" + viaje.IdHorario.ToString() + "','" + viaje.IdTransporte.ToString() + "','" + viaje.IdDia.ToString() + "','" +viaje.DesdeHasta.ToString() + "','" + viaje.DetalleTransporte + "','" + viaje.DireccionLatitud + "','"  +viaje.DireccionLongitud +"')";
             DBHelper.EjecutarIUD(sInsert);
         }
 
