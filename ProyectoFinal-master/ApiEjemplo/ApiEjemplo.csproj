@@ -182,6 +182,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\DiaController.cs" />
     <Compile Include="Controllers\HorariosController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
@@ -189,6 +190,15 @@
     <Compile Include="Controllers\TransporteController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ViajeController.cs" />
+=======
+    <Compile Include="Controllers\DiasController.cs" />
+    <Compile Include="Controllers\HorariosController.cs" />
+    <Compile Include="Controllers\PersonaController.cs" />
+    <Compile Include="Controllers\TranspOrtController.cs" />
+    <Compile Include="Controllers\TransportesController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\ViajesController.cs" />
+>>>>>>> 9b5944225306a52bc81e532b8fc1cb3fecc19e26
     <Compile Include="Data\AmigosData.cs" />
     <Compile Include="Data\DBHelper.cs" />
     <Compile Include="Data\DiasData.cs" />

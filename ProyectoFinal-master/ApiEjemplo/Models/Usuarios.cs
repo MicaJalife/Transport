@@ -12,7 +12,8 @@ namespace ApiEjemplo.Models
         public string Contrasenia { get; set; }
         public string Anio { get; set; }
         public string Curso { get; set; }       
-        public string Imagen { get; set; }
+        public string NombreImagen { get; set; }
+    
         public bool PrimeraEdicion { get; set; }
 
     }

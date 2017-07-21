@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/BuscadorItem"
+            android:title="@string/Buscador"
+            android:icon="@drawable/ic_buscador" />
+        <item
+            android:id="@+id/PerfilItem"
+            android:title="@string/Perfil"
+            android:icon="@drawable/ic_perfil"/>
+        <item
+            android:id="@+id/ChatItem"
+            android:title="@string/Chat"
+            android:icon="@drawable/ic_chat"/>
+
+</menu>

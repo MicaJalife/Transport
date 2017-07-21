@@ -17,7 +17,7 @@ namespace ApiEjemplo.Data
             u.Anio = row.Field<string>("Anio");
             u.Curso = row.Field<string>("Curso");
             u.Contrasenia = row.Field<string>("Contrasenia");
-            u.Imagen = row.Field<string>("Imagen");
+            u.NombreImagen = row.Field<string>("Imagen");
             u.PrimeraEdicion = row.Field<bool>("PrimeraEdicion");
             return u;
         }
