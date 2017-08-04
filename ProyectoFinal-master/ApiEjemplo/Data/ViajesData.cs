@@ -22,7 +22,7 @@ namespace ApiEjemplo.Data
                viaje.DetalleTransporte, 
                viaje.DireccionLatitud, 
                viaje.DireccionLongitud, 
-               viaje.Direccion
+               viaje.Direccion 
                );
 
 

@@ -14,6 +14,7 @@ namespace ApiEjemplo.Controllers
     {
         //POST : api/Viajes
         [Route("api/ingresarviaje")]
+        [HttpPost]
         public IHttpActionResult Post(Viajes viaje)
         {
             if (viaje == null)
