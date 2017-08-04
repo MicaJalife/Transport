@@ -28,7 +28,7 @@ namespace ApiEjemplo.Controllers
 
         //GET : api/Viajes
         [Route("api/viajes/traerviaje/{DNI}")]
-        public IList<Viajes> Get(int DNI)
+        public IList<Viajes> TraerViajexDNI(int DNI)
         {
             return ViajesData.ObtenerViajesXDNI(DNI);
         }
