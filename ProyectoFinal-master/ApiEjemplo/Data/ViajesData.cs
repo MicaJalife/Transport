@@ -12,7 +12,7 @@ namespace ApiEjemplo.Data
 
        public static void InsertarViaje (Viajes viaje)
         {
-            string sInsert = "INSERT into viajes (DNI, IdHorario, IdTransporte,IdDia, DesdeHasta, DetalleTransporte, DireccionLatitud, DireccionLongitud) values ('" + viaje.DNI.ToString() + "','" + viaje.IdHorario.ToString() + "','" + viaje.IdTransporte.ToString() + "','" + viaje.IdDia.ToString() + "','" +viaje.DesdeHasta.ToString() + "','" + viaje.DetalleTransporte + "','" + viaje.DireccionLatitud + "','"  +viaje.DireccionLongitud +"')";
+            string sInsert = "INSERT into viajes (DNI, IdHorario, IdTransporte, DesdeHasta, DetalleTransporte, DireccionLatitud, DireccionLongitud) values ('" + viaje.DNI.ToString() + "','" + viaje.IdHorario.ToString() + "','" + viaje.IdTransporte.ToString() + "','" +viaje.DesdeHasta.ToString() + "','" + viaje.DetalleTransporte + "','" + viaje.DireccionLatitud + "','"  +viaje.DireccionLongitud +"')";
             DBHelper.EjecutarIUD(sInsert);
         }
 
@@ -27,7 +27,10 @@ namespace ApiEjemplo.Data
                 foreach(DataRow row in dt.Rows)
                 {
                     viaje = ObtenerPorRow(row);
-                
+                    viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
+                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
+                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
+                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
                     ListaViajes.Add(viaje);
                 }
                 viaje = ObtenerPorRow(dt.Rows[0]);
@@ -35,9 +38,89 @@ namespace ApiEjemplo.Data
             return ListaViajes;
         }
 
+        public static List<Viajes> ObtenerViajesUsuarioDesdeHasta(int DNI, bool DesdeHasta)
+        {
+            string select = "select IdDia, IdHorario, IdTransporte, Direccion where DNI=" + DNI.ToString() + "and DesdeHasta=" + DesdeHasta;
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            List<Viajes> ListaDesdeHastaViajes = new List<Viajes>();
+            Viajes viaje;
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    viaje = ObtenerPorRow(row);
+                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
+                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
+                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);                   
+                    ListaDesdeHastaViajes.Add(viaje);
+                }
+                viaje = ObtenerPorRow(dt.Rows[0]);
+            }
+            return ListaDesdeHastaViajes;
+        }
 
 
+        public static List<Viajes> ObtenerViajesccDirecciones()
+        {
+            string select = "select IdViaje, DireccionLatitud, DireccionLongitud from viajes";
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            List<Viajes> ListaViajeccDirecciones = new List<Viajes>();
+            Viajes viaje;
+            if (dt.Rows.Count>0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    viaje = ObtenerPorRow(row);
+                    ListaViajeccDirecciones.Add(viaje);
+                }
+                return ListaViajeccDirecciones;
+            }
+            else
+            {
+                return null;
+            }
+       }
 
+        public static Viajes ObtenerViajexIdDiaHorario(int IdViaje, int IdDia, int IdHorario)
+        {
+            string select = "select * from viajes where IdViaje=" + IdViaje.ToString() + " and IdDia=" + IdDia.ToString() + " and IdHorario="+ IdHorario.ToString();
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            Viajes viaje;
+            if (dt.Rows.Count > 0)
+            {                              
+                    viaje = ObtenerPorRow(dt.Rows[0]);
+                    viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
+                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
+                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
+                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
+                    return viaje;
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+        public static Viajes ObtenerViajexIdDiaHorarioTransporte(int IdViaje, int IdDia, int IdHorario, int IdTransporte)
+        {
+            string select = "select * from viajes where IdViaje=" + IdViaje.ToString() + " and IdDia=" + IdDia.ToString() + " and IdHorario=" + IdHorario.ToString() + " and IdTransporte=" + IdTransporte.ToString();
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            Viajes viaje;
+            if (dt.Rows.Count > 0)
+            {
+                viaje = ObtenerPorRow(dt.Rows[0]);
+                viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
+                viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
+                viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
+                viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
+                return viaje;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
         private static Viajes ObtenerPorRow(DataRow row)
         {
             Viajes v = new Viajes();
@@ -49,9 +132,8 @@ namespace ApiEjemplo.Data
             v.DetalleTransporte= row.Field<string>("DetalleTransporte");
             v.DireccionLatitud = row.Field<string>("DireccionLatitud");
             v.DireccionLongitud = row.Field<string>("DireccionLongitud");
-            v.horario = HorariosData.ObtenerPorId(v.IdHorario);
-            v.transporte = TransportesData.ObtenerPorId(v.IdTransporte);
-            v.dia = DiasData.ObtenerPorId(v.IdDia);
+            v.Direccion = row.Field<string>("Direccion");    
+            
             return v;
         }
 

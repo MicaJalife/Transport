@@ -17,9 +17,11 @@ namespace ApiEjemplo.Models
 
         public bool DesdeHasta { get; set; }
         public string DetalleTransporte{ get; set; }
-
+        
         public string DireccionLatitud { get; set; }
         public string DireccionLongitud { get; set; }
+        public string Direccion { get; set; }
+        public Usuarios usuario { get; set; }
         public Horarios horario { get; set; }
         public Transportes transporte { get; set; }
         public Dias dia { get; set; }
