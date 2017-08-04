@@ -29,7 +29,6 @@ namespace ApiEjemplo.Data
 
             DBHelper.EjecutarIUD(strSQL);
         }
-
         public static List<Viajes> ObtenerViajesXDNI(int DNI)
         {
             string select = "select * from viajes where DNI=" + DNI.ToString();
@@ -51,7 +50,6 @@ namespace ApiEjemplo.Data
             }
             return ListaViajes;
         }
-
         public static List<Viajes> ObtenerViajesUsuarioDesdeHasta(int DNI, bool DesdeHasta)
         {
             string select = "select IdDia, IdHorario, IdTransporte, Direccion from viajes where DNI=" + DNI.ToString() + "and DesdeHasta=" + DesdeHasta;
@@ -72,8 +70,6 @@ namespace ApiEjemplo.Data
             }
             return ListaDesdeHastaViajes;
         }
-
-
         public static List<Viajes> ObtenerViajesccDirecciones()
         {
             string select = "select IdViaje, DireccionLatitud, DireccionLongitud from viajes";
@@ -94,7 +90,6 @@ namespace ApiEjemplo.Data
                 return null;
             }
        }
-
         public static Viajes ObtenerViajexIdDiaHorario(int IdViaje, int IdDia, int IdHorario)
         {
             string select = "select * from viajes where IdViaje=" + IdViaje.ToString() + " and IdDia=" + IdDia.ToString() + " and IdHorario="+ IdHorario.ToString();
@@ -134,6 +129,37 @@ namespace ApiEjemplo.Data
                 return null;
             }
 
+        }
+        public static Viajes ValidacionDeInsert (int DNI, int IdDia,bool DesdeHasta)
+        {
+            string select = "select * from viajes where DNI=" + DNI.ToString() + "and IdDia=" + IdDia.ToString() + "and DesdeHasta=" + DesdeHasta;
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            Viajes viaje;
+            if (dt.Rows.Count > 0)
+            {
+                viaje = ObtenerPorRow(dt.Rows[0]);              
+                return viaje;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static List<Viajes> DireccionesUsuario(int DNI)
+        {
+            string select = "select DireccionLatitud, DireccionLongitud, Direccion from viajes where DNI=" + DNI.ToString();
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            List<Viajes> ListaDireccionesUsuario = new List<Viajes>();
+            Viajes viaje;
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    viaje = ObtenerPorRow(row);
+                    ListaDireccionesUsuario.Add(viaje);
+                }
+                return ListaDireccionesUsuario;
+            }            
         }
         private static Viajes ObtenerPorRow(DataRow row)
         {

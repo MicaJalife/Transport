@@ -61,5 +61,18 @@ namespace ApiEjemplo.Controllers
             return ViajesData.ObtenerViajexIdDiaHorarioTransporte(IdViaje, IdDia, IdHorario, IdTransporte);
         }
 
+        //GET : api/ViajesValidacionInsert
+        [Route("api/viajes/validacion/{DNI}/{IdDia}/{DesdeHasta}")]
+        public Viajes Get(int DNI, int IdDia, bool DesdeHasta)
+        {
+            return ViajesData.ValidacionDeInsert(DNI, IdDia, DesdeHasta);
+        }
+
+        //GET : api/ViajesDireccionSpinner
+        [Route("api/viajes/direcionspinner/DNI")]
+        public List<Viajes> Get1(int DNI)
+        {
+            return ViajesData.DireccionesUsuario(DNI);
+        }
     }
 }
