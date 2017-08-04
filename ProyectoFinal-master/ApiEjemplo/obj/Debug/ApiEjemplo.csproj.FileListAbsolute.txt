@@ -189,3 +189,6 @@ C:\Users\Administrador\Desktop\proyecto\Transport\ProyectoFinal-master\ApiEjempl
 C:\Users\Administrador\Desktop\proyecto\Transport\ProyectoFinal-master\ApiEjemplo\bin\System.Net.Http.Formatting.xml
 C:\Users\Administrador\Desktop\proyecto\Transport\ProyectoFinal-master\ApiEjemplo\bin\System.Web.Http.xml
 C:\Users\Administrador\Desktop\proyecto\Transport\ProyectoFinal-master\ApiEjemplo\bin\System.Web.Http.WebHost.xml
+C:\Users\42586854\Desktop\proyectooo\Transport\ProyectoFinal-master\ApiEjemplo\obj\Debug\ApiEjemplo.csprojResolveAssemblyReference.cache
+C:\Users\42586854\Desktop\proyectooo\Transport\ProyectoFinal-master\ApiEjemplo\obj\Debug\ApiEjemplo.dll
+C:\Users\42586854\Desktop\proyectooo\Transport\ProyectoFinal-master\ApiEjemplo\obj\Debug\ApiEjemplo.pdb

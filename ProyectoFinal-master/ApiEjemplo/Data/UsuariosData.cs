@@ -40,7 +40,7 @@ namespace ApiEjemplo.Data
 
         public static Usuarios ObtenerPorId(int DNI)
         {
-            string select = "select Nombre where DNI=" + DNI.ToString();
+            string select = "select * from usuarios where DNI=" + DNI.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             Usuarios uusuario;            
             if (dt.Rows.Count > 0)

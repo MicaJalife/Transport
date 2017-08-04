@@ -26,9 +26,9 @@ namespace ApiEjemplo.Controllers
 
         //GET api/UsuarioNombre
         [Route("api/usuario/{DNI}")]
-        public string Get(int DNI)
+        public Usuarios Get(int DNI)
         {
-            //return UsuariosData.ObtenerPorId(Convert.ToInt32(DNI));
+           return UsuariosData.ObtenerPorId(DNI);
         }
     }
 }
