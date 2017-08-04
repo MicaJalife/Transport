@@ -12,7 +12,21 @@ namespace ApiEjemplo.Data
 
        public static void InsertarViaje (Viajes viaje)
         {
-            string sInsert = "INSERT into viajes (DNI, IdHorario, IdTransporte, DesdeHasta, DetalleTransporte, DireccionLatitud, DireccionLongitud) values ('" + viaje.DNI.ToString() + "','" + viaje.IdHorario.ToString() + "','" + viaje.IdTransporte.ToString() + "','" +viaje.DesdeHasta.ToString() + "','" + viaje.DetalleTransporte + "','" + viaje.DireccionLatitud + "','"  +viaje.DireccionLongitud +"')";
+            //string sInsert = "INSERT into viajes (DNI, IdHorario, IdTransporte, IdDia,DesdeHasta, DetalleTransporte, DireccionLatitud, DireccionLongitud) values ('" + viaje.DNI.ToString() + "','" + viaje.IdHorario.ToString() + "','" + viaje.IdTransporte.ToString() + "','" +viaje.DesdeHasta.ToString() + "','" + viaje.DetalleTransporte + "','" + viaje.DireccionLatitud + "','"  +viaje.DireccionLongitud +"')";
+            string strSQL = string.Format("INSERT into viajes (DNI, IdHorario, IdTransporte, IdDia, DesdeHasta, DetalleTransporte, DireccionLatitud, DireccionLongitud, Direccion) values ({0}, {1}, {2}, {3}, {4}, '{5}', '{6}', '{7}', '{8}');" ,
+               viaje.DNI,
+               viaje.IdHorario,
+               viaje.IdTransporte,
+               viaje.IdDia,
+               ((viaje.DesdeHasta == true) ? '1' : '0'),
+               viaje.DetalleTransporte, 
+               viaje.DireccionLatitud, 
+               viaje.DireccionLongitud, 
+               viaje.Direccion
+               );
+
+
+
             DBHelper.EjecutarIUD(sInsert);
         }
 
