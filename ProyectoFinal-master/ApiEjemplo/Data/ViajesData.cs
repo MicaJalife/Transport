@@ -27,7 +27,7 @@ namespace ApiEjemplo.Data
 
 
 
-            DBHelper.EjecutarIUD(sInsert);
+            DBHelper.EjecutarIUD(strSQL);
         }
 
         public static List<Viajes> ObtenerViajesXDNI(int DNI)
