@@ -11,12 +11,12 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintLeft_creator="1"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="-131dp"
-        android:layout_marginTop="-31dp">
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1">
 
 
         <LinearLayout
@@ -68,7 +68,7 @@
                         android:layout_width="287dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:text="Rocio Tarda"
+                        android:text="Nombre"
                         android:textColor="#FFFFFF"
                         android:textSize="22dp"
                         android:textStyle="bold" />
@@ -82,7 +82,7 @@
                             android:id="@+id/txtaño"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="6°"
+                            android:text="Anio"
                             android:textColor="#FFFFFF"
                             android:textSize="18dp" />
 
@@ -90,7 +90,7 @@
                             android:id="@+id/txtcurso"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="IC"
+                            android:text="Curso"
                             android:textColor="#FFFFFF"
                             android:textSize="18dp" />
                     </LinearLayout>
@@ -129,15 +129,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Ida"
-                                android:textColor="#FFFFFF"
-                                />
+                                android:textColor="#FFFFFF" />
 
                             <RadioButton
                                 android:id="@+id/RadioButtonVuelta"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Vuelta"
-                                android:textColor="#FFFFFF"/>
+                                android:textColor="#FFFFFF" />
 
 
                         </RadioGroup>
@@ -157,24 +156,21 @@
                         android:layout_marginLeft="3dp"
                         android:layout_marginTop="2dp"
                         android:text="Seleccione dia: "
-                        android:textSize="15dp"
-                        android:textColor="#FFFFFF"/>
+                        android:textColor="#FFFFFF"
+                        android:textSize="15dp" />
 
 
                     <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                         android:id="@+id/SpinnerDia"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:hint="Dias"
                         android:textColorHint="#05ab9a"
-                        app:met_floatingLabel="normal"
-                        android:textSize="15dp"/>
-
-
+                        android:textSize="15dp"
+                        app:met_floatingLabel="normal" />
 
 
                 </LinearLayout>
-
 
 
                 <LinearLayout
@@ -189,8 +185,8 @@
                         android:layout_marginLeft="3dp"
                         android:layout_marginTop="2dp"
                         android:text="Seleccione bloque: "
-                        android:textSize="15dp"
-                        android:textColor="#FFFFFF"/>
+                        android:textColor="#FFFFFF"
+                        android:textSize="15dp" />
 
 
                     <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
@@ -204,14 +200,16 @@
 
 
                 </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:layout_marginTop="2dp"
                     android:text="Seleccione transportes habituales..."
-                    android:textSize="15dp"
-                    android:textColor="#FFFFFF"/>
+                    android:textColor="#FFFFFF"
+                    android:textSize="15dp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -335,7 +333,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Direccion"
                         android:textColor="#FFFFFF"
-                        android:textColorHint="#FFFFFF"/>
+                        android:textColorHint="#FFFFFF" />
 
                     <TextView
                         android:id="@+id/coordenadas"
@@ -344,7 +342,7 @@
                         android:layout_marginLeft="10dp"
                         android:hint="Coordenadas"
                         android:textColor="#FFFFFF"
-                        android:textColorHint="#FFFFFF"/>
+                        android:textColorHint="#FFFFFF" />
                 </LinearLayout>
 
                 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -364,7 +362,7 @@
                         android:layout_height="15dp"
                         android:text="Mi direccion es correcta"
                         android:textColor="#FFFFFF"
-                        android:textColorHint="#FFFFFF"/>
+                        android:textColorHint="#FFFFFF" />
 
                     <CheckBox
                         android:id="@+id/CheckBox"

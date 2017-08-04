@@ -39,13 +39,20 @@ import com.google.android.gms.tagmanager.Container;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -67,7 +74,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
     Viaje miViaje = new Viaje();
 
-
+    String urlDeApi ="http://transportdale.azurewebsites.net/api/ingresarviaje/";
 
 
     public void BotonAgregarDireccion(View Vista)
@@ -91,17 +98,18 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         String DatosCompletados = DatosCompletos.getText().toString();
 
 
-        Spinner spinnerDia;
-        spinnerDia = (Spinner) findViewById(R.id.SpinnerDia);
+        MaterialBetterSpinner spinnerDia;
+        spinnerDia = (MaterialBetterSpinner) findViewById(R.id.SpinnerDia);
 
-        Spinner spinnerBloques;
-        spinnerBloques = (Spinner) findViewById(R.id.SpinnerBloque);
+        MaterialBetterSpinner spinnerBloques;
+        spinnerBloques = (MaterialBetterSpinner) findViewById(R.id.SpinnerBloque);
 
         CheckBox Cbox;
         Cbox = (CheckBox) findViewById(R.id.CheckBox);
 
-
-        if (spinnerDia.isSelected() != false && spinnerBloques.isSelected() != false && TransporteSeleccionado != 0 && DireccionValidada.length() != 0)
+if (Direc.length()!=0 && TransporteSeleccionado!=0)
+{
+        if (spinnerDia != null && spinnerBloques!= null )
         {
             if (TransporteSeleccionado == 2 || TransporteSeleccionado == 3)
             {
@@ -116,39 +124,55 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                 {
                     if (RadioIda.isChecked() == true)
                         {
-                            miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
+                            miViaje.DNI = DNI;
+                            miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
                             miViaje.IdTransporte = TransporteSeleccionado;
-                            miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
+                            miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
                             miViaje.DesdeHasta = true;
                             miViaje.DetalleTransporte = LineasFrec;
-                            miViaje.DireccionLatitud = lat;
-                            miViaje.DireccionLongitud = lng;
+                            miViaje.DireccionLatitud = String.valueOf(lat);
+                            miViaje.DireccionLongitud = String.valueOf(lng);
+                            miViaje.Direccion = dirEncontrada.getText().toString();
 
 
-                            DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getSelectedItem().toString() + " a las " + spinnerBloques.getSelectedItem().toString() + " va a " + DireccionValidada + " con el transporte " + TransporteSeleccionado;
+                            DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getText().toString() + " a las " + spinnerBloques.getText().toString() + " va desde " + Direc + " con el transporte " + funcion.TraerElTransporte(TransporteSeleccionado);
                             DatosCompletos.setText(DatosAMostrar);
                             IngresoCorrecto = true;
 
-                            new IngresarViaje().execute(miViaje);
+                            GsonBuilder builder = new GsonBuilder();
+                            Gson gson = builder.create();
+                            System.out.println(gson.toJson(miViaje));
+
+                            new ConectarAPITask().execute("POST",urlDeApi, gson.toJson(miViaje));
                         }
                     else
                         {
-                            miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getSelectedItem().toString());
+                            miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
                             miViaje.IdTransporte = TransporteSeleccionado;
-                            miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getSelectedItem().toString());
+                            miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
                             miViaje.DesdeHasta = false;
                             miViaje.DetalleTransporte = LineasFrec;
-                            miViaje.DireccionLatitud = lat;
-                            miViaje.DireccionLongitud = lng;
+                            miViaje.DireccionLatitud = String.valueOf(lat);
+                            miViaje.DireccionLongitud = String.valueOf(lng);
+                            miViaje.Direccion = dirEncontrada.getText().toString();
 
-                            DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getSelectedItem().toString() + " a las " + spinnerBloques.getSelectedItem().toString() + " va a " + DireccionValidada + " con el transporte " + TransporteSeleccionado;
+                            DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getText().toString() + " a las " + spinnerBloques.getText().toString() + " va a " + Direc + " con el transporte " + funcion.TraerElTransporte(TransporteSeleccionado);
                             DatosCompletos.setText(DatosAMostrar);
                             IngresoCorrecto = true;
 
-                            new IngresarViaje().execute(miViaje);
+
+                            GsonBuilder builder = new GsonBuilder();
+                            Gson gson = builder.create();
+                            System.out.println(gson.toJson(miViaje));
+
+                            new ConectarAPITask().execute("POST",urlDeApi, gson.toJson(miViaje));
+
+
                         }
                 }
         }
+
+}
     }
 
 
@@ -184,6 +208,60 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     }
 
 
+
+    private class ConectarAPITask extends AsyncTask<String, Void,  Viaje> {
+        public final MediaType JSON
+                = MediaType.parse("application/json; charset=utf-8");
+
+        @Override
+        protected Viaje doInBackground(String... params) {
+
+            String method = params[0];
+            String urlApi = params[1];
+            String resultado;
+
+            if (method.equals("POST")) {
+                String json = params[2];
+                postViaje(urlApi, json);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Viaje viaje) {
+
+            super.onPostExecute(viaje);
+            //Log.d("ope :",persona.getNombre());
+            if (viaje != null) {
+                Cartelito = Toast.makeText(getApplicationContext(), "Guardo su viaje con exito", Toast.LENGTH_SHORT);
+                Cartelito.show();
+            }
+
+        }
+
+
+        private void postViaje(String urlApi, String json) {
+
+            okhttp3.OkHttpClient client = new okhttp3.OkHttpClient();
+
+            RequestBody body = RequestBody.create(JSON, json);
+            okhttp3.Request request = new okhttp3.Request.Builder()
+                    .url(urlApi)
+                    .post(body)
+                    .build();
+
+            try {
+                okhttp3.Response response = client.newCall(request).execute();
+                return;
+            } catch (IOException e) {
+                Log.d("Error :", e.getMessage());
+                return;
+
+            }
+        }
+    }
+
     public void SiguientePrimeraEdicion(View Vista)
     {
         if  (IngresoCorrecto!=true)
@@ -218,25 +296,25 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         ImageView Imagen;
         Imagen = (ImageView) findViewById(R.id.fotoperfil);
 
-        Bundle bundle = getIntent().getExtras();
-        DNI = bundle.getInt("DNI");
-        Nombre.setText(bundle.getString("Nombre"));
-        Anio.setText(bundle.getString("Año"));
-        Curso.setText(bundle.getString("Curso"));
+        Bundle  ReciboUsuario;
+        ReciboUsuario = this.getIntent().getExtras();
+        DNI = ReciboUsuario.getInt("DNI");
+        Nombre.setText(ReciboUsuario.getString("Nombre"));
+        Anio.setText(ReciboUsuario.getString("Año"));
+        Curso.setText(ReciboUsuario.getString("Curso"));
 
-        String Imagenn = bundle.getString("Imagen");
-        Imagen.setBackgroundResource(Integer.parseInt("@drawable/"+Imagenn));
+        String Imagenn = ReciboUsuario.getString("Imagen");
 
 
         RadioButton RadioIda;
         RadioIda = (RadioButton) findViewById(R.id.RadioButtonIda);
         RadioIda.setChecked(true);
 
-        Spinner spinnerDia;
-        spinnerDia = (Spinner) findViewById(R.id.SpinnerDia);
+       MaterialBetterSpinner spinnerDia;
+       spinnerDia = (MaterialBetterSpinner) findViewById(R.id.SpinnerDia);
 
-        Spinner spinnerBloques;
-        spinnerBloques = (Spinner) findViewById(R.id.SpinnerBloque);
+        MaterialBetterSpinner spinnerBloques;
+        spinnerBloques = (MaterialBetterSpinner) findViewById(R.id.SpinnerBloque);
 
 
         ArrayList<String> ListaDias;
@@ -368,71 +446,6 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         }
 
     }
-
-
-
-    public class IngresarViaje extends AsyncTask<Viaje, Void, Viaje> {
-
-        protected void onPostExecute(Viaje datos) {
-            super.onPostExecute(datos);
-            if (miViaje == datos)
-            {
-                seIngreso=true;
-            }
-
-        }
-
-        @Override
-        protected Viaje doInBackground(Viaje... parametros) {
-
-
-
-            //Convertir viaje a json acaaaa
-
-
-
-
-
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url("localhost/api/ingresarviaje")
-                    .build();
-
-
-            try {
-                Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
-                String resultado = response.body().string();
-                try {
-
-                    JSONObject jsonViaje = new JSONObject(resultado);
-
-                    Viaje v = new Viaje();
-
-                    v.DNI = jsonViaje.getInt("DNI");
-                    v.IdHorario = jsonViaje.getInt("IdHorario");
-                    v.IdTransporte = jsonViaje.getInt("IdTransporte");
-                    v.DesdeHasta = jsonViaje.getBoolean("DesdeHasta");
-                    v.DetalleTransporte = jsonViaje.getString("DetalleTransporte");
-                    v.DireccionLatitud = jsonViaje.getDouble("DireccionLatitud");
-                    v.DireccionLongitud = jsonViaje.getDouble("DireccionLongitud");
-
-
-                    return v;
-                } catch (JSONException e) {
-                    Log.d("Error JSON", e.getMessage());
-                    return null;
-                }
-            } catch (IOException e) {
-                Log.d("Error", e.getMessage());             // Error de Network
-                return null;
-            }
-
-        }
-}
-
-
-
-
 
 }
 

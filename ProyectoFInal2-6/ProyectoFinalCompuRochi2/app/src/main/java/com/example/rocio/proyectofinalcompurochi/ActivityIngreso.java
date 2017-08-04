@@ -42,79 +42,45 @@ public class ActivityIngreso extends AppCompatActivity {
 
     public void BotonIngresar(View Vista)
     {
-        EditText ElDNIText;
-        ElDNIText = (EditText) findViewById(R.id.ingresoDNI);
-        String Dni = ElDNIText.getText().toString();
-        DNI = Integer.parseInt(Dni);
-
-        EditText Pass;
-        Pass = (EditText) findViewById(R.id.ingresoContraseña);
-        String Contraseñaa = Pass.getText().toString();
-        Contraseña = Contraseñaa;
-
-
-        //String par = "localhost/api/usuario/"+ Dni+"/"+ Contraseñaa;
-        String Url = "http://transportdale.azurewebsites.net/api/usuario/"+ Dni+"/"+ Contraseñaa;
-        Log.d("Manda url", "ppppp");
-        new TraerUsuario().execute(Url);
-
-
-
-        if (Dni.length()>0 && Contraseña.length()>0)
+            EditText ElDNIText;
+            ElDNIText = (EditText) findViewById(R.id.ingresoDNI);
+            String Dni = ElDNIText.getText().toString();
+        if (isNumeric(Dni)==true)
         {
-            if (ExisteElUsuario==true)
-            {
-                DNI = miUsuario.DNI;
-                Nombre = miUsuario.Nombre;
-                Año = miUsuario.Año;
-                Curso = miUsuario.Curso;
-                Imagen = miUsuario.Imagen;
+            DNI = Integer.parseInt(Dni);
 
-                if (PrimeraEdicion==true)
-                {
-                    Bundle EnvioDatos;
-                    EnvioDatos = new Bundle();
-                    EnvioDatos.putInt("DNI", DNI);
-                    EnvioDatos.putString("Nombre", Nombre);
-                    EnvioDatos.putString("Año", Año);
-                    EnvioDatos.putString("Curso", Curso);
-                    EnvioDatos.putString("Imagen", Imagen);
-                    Intent LlamadaActivityPrimeraEdicion;
-                    LlamadaActivityPrimeraEdicion = new Intent(this, ActivityPrimeraEdicion.class);
-                    LlamadaActivityPrimeraEdicion.putExtra("EnvioUsuario", EnvioDatos);
-                    startActivity(LlamadaActivityPrimeraEdicion);
-                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
-                }else
-                {
-                    Bundle EnvioDatos;
-                    EnvioDatos = new Bundle();
-                    EnvioDatos.putInt("DNI", DNI);
-                    EnvioDatos.putString("Nombre", Nombre);
-                    EnvioDatos.putString("Año", Año);
-                    EnvioDatos.putString("Curso", Curso);
-                    EnvioDatos.putString("Imagen", Imagen);
-                    Intent LlamadaActivityPerfil;
-                    LlamadaActivityPerfil = new Intent(this, ActivityPerfil.class);
-                    LlamadaActivityPerfil.putExtra("EnvioUsuario", EnvioDatos);
-                    startActivity(LlamadaActivityPerfil);
-                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
-                }
+            EditText Pass;
+            Pass = (EditText) findViewById(R.id.ingresoContraseña);
+            String Contraseñaa = Pass.getText().toString();
+            Contraseña = Contraseñaa;
 
-            }
-            else
-            {
-                Cartelito = Toast.makeText(this, "El DNI o contraseña es incorrecto", Toast.LENGTH_SHORT);
+
+            if (Dni.length() > 0 && Contraseña.length() > 0) {
+                //String par = "localhost/api/usuario/"+ Dni+"/"+ Contraseñaa;
+                String Url = "http://transportdale.azurewebsites.net/api/usuario/" + Dni + "/" + Contraseñaa;
+                Log.d("Manda url", "ppppp");
+                new TraerUsuario().execute(Url);
+
+            } else {
+                Cartelito = Toast.makeText(this, "Debe completar todos los campos", Toast.LENGTH_SHORT);
                 Cartelito.show();
             }
-
         }
-        else
-        {
-            Cartelito = Toast.makeText(this, "Debe completar todos los campos", Toast.LENGTH_SHORT);
+        else{
+            Cartelito = Toast.makeText(this, "El Dni debe ser numerico", Toast.LENGTH_SHORT);
             Cartelito.show();
         }
-    }
 
+
+    }
+    private static boolean isNumeric(String cadena){
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe){
+            return false;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,21 +90,60 @@ public class ActivityIngreso extends AppCompatActivity {
     }
 
 
-    private class TraerUsuario extends AsyncTask<String, Void, Usuario>{
+    private class TraerUsuario extends AsyncTask<String, Void, Usuario> {
 
 
         protected void onPostExecute(Usuario datos) {
             super.onPostExecute(datos);
             Log.d("Devuelve datos", "ppppp");
 
-   /*     if (datos != null) {
-            ExisteElUsuario = true;
-            miUsuario = datos;
-        }
+            if (datos != null) {
+                ExisteElUsuario = true;
+                miUsuario = datos;
 
-*/
-        }
 
+                if (ExisteElUsuario == true) {
+                    DNI = miUsuario.DNI;
+                    Nombre = miUsuario.Nombre;
+                    Año = miUsuario.Año;
+                    Curso = miUsuario.Curso;
+                    Imagen = miUsuario.Imagen;
+                    PrimeraEdicion = miUsuario.PrimeraEdicion;
+
+                if (PrimeraEdicion == true) {
+                    Bundle EnvioDatos;
+                    EnvioDatos = new Bundle();
+                    EnvioDatos.putInt("DNI", DNI);
+                    EnvioDatos.putString("Nombre", Nombre);
+                    EnvioDatos.putString("Año", Año);
+                    EnvioDatos.putString("Curso", Curso);
+                    EnvioDatos.putString("Imagen", Imagen);
+                    Intent LlamadaActivityPrimeraEdicion;
+                    LlamadaActivityPrimeraEdicion = new Intent(getApplicationContext(), ActivityPrimeraEdicion.class);
+                    LlamadaActivityPrimeraEdicion.putExtras(EnvioDatos);
+                    startActivity(LlamadaActivityPrimeraEdicion);
+                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                } else {
+                    Bundle EnvioDatos;
+                    EnvioDatos = new Bundle();
+                    EnvioDatos.putInt("DNI", DNI);
+                    EnvioDatos.putString("Nombre", Nombre);
+                    EnvioDatos.putString("Año", Año);
+                    EnvioDatos.putString("Curso", Curso);
+                    EnvioDatos.putString("Imagen", Imagen);
+                    Intent LlamadaActivityPerfil;
+                    LlamadaActivityPerfil = new Intent(getApplicationContext(), ActivityPerfil.class);
+                    LlamadaActivityPerfil.putExtras(EnvioDatos);
+                    startActivity(LlamadaActivityPerfil);
+                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                }
+            }
+            } else {
+                Cartelito = Toast.makeText(getApplicationContext(), "El DNI o contraseña es incorrecto", Toast.LENGTH_SHORT);
+                Cartelito.show();
+            }
+
+        }
 
         @Override
         protected Usuario doInBackground(String... parametros) {
@@ -156,7 +161,6 @@ public class ActivityIngreso extends AppCompatActivity {
 
                 Log.d("trae el resultado", "ppppp");
                 try {
-
                     JSONObject jsonUsuario = new JSONObject(resultado);
                     Log.d("crea un nuevo json", "ppppp");
 
@@ -167,11 +171,12 @@ public class ActivityIngreso extends AppCompatActivity {
                     u.Nombre = jsonUsuario.getString("Nombre");
                     u.Año = jsonUsuario.getString("Anio");
                     u.Curso = jsonUsuario.getString("Curso");
-                    u.Imagen = jsonUsuario.getString("Imagen");
+                    u.Imagen = jsonUsuario.getString("NombreImagen");
                     u.PrimeraEdicion = jsonUsuario.getBoolean("PrimeraEdicion");
                     Log.d("parsea el json", "ppppp");
 
                     return u;
+
                 }catch (JSONException e){
                     Log.d("Error JSON", e.getMessage());
                     Log.d("error en el json", "ppppp");
@@ -186,7 +191,7 @@ public class ActivityIngreso extends AppCompatActivity {
             }
 
         }
-
     }
 
 }
+

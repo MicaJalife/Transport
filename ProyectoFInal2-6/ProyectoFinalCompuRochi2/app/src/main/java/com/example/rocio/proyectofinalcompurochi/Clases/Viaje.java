@@ -8,16 +8,29 @@ public class Viaje {
 
 
     public int DNI;
+    public int IdViaje;
     public int IdHorario;
-    public String TipoTransporte;
+    public int IdTransporte;
+    public int IdDia;
     public boolean DesdeHasta;
     public String DetalleTransporte;
-    public double DireccionLatitud;
-    public double DireccionLongitud;
-    public int IdDia;
-    public int IdTransporte;
+    public String DireccionLatitud;
+    public String DireccionLongitud;
     public String Direccion;
+    public String TipoTransporte;
 
-
+/*
+*"": 42225260,
+        "": 0,
+        "": 1,
+        "": 2,
+        "": 0,
+        "": true,
+        "": "Uso el colectivo 132",
+        "": "-34.635707",
+        "": " -58.453733",
+        "": "Lautaro 791",
+*
+* */
 
 }

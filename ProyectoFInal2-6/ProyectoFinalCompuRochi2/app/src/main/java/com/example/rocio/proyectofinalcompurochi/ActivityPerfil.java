@@ -78,7 +78,7 @@ public class ActivityPerfil extends AppCompatActivity {
 
 
 
-        String par = "localhost/api/traerviaje/"+DniUsuario;
+        String par = "http://transportdale.azurewebsites.net/api/traerviaje/"+DniUsuario;
         new TraerViaje().execute(par);
 
 
@@ -119,10 +119,11 @@ public class ActivityPerfil extends AppCompatActivity {
                     v.DNI = jsonViaje.getInt("DNI");
                     v.IdHorario = jsonViaje.getInt("IdHorario");
                     v.IdTransporte = jsonViaje.getInt("IdTransporte");
+                    v.IdDia = jsonViaje.getInt("IdDia");
                     v.DesdeHasta = jsonViaje.getBoolean("DesdeHasta");
                     v.DetalleTransporte = jsonViaje.getString("DetalleTransporte");
-                    v.DireccionLatitud = jsonViaje.getDouble("DireccionLatitud");
-                    v.DireccionLongitud = jsonViaje.getDouble("DireccionLongitud");
+                    v.DireccionLatitud = jsonViaje.getString("DireccionLatitud");
+                    v.DireccionLongitud = jsonViaje.getString("DireccionLongitud");
 
 
                     return v;

@@ -85,6 +85,30 @@ public class Funciones {
         }
         return DevuelvoId;
     }
+    public String TraerElTransporte (int id)
+    {
+        String devuelvotransporte="";
+
+        switch (id) {
+            case 1:
+                devuelvotransporte = "Auto";
+                break;
+            case 2:
+                devuelvotransporte = "Colectivo";
+                break;
+            case 3:
+                devuelvotransporte = "Subte";
+                break;
+            case 4:
+                devuelvotransporte = "Bicicleta";
+                break;
+            case 5:
+                devuelvotransporte = "Caminando";
+                break;
+
+        }
+        return devuelvotransporte;
+    }
 
 
 }
