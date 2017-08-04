@@ -23,7 +23,7 @@ namespace ApiEjemplo.Controllers
 
             }
             ViajesData.InsertarViaje(viaje);
-            return Ok();
+            return Ok("bien");
         }      
 
         //GET : api/Viajes
