@@ -130,7 +130,7 @@ namespace ApiEjemplo.Data
             }
 
         }
-        public static Viajes ValidacionDeInsert (int DNI, int IdDia,bool DesdeHasta)
+        public static Viajes ValidacionDeInsert1 (int DNI, int IdDia,bool DesdeHasta)
         {
             string select = "select * from viajes where DNI=" + DNI.ToString() + "and IdDia=" + IdDia.ToString() + "and DesdeHasta=" + DesdeHasta;
             DataTable dt = DBHelper.EjecutarSelect(select);
@@ -138,6 +138,22 @@ namespace ApiEjemplo.Data
             if (dt.Rows.Count > 0)
             {
                 viaje = ObtenerPorRow(dt.Rows[0]);              
+                return viaje;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static Viajes ValidacionDeInsert2(int DNI, int IdDia, int IdHorario)
+        {
+            string select = "select * from viajes where DNI=" + DNI.ToString() + "and IdDia=" + IdDia.ToString() + "and IdHorario=" + IdHorario.ToString();
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            Viajes viaje;
+            if (dt.Rows.Count > 0)
+            {
+                viaje = ObtenerPorRow(dt.Rows[0]);
                 return viaje;
             }
             else
@@ -159,8 +175,14 @@ namespace ApiEjemplo.Data
                     ListaDireccionesUsuario.Add(viaje);
                 }
                 return ListaDireccionesUsuario;
-            }            
+            }  
+            else
+            {
+                return null;
+            }          
         }
+
+
         private static Viajes ObtenerPorRow(DataRow row)
         {
             Viajes v = new Viajes();

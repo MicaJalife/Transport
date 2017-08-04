@@ -35,42 +35,49 @@ namespace ApiEjemplo.Controllers
 
         //GET : api/ViajesUsuarioDesdeHasta
         [Route("api/viajes/ViajesUsuarioDesdeHasta/{DNI}/{DesdeHasta}")]
-        public List<Viajes> Get (int DNI, bool DesdeHasta)
+        public List<Viajes> ViajesDesdeHasta (int DNI, bool DesdeHasta)
         {
             return ViajesData.ObtenerViajesUsuarioDesdeHasta(DNI, DesdeHasta);
         }
 
-        //GET : api/ViajesccDirecciones
+        //GET : api/ViajesccDirecciones  HAY QUE FIJARSE SI ESTO SE USA!!!!!!!!!!!!
         [Route("api/viajes/ViajesccDirecciones")]
         public List<Viajes> Get()
         {
             return ViajesData.ObtenerViajesccDirecciones();
         }
 
-        //GET : api/ViajesccIdDiaHorario 
+        //GET : api/ViajesccIdDiaHorario HAY QUE FIJARSE SI ESTO SE USA!!!!!!!!!!!!
         [Route("api/viajes/ViajesccIdDiaHorario/{IdViaje}/{IdDia}/{IdHorario}")]
-        public Viajes Get(int IdViaje, int IdDia, int IdHorario)
+        public Viajes ViajesconIdViajeDiaHorario (int IdViaje, int IdDia, int IdHorario)
         {
             return ViajesData.ObtenerViajexIdDiaHorario(IdViaje, IdDia, IdHorario);
         }
 
-        //GET : api/ViajesccIdDiaHorarioTransporte
+        //GET : api/ViajesccIdDiaHorarioTransporte HAY QUE FIJARSE SI ESTO SE USA!!!!!!!!!!!!
         [Route("api/viajes/ViajesccIdDiaHorario/{IdViaje}/{IdDia}/{IdHorario}/{IdTransporte}")]
-        public Viajes Get(int IdViaje, int IdDia, int IdHorario, int IdTransporte)
+        public Viajes ViajesconIdViajeDiaHorarioTransporte(int IdViaje, int IdDia, int IdHorario, int IdTransporte)
         {
             return ViajesData.ObtenerViajexIdDiaHorarioTransporte(IdViaje, IdDia, IdHorario, IdTransporte);
         }
 
-        //GET : api/ViajesValidacionInsert
+        //GET : api/ViajesValidacionInsert1
         [Route("api/viajes/validacion/{DNI}/{IdDia}/{DesdeHasta}")]
-        public Viajes Get(int DNI, int IdDia, bool DesdeHasta)
+        public Viajes ValidacionInsertar1(int DNI, int IdDia, bool DesdeHasta)
         {
-            return ViajesData.ValidacionDeInsert(DNI, IdDia, DesdeHasta);
+            return ViajesData.ValidacionDeInsert1(DNI, IdDia, DesdeHasta);
+        }
+
+        //GET : api/ViajesValidacionInsert2
+        [Route("api/viajes/validacion/{DNI}/{IdDia}/{IdHorario}")]
+        public Viajes ValidacionInsertar2(int DNI, int IdDia, int IdHorario)
+        {
+            return ViajesData.ValidacionDeInsert2(DNI, IdDia, IdHorario);
         }
 
         //GET : api/ViajesDireccionSpinner
         [Route("api/viajes/direcionspinner/DNI")]
-        public List<Viajes> Get1(int DNI)
+        public List<Viajes> DireccionesUsuario(int DNI)
         {
             return ViajesData.DireccionesUsuario(DNI);
         }
