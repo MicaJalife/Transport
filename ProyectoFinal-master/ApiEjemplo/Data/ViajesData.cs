@@ -171,7 +171,7 @@ namespace ApiEjemplo.Data
             {
                 foreach (DataRow row in dt.Rows)
                 {
-                    viaje = ObtenerPorRow(row);
+                    viaje = ObtenerxRowDirecciones(row);
                     ListaDireccionesUsuario.Add(viaje);
                 }
                 return ListaDireccionesUsuario;
@@ -182,7 +182,14 @@ namespace ApiEjemplo.Data
             }          
         }
 
-
+        private static Viajes ObtenerxRowDirecciones(DataRow row)
+        {
+            Viajes v = new Viajes();
+            v.DireccionLatitud= row.Field<string>("DireccionLatitud");
+            v.DireccionLongitud = row.Field<string>("DireccionLongitud");
+            v.Direccion = row.Field<string>("Direccion");
+            return v;
+        }
         private static Viajes ObtenerPorRow(DataRow row)
         {
             Viajes v = new Viajes();
