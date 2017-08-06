@@ -35,6 +35,7 @@ namespace ApiEjemplo.Controllers
         }
 
         //GET : api/ViajesUsuarioDesdeHasta
+        [HttpGet]
         [Route("api/viajes/ViajesUsuarioDesdeHasta/{DNI}/{DesdeHasta}")]
         public List<Viajes> ViajesDesdeHasta (int DNI, bool DesdeHasta)
         {
@@ -42,6 +43,7 @@ namespace ApiEjemplo.Controllers
         }
 
         //GET : api/ViajesccDirecciones  HAY QUE FIJARSE SI ESTO SE USA!!!!!!!!!!!!
+        [HttpGet]
         [Route("api/viajes/ViajesccDirecciones")]
         public List<Viajes> Get()
         {
@@ -49,6 +51,7 @@ namespace ApiEjemplo.Controllers
         }
 
         //GET : api/ViajesccIdDiaHorario HAY QUE FIJARSE SI ESTO SE USA!!!!!!!!!!!!
+        [HttpGet]
         [Route("api/viajes/ViajesccIdDiaHorario/{IdViaje}/{IdDia}/{IdHorario}")]
         public Viajes ViajesconIdViajeDiaHorario (int IdViaje, int IdDia, int IdHorario)
         {
@@ -56,6 +59,7 @@ namespace ApiEjemplo.Controllers
         }
 
         //GET : api/ViajesccIdDiaHorarioTransporte HAY QUE FIJARSE SI ESTO SE USA!!!!!!!!!!!!
+        [HttpGet]
         [Route("api/viajes/ViajesccIdDiaHorario/{IdViaje}/{IdDia}/{IdHorario}/{IdTransporte}")]
         public Viajes ViajesconIdViajeDiaHorarioTransporte(int IdViaje, int IdDia, int IdHorario, int IdTransporte)
         {
@@ -63,6 +67,7 @@ namespace ApiEjemplo.Controllers
         }
 
         //GET : api/ViajesValidacionInsert1
+        [HttpGet]
         [Route("api/viajes/validacion/{DNI}/{IdDia}/{DesdeHasta}")]
         public Viajes ValidacionInsertar1(int DNI, int IdDia, bool DesdeHasta)
         {
@@ -70,6 +75,7 @@ namespace ApiEjemplo.Controllers
         }
 
         //GET : api/ViajesValidacionInsert2
+        [HttpGet]
         [Route("api/viajes/validacion/{DNI}/{IdDia}/{IdHorario}")]
         public Viajes ValidacionInsertar2(int DNI, int IdDia, int IdHorario)
         {
@@ -77,6 +83,7 @@ namespace ApiEjemplo.Controllers
         }
 
         //GET : api/ViajesDireccionSpinner
+        [HttpGet]
         [Route("api/viajes/direcionspinner/{DNI}")]
         public List<Viajes> DireccionesUsuario(int DNI)
         {
