@@ -24,9 +24,10 @@ namespace ApiEjemplo.Controllers
             }
             ViajesData.InsertarViaje(viaje);
             return Ok("bien");
-        }      
+        }
 
         //GET : api/Viajes
+        [HttpGet]
         [Route("api/viajes/traerviaje/{DNI}")]
         public IList<Viajes> TraerViajexDNI(int DNI)
         {
