@@ -76,7 +76,7 @@ namespace ApiEjemplo.Controllers
         }
 
         //GET : api/ViajesDireccionSpinner
-        [Route("api/viajes/direcionspinner/DNI")]
+        [Route("api/viajes/direcionspinner/{DNI}")]
         public List<Viajes> DireccionesUsuario(int DNI)
         {
             return ViajesData.DireccionesUsuario(DNI);
