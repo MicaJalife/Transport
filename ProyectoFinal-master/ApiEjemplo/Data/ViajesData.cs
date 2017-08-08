@@ -130,9 +130,9 @@ namespace ApiEjemplo.Data
             }
 
         }
-        public static Viajes ValidacionDeInsert1 (int DNI, int IdDia,bool DesdeHasta)
+        public static Viajes ValidacionDeInsert1 (int DNI, int IdDia,int DesdeHasta)
         {
-            string select = "select * from viajes where DNI=" + DNI.ToString() + "and IdDia=" + IdDia.ToString() + "and DesdeHasta=" + DesdeHasta.ToString();
+            string select = "select * from viajes where DNI=" + DNI.ToString() + " and IdDia=" + IdDia.ToString() + " and DesdeHasta=" + DesdeHasta.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             Viajes viaje;
             if (dt.Rows.Count > 0)

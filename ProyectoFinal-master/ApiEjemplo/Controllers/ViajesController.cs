@@ -69,7 +69,7 @@ namespace ApiEjemplo.Controllers
         //GET : api/ViajesValidacionInsert1
         [HttpGet]
         [Route("api/viajes/validacion1/{DNI}/{IdDia}/{DesdeHasta}")]
-        public Viajes ValidacionInsertar1(int DNI, int IdDia, bool DesdeHasta)
+        public Viajes ValidacionInsertar1(int DNI, int IdDia, int DesdeHasta)
         {
             return ViajesData.ValidacionDeInsert1(DNI, IdDia, DesdeHasta);
         }
