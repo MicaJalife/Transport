@@ -148,7 +148,7 @@ namespace ApiEjemplo.Data
 
         public static Viajes ValidacionDeInsert2(int DNI, int IdDia, int IdHorario)
         {
-            string select = "select * from viajes where DNI=" + DNI.ToString() + "and IdDia=" + IdDia.ToString() + "and IdHorario=" + IdHorario.ToString();
+            string select = "select * from viajes where DNI=" + DNI.ToString() + " and IdDia=" + IdDia.ToString() + " and IdHorario=" + IdHorario.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             Viajes viaje;
             if (dt.Rows.Count > 0)
