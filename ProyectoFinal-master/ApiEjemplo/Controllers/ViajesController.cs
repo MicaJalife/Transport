@@ -68,7 +68,7 @@ namespace ApiEjemplo.Controllers
 
         //GET : api/ViajesValidacionInsert1
         [HttpGet]
-        [Route("api/viajes/validacion/{DNI}/{IdDia}/{DesdeHasta}")]
+        [Route("api/viajes/validacion1/{DNI}/{IdDia}/{DesdeHasta}")]
         public Viajes ValidacionInsertar1(int DNI, int IdDia, bool DesdeHasta)
         {
             return ViajesData.ValidacionDeInsert1(DNI, IdDia, DesdeHasta);
@@ -76,7 +76,7 @@ namespace ApiEjemplo.Controllers
 
         //GET : api/ViajesValidacionInsert2
         [HttpGet]
-        [Route("api/viajes/validacion/{DNI}/{IdDia}/{IdHorario}")]
+        [Route("api/viajes/validacion2/{DNI}/{IdDia}/{IdHorario}")]
         public Viajes ValidacionInsertar2(int DNI, int IdDia, int IdHorario)
         {
             return ViajesData.ValidacionDeInsert2(DNI, IdDia, IdHorario);
