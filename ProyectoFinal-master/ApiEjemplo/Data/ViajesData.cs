@@ -132,7 +132,7 @@ namespace ApiEjemplo.Data
         }
         public static Viajes ValidacionDeInsert1 (int DNI, int IdDia,bool DesdeHasta)
         {
-            string select = "select * from viajes where DNI=" + DNI.ToString() + "and IdDia=" + IdDia.ToString() + "and DesdeHasta=" + DesdeHasta;
+            string select = "select * from viajes where DNI=" + DNI.ToString() + "and IdDia=" + IdDia.ToString() + "and DesdeHasta=" + DesdeHasta.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             Viajes viaje;
             if (dt.Rows.Count > 0)
@@ -182,6 +182,7 @@ namespace ApiEjemplo.Data
             }          
         }
 
+        
         private static Viajes ObtenerxRowDirecciones(DataRow row)
         {
             Viajes v = new Viajes();
