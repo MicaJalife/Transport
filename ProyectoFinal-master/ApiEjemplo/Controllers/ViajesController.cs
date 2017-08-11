@@ -60,10 +60,10 @@ namespace ApiEjemplo.Controllers
 
         //GET : api/ViajesccIdDiaHorarioTransporte HAY QUE FIJARSE SI ESTO SE USA!!!!!!!!!!!!
         [HttpGet]
-        [Route("api/viajes/ViajesccIdDiaHorario/{IdViaje}/{IdDia}/{IdHorario}/{IdTransporte}")]
-        public Viajes ViajesconIdViajeDiaHorarioTransporte(int IdViaje, int IdDia, int IdHorario, int IdTransporte)
+        [Route("api/viajes/ViajesccIdDiaHorario/{IdDia}/{IdHorario}/{IdTransporte}")]
+        public Viajes ViajesconIdViajeDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte)
         {
-            return ViajesData.ObtenerViajexIdDiaHorarioTransporte(IdViaje, IdDia, IdHorario, IdTransporte);
+            return ViajesData.ObtenerViajexIdDiaHorarioTransporte( IdDia, IdHorario, IdTransporte);
         }
 
         //GET : api/ViajesValidacionInsert1

@@ -110,9 +110,9 @@ namespace ApiEjemplo.Data
             }
             
         }
-        public static Viajes ObtenerViajexIdDiaHorarioTransporte(int IdViaje, int IdDia, int IdHorario, int IdTransporte)
+        public static Viajes ObtenerViajexIdDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte)
         {
-            string select = "select * from viajes where IdViaje=" + IdViaje.ToString() + " and IdDia=" + IdDia.ToString() + " and IdHorario=" + IdHorario.ToString() + " and IdTransporte=" + IdTransporte.ToString();
+            string select = "select * from viajes where IdDia=" + IdDia.ToString() + " and IdHorario=" + IdHorario.ToString() + " and IdTransporte=" + IdTransporte.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             Viajes viaje;
             if (dt.Rows.Count > 0)
@@ -181,6 +181,7 @@ namespace ApiEjemplo.Data
                 return null;
             }          
         }
+        
 
         
         private static Viajes ObtenerxRowDirecciones(DataRow row)
