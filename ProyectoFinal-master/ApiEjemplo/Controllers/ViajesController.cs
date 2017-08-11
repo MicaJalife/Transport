@@ -37,7 +37,7 @@ namespace ApiEjemplo.Controllers
         //GET : api/ViajesUsuarioDesdeHasta
         [HttpGet]
         [Route("api/viajes/ViajesUsuarioDesdeHasta/{DNI}/{DesdeHasta}")]
-        public List<Viajes> ViajesDesdeHasta (int DNI, bool DesdeHasta)
+        public List<Viajes> ViajesDesdeHasta (int DNI, int DesdeHasta)
         {
             return ViajesData.ObtenerViajesUsuarioDesdeHasta(DNI, DesdeHasta);
         }
