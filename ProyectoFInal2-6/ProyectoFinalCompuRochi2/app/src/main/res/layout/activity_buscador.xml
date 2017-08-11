@@ -10,7 +10,7 @@ xmlns:design="http://schemas.android.com/apk/res-auto"
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
@@ -19,9 +19,9 @@ xmlns:design="http://schemas.android.com/apk/res-auto"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintTop_creator="1">
-
 
 
         <LinearLayout
@@ -57,8 +57,8 @@ xmlns:design="http://schemas.android.com/apk/res-auto"
                 <LinearLayout
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/BusquedaDireccion1"
@@ -71,18 +71,21 @@ xmlns:design="http://schemas.android.com/apk/res-auto"
                         android:textSize="18dp" />
 
                     <Spinner
-                        android:id="@+id/BusquedaDireccion2"
+                        android:id="@+id/Spinnerdirecciones"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="true"
+                        android:textAlignment="center"
                         android:textColor="#FFFF"
                         android:textSize="20dp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
                     <RadioGroup
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
@@ -92,16 +95,16 @@ xmlns:design="http://schemas.android.com/apk/res-auto"
                             android:id="@+id/RadioButtonIda"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAlignment="center"
                             android:text="Hasta Ort"
+                            android:textAlignment="center"
                             android:textColor="#FFFFFF" />
 
                         <RadioButton
                             android:id="@+id/RadioButtonVuelta"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAlignment="center"
                             android:text="Desde Ort"
+                            android:textAlignment="center"
                             android:textColor="#FFFFFF" />
 
 
@@ -115,55 +118,53 @@ xmlns:design="http://schemas.android.com/apk/res-auto"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                <Spinner
                     android:id="@+id/SpinnerDia"
-                    android:layout_width="50dp"
+                    android:layout_width="80dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="50dp"
-                    android:hint="Dias"
-                    android:textColorHint="#000000"
-                    android:textSize="20dp"
-                    app:met_floatingLabel="normal" />
+                    android:layout_marginLeft="30dp"
+                    android:text="Seleccione dia:"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="20dp" />
 
-                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                <Spinner
                     android:id="@+id/SpinnerBloques"
-                    android:layout_width="50dp"
+                    android:layout_width="70dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
-                    android:hint="Bloques"
-                    android:textColorHint="#000000"
-                    android:textSize="20dp"
-                    app:met_floatingLabel="normal" />
+                    android:hint="Seleccione bloques:"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="20dp" />
 
-                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-                    android:id="@+id/SpinnerAnio"
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:hint="Años"
-                    android:textColorHint="#000000"
-                    android:textSize="20dp"
-                    app:met_floatingLabel="normal" />
-
-                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                <Spinner
                     android:id="@+id/SpinnerTransporte"
-                    android:layout_width="50dp"
+                    android:layout_width="85dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
-                    android:hint="Transporte"
-                    android:textColorHint="#000000"
-                    android:textSize="20dp"
-                    app:met_floatingLabel="normal" />
+                    android:hint="Seleccione transportes:"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="20dp" />
             </LinearLayout>
         </LinearLayout>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="340dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="370dp">
 
-        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="340dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="370dp">
+
+                <ListView
+                    android:id="@+id/ListView_Viajes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                </ListView>
+
+
+            </LinearLayout>
         </ScrollView>
 
 
@@ -174,8 +175,8 @@ xmlns:design="http://schemas.android.com/apk/res-auto"
             android:layout_weight="7"
             android:background="#74DBEF"
             android:orientation="horizontal"
-            tools:layout_editor_absoluteY="0dp"
-            tools:layout_editor_absoluteX="8dp">
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp">
 
             <ImageButton
                 android:layout_width="50dp"

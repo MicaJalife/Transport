@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.rocio.proyectofinalcompurochi.Clases.Usuario;
 import com.example.rocio.proyectofinalcompurochi.Clases.Viaje;
@@ -32,20 +33,43 @@ public class ActivityPerfil extends AppCompatActivity {
     boolean existeviaje=false;
     int DniUsuario;
 
+    Integer DNI;
+    String Nombre;
+    String Año;
+    String Curso;
+    String Imagen;
+
 
     public void BotonBuscador(View Vista)
     {
+        Bundle EnvioDatos;
+        EnvioDatos = new Bundle();
+        EnvioDatos.putInt("DNI", DNI);
+        EnvioDatos.putString("Nombre", Nombre);
+        EnvioDatos.putString("Año", Año);
+        EnvioDatos.putString("Curso", Curso);
+        EnvioDatos.putString("Imagen", Imagen);
 
         Intent LlamadaActivityBuscador;
         LlamadaActivityBuscador = new Intent(this, ActivityBuscador.class);
+        LlamadaActivityBuscador.putExtras(EnvioDatos);
         startActivity(LlamadaActivityBuscador);
         overridePendingTransition(R.anim.right_in, R.anim.right_out);
 
     }
     public void BotonPerfil(View Vista)
     {
+        Bundle EnvioDatos;
+        EnvioDatos = new Bundle();
+        EnvioDatos.putInt("DNI", DNI);
+        EnvioDatos.putString("Nombre", Nombre);
+        EnvioDatos.putString("Año", Año);
+        EnvioDatos.putString("Curso", Curso);
+        EnvioDatos.putString("Imagen", Imagen);
+
         Intent LLamadaActivityPerfil;
         LLamadaActivityPerfil = new Intent(this, ActivityPerfil.class);
+        LLamadaActivityPerfil.putExtras(EnvioDatos);
         startActivity(LLamadaActivityPerfil);
         overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);
 
@@ -75,7 +99,29 @@ public class ActivityPerfil extends AppCompatActivity {
         roundDrawable.setCircular(true);
         foto.setImageDrawable(roundDrawable);
 
+        TextView TxtNombre;
+        TxtNombre = (TextView) findViewById(R.id.txtnombreyapellido);
 
+        TextView TxtCurso;
+        TxtCurso = (TextView) findViewById(R.id.txtcurso);
+
+        TextView TxtAnio;
+        TxtAnio = (TextView) findViewById(R.id.txtaño);
+
+        ImageView txtImagen;
+        txtImagen = (ImageView) findViewById(R.id.foto);
+
+        Bundle  ReciboUsuario;
+        ReciboUsuario = this.getIntent().getExtras();
+        DNI = ReciboUsuario.getInt("DNI");
+        Nombre = ReciboUsuario.getString("Nombre");
+        Año = ReciboUsuario.getString("Año");
+        Curso = ReciboUsuario.getString("Curso");
+        Imagen = ReciboUsuario.getString("Imagen");
+
+        TxtNombre.setText(ReciboUsuario.getString("Nombre"));
+        TxtAnio.setText(ReciboUsuario.getString("Año"));
+        TxtCurso.setText(ReciboUsuario.getString("Curso"));
 
 
         String par = "http://transportdale.azurewebsites.net/api/traerviaje/"+DniUsuario;
@@ -89,6 +135,7 @@ public class ActivityPerfil extends AppCompatActivity {
         protected void OnPostExecute(Viaje datos)
         {
             super.onPostExecute(datos);
+
             if (datos != null)
             {
                 existeviaje = true;
@@ -120,7 +167,7 @@ public class ActivityPerfil extends AppCompatActivity {
                     v.IdHorario = jsonViaje.getInt("IdHorario");
                     v.IdTransporte = jsonViaje.getInt("IdTransporte");
                     v.IdDia = jsonViaje.getInt("IdDia");
-                    v.DesdeHasta = jsonViaje.getBoolean("DesdeHasta");
+                    v.DesdeHasta = jsonViaje.getInt("DesdeHasta");
                     v.DetalleTransporte = jsonViaje.getString("DetalleTransporte");
                     v.DireccionLatitud = jsonViaje.getString("DireccionLatitud");
                     v.DireccionLongitud = jsonViaje.getString("DireccionLongitud");

@@ -54,18 +54,23 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
-public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapReadyCallback {
+public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapReadyCallback
+{
 
     Funciones funcion = new Funciones();
 
     Integer DNI;
+    String Nombre;
+    String Año;
+    String Curso;
+    String Imagen;
 
     EditText direccion;
     TextView dirEncontrada, coordenadas;
     GoogleMap map;
     Toast Cartelito;
     int TransporteSeleccionado = 0;
-    boolean IngresoCorrecto=false;
+    boolean IngresoCorrecto = false;
     boolean EligioTranspPublic = false;
     String DatosAMostrar = "";
     double lat;
@@ -74,11 +79,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
     Viaje miViaje = new Viaje();
 
-    String urlDeApi ="http://transportdale.azurewebsites.net/api/ingresarviaje/";
-
-
-    public void BotonAgregarDireccion(View Vista)
-    {
+    public void BotonAgregarDireccion(View Vista) {
         RadioButton RadioIda;
         RadioIda = (RadioButton) findViewById(R.id.RadioButtonIda);
 
@@ -107,75 +108,72 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         CheckBox Cbox;
         Cbox = (CheckBox) findViewById(R.id.CheckBox);
 
-if (Direc.length()!=0 && TransporteSeleccionado!=0)
-{
-        if (spinnerDia != null && spinnerBloques!= null )
-        {
-            if (TransporteSeleccionado == 2 || TransporteSeleccionado == 3)
-            {
-                EligioTranspPublic = true;
-            }
-            if (EligioTranspPublic == true && LineasFrec.length() <= 0)
-            {
-                Cartelito = Toast.makeText(this, "Si elige un transporte publico debe especificar las lineas que utiliza", Toast.LENGTH_SHORT);
-                Cartelito.show();
-            }
-            else
-                {
-                    if (RadioIda.isChecked() == true)
-                        {
-                            miViaje.DNI = DNI;
-                            miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
-                            miViaje.IdTransporte = TransporteSeleccionado;
-                            miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
-                            miViaje.DesdeHasta = true;
-                            miViaje.DetalleTransporte = LineasFrec;
-                            miViaje.DireccionLatitud = String.valueOf(lat);
-                            miViaje.DireccionLongitud = String.valueOf(lng);
-                            miViaje.Direccion = dirEncontrada.getText().toString();
-
-
-                            DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getText().toString() + " a las " + spinnerBloques.getText().toString() + " va desde " + Direc + " con el transporte " + funcion.TraerElTransporte(TransporteSeleccionado);
-                            DatosCompletos.setText(DatosAMostrar);
-                            IngresoCorrecto = true;
-
-                            GsonBuilder builder = new GsonBuilder();
-                            Gson gson = builder.create();
-                            System.out.println(gson.toJson(miViaje));
-
-                            new ConectarAPITask().execute("POST",urlDeApi, gson.toJson(miViaje));
-                        }
-                    else
-                        {
-                            miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
-                            miViaje.IdTransporte = TransporteSeleccionado;
-                            miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
-                            miViaje.DesdeHasta = false;
-                            miViaje.DetalleTransporte = LineasFrec;
-                            miViaje.DireccionLatitud = String.valueOf(lat);
-                            miViaje.DireccionLongitud = String.valueOf(lng);
-                            miViaje.Direccion = dirEncontrada.getText().toString();
-
-                            DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getText().toString() + " a las " + spinnerBloques.getText().toString() + " va a " + Direc + " con el transporte " + funcion.TraerElTransporte(TransporteSeleccionado);
-                            DatosCompletos.setText(DatosAMostrar);
-                            IngresoCorrecto = true;
-
-
-                            GsonBuilder builder = new GsonBuilder();
-                            Gson gson = builder.create();
-                            System.out.println(gson.toJson(miViaje));
-
-                            new ConectarAPITask().execute("POST",urlDeApi, gson.toJson(miViaje));
-
-
-                        }
+        if (Direc.length() != 0 && TransporteSeleccionado != 0) {
+            if (spinnerDia != null && spinnerBloques != null) {
+                if (TransporteSeleccionado == 2 || TransporteSeleccionado == 3) {
+                    EligioTranspPublic = true;
                 }
+                if (EligioTranspPublic == true && LineasFrec.length() <= 0) {
+                    Cartelito = Toast.makeText(this, "Si elige un transporte publico debe especificar las lineas que utiliza", Toast.LENGTH_SHORT);
+                    Cartelito.show();
+                } else {
+                    if (RadioIda.isChecked() == true) {
+                        miViaje.DNI = DNI;
+                        miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
+                        miViaje.IdTransporte = TransporteSeleccionado;
+                        miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
+                        miViaje.DesdeHasta = 1;
+                        miViaje.DetalleTransporte = LineasFrec;
+                        miViaje.DireccionLatitud = String.valueOf(lat);
+                        miViaje.DireccionLongitud = String.valueOf(lng);
+                        miViaje.Direccion = dirEncontrada.getText().toString();
+
+                        DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getText().toString() + " a las " + spinnerBloques.getText().toString() + " va desde " + Direc + " con el transporte " + funcion.TraerElTransporte(TransporteSeleccionado);
+                        DatosCompletos.setText(DatosAMostrar);
+                        IngresoCorrecto = true;
+
+                        String UrlValidacionDesdeHasta = "http://transportdale.azurewebsites.net/api/viajes/validacion1/" + miViaje.DNI + "/" + miViaje.IdDia + "/" + miViaje.DesdeHasta;
+                        new ValidarCnDesdeHasta().execute(UrlValidacionDesdeHasta);
+
+                    } else {
+                        miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
+                        miViaje.IdTransporte = TransporteSeleccionado;
+                        miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
+                        miViaje.DesdeHasta = 0;
+                        miViaje.DetalleTransporte = LineasFrec;
+                        miViaje.DireccionLatitud = String.valueOf(lat);
+                        miViaje.DireccionLongitud = String.valueOf(lng);
+                        miViaje.Direccion = dirEncontrada.getText().toString();
+
+                        DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getText().toString() + " a las " + spinnerBloques.getText().toString() + " va a " + Direc + " con el transporte " + funcion.TraerElTransporte(TransporteSeleccionado);
+                        DatosCompletos.setText(DatosAMostrar);
+                        IngresoCorrecto = true;
+
+                        String UrlValidacionDesdeHasta = "http://transportdale.azurewebsites.net/api/viajes/validacion1/" + miViaje.DNI + "/" + miViaje.IdDia + "/" + miViaje.DesdeHasta;
+                        new ValidarCnDesdeHasta().execute(UrlValidacionDesdeHasta);
+                    }
+
+                }
+            }
         }
 
-}
+
     }
 
+    private void MostrarCartelitos (String Validacion)
+    {
+        if (Validacion== "validacion1")
+        {
+            Cartelito = Toast.makeText(this, "Ya ingreso un recorrido de ida/vuelta ese dia", Toast.LENGTH_SHORT);
+            Cartelito.show();
+        }
+        else
+        {
+            Cartelito = Toast.makeText(this, "Ya ingreso un recorrido de ida/vuelta con ese horario", Toast.LENGTH_SHORT);
+            Cartelito.show();
+        }
 
+    }
 
     public void EligioAuto(View Vista) {
         TransporteSeleccionado = 1;
@@ -208,8 +206,139 @@ if (Direc.length()!=0 && TransporteSeleccionado!=0)
     }
 
 
+    private class ValidarCnDesdeHasta extends AsyncTask<String,Void,Viaje>
+    {
 
-    private class ConectarAPITask extends AsyncTask<String, Void,  Viaje> {
+        protected void onPostExecute(Viaje datos){
+            super.onPostExecute(datos);
+
+            if (datos != null)
+            {
+                MostrarCartelitos("validacion1");
+
+            }
+            else {
+                String UrlValidacionHorario = "http://transportdale.azurewebsites.net/api/viajes/validacion2/" + miViaje.DNI + "/" + miViaje.IdDia+ "/" + miViaje.IdHorario;
+                new ValidarCnHorario().execute(UrlValidacionHorario);
+            }
+        }
+        @Override
+        protected Viaje doInBackground(String... parametros) {
+            String url = parametros[0];
+            Log.d("entro al doinbackground", "ppppp");
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Log.d("vuelve desp del build", "ppppp");
+
+            try {
+                Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
+                String resultado = response.body().string();
+
+                Log.d("trae el resultado", "ppppp");
+                try {
+
+                    Log.d("crea un nuevo json", "ppppp");
+
+                        JSONObject jsonViaje = new JSONObject(resultado);
+
+                        Viaje viaje = new Viaje();
+                        Log.d("declara usuario", "ppppp");
+
+                        viaje.DNI = jsonViaje.getInt("DNI");
+                        viaje.IdDia = jsonViaje.getInt("IdDia");
+                        viaje.DesdeHasta = jsonViaje.getInt("DesdeHasta");
+
+                        Log.d("parsea el json", "ppppp");
+
+                        return viaje;
+
+
+                }catch (JSONException e){
+                    Log.d("Error JSON", e.getMessage());
+                    Log.d("error en el json", "ppppp");
+
+                    return null;
+                }
+            } catch (IOException e) {
+                Log.d("Error",e.getMessage());             // Error de Network
+                Log.d("error de network" + e.getMessage(), "ppppp");
+
+                return null;
+            }
+        }
+    }
+
+
+
+    private class ValidarCnHorario extends AsyncTask<String,Void,Viaje>{
+
+        protected void onPostExecute(Viaje datos){
+            super.onPostExecute(datos);
+
+            if (datos != null)
+            {
+                MostrarCartelitos("validacion2");
+            }
+            else {
+
+                GsonBuilder builder = new GsonBuilder();
+                Gson gson = builder.create();
+                System.out.println(gson.toJson(miViaje));
+
+                String urlDeApi ="http://transportdale.azurewebsites.net/api/ingresarviaje/";
+                new IngresarViaje().execute("POST",urlDeApi, gson.toJson(miViaje));
+            }
+            }
+
+        @Override
+        protected Viaje doInBackground(String... parametros) {
+            String url = parametros[0];
+            Log.d("entro al doinbackground", "ppppp");
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Log.d("vuelve desp del build", "ppppp");
+
+            try {
+                Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
+                String resultado = response.body().string();
+
+                Log.d("trae el resultado", "ppppp");
+                try {
+                    JSONObject jsonViaje = new JSONObject(resultado);
+                    Log.d("crea un nuevo json", "ppppp");
+
+Viaje viaje = new Viaje();
+                        Log.d("declara usuario", "ppppp");
+
+                        viaje.DNI = jsonViaje.getInt("DNI");
+                        viaje.IdDia = jsonViaje.getInt("IdDia");
+                        viaje.IdHorario = jsonViaje.getInt("IdHorario");
+
+                        Log.d("parsea el json", "ppppp");
+
+                        return viaje;
+
+                }catch (JSONException e){
+                    Log.d("Error JSON", e.getMessage());
+                    Log.d("error en el json", "ppppp");
+
+                    return null;
+                }
+            } catch (IOException e) {
+                Log.d("Error",e.getMessage());             // Error de Network
+                Log.d("error de network" + e.getMessage(), "ppppp");
+
+                return null;
+            }
+        }
+    }
+
+
+    private class IngresarViaje extends AsyncTask<String, Void,  Viaje> {
         public final MediaType JSON
                 = MediaType.parse("application/json; charset=utf-8");
 
@@ -271,8 +400,16 @@ if (Direc.length()!=0 && TransporteSeleccionado!=0)
         }
         else
         {
+            Bundle EnvioDatos;
+            EnvioDatos = new Bundle();
+            EnvioDatos.putInt("DNI", DNI);
+            EnvioDatos.putString("Nombre", Nombre);
+            EnvioDatos.putString("Año", Año);
+            EnvioDatos.putString("Curso", Curso);
+            EnvioDatos.putString("Imagen", Imagen);
             Intent LlamadaActivityPerfil;
             LlamadaActivityPerfil = new Intent(this, ActivityPerfil.class);
+            LlamadaActivityPerfil.putExtras(EnvioDatos);
             startActivity(LlamadaActivityPerfil);
             overridePendingTransition(R.anim.left_in, R.anim.left_out);
         }
