@@ -52,18 +52,18 @@ namespace ApiEjemplo.Controllers
 
         //GET : api/ViajesccIdDiaHorario HAY QUE FIJARSE SI ESTO SE USA!!!!!!!!!!!!
         [HttpGet]
-        [Route("api/viajes/ViajesccDiaHorario/{IdDia}/{IdHorario}")]
-        public List<Viajes> ViajesconIdViajeDiaHorario (int IdDia, int IdHorario)
+        [Route("api/viajes/ViajesccDiaHorario/{IdDia}/{IdHorario}/{DesdeHasta}")]
+        public List<Viajes> ViajesconIdViajeDiaHorario (int IdDia, int IdHorario, int DesdeHasta)
         {
-            return ViajesData.ObtenerViajexDiaHorario(IdDia, IdHorario);
+            return ViajesData.ObtenerViajexDiaHorario(IdDia, IdHorario, DesdeHasta);
         }
 
         //GET : api/ViajesccIdDiaHorarioTransporte HAY QUE FIJARSE SI ESTO SE USA!!!!!!!!!!!!
         [HttpGet]
-        [Route("api/viajes/ViajesccIdDiaHorarioTransporte/{IdDia}/{IdHorario}/{IdTransporte}")]
-        public List<Viajes> ViajesconIdViajeDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte)
+        [Route("api/viajes/ViajesccIdDiaHorarioTransporte/{IdDia}/{IdHorario}/{IdTransporte}/{DesdeHasta}")]
+        public List<Viajes> ViajesconIdViajeDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte, int DesdeHasta)
         {
-            return ViajesData.ObtenerViajexDiaHorarioTransporte( IdDia, IdHorario, IdTransporte);
+            return ViajesData.ObtenerViajexDiaHorarioTransporte( IdDia, IdHorario, IdTransporte, DesdeHasta);
         }
 
         //GET : api/ViajesValidacionInsert1

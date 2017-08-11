@@ -90,9 +90,9 @@ namespace ApiEjemplo.Data
                 return null;
             }
        }
-        public static List<Viajes> ObtenerViajexDiaHorario( int IdDia, int IdHorario)
+        public static List<Viajes> ObtenerViajexDiaHorario( int IdDia, int IdHorario, int DesdeHasta)
         {
-            string select = "select * from viajes where IdDia=" + IdDia.ToString() + " and IdHorario="+ IdHorario.ToString();
+            string select = "select * from viajes where IdDia=" + IdDia.ToString() + " and IdHorario="+ IdHorario.ToString() + " and DesdeHasta=" + DesdeHasta.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             List<Viajes> ListaViajeccDiaHorario = new List<Viajes>();
             Viajes viaje;
@@ -114,9 +114,9 @@ namespace ApiEjemplo.Data
                 return null;
             }
         }
-        public static List<Viajes>  ObtenerViajexDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte)
+        public static List<Viajes>  ObtenerViajexDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte, int DesdeHasta)
         {
-            string select = "select * from viajes where IdDia=" + IdDia.ToString() + " and IdHorario=" + IdHorario.ToString() + " and IdTransporte=" + IdTransporte.ToString();
+            string select = "select * from viajes where IdDia=" + IdDia.ToString() + " and IdHorario=" + IdHorario.ToString() + " and IdTransporte=" + IdTransporte.ToString() + " and DesdeHasta=" + DesdeHasta.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             List<Viajes> ListaViajeccDiaHorarioTransporte = new List<Viajes>();
             Viajes viaje;
