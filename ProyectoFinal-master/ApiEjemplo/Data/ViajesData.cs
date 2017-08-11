@@ -90,39 +90,48 @@ namespace ApiEjemplo.Data
                 return null;
             }
        }
-        public static Viajes ObtenerViajexIdDiaHorario(int IdViaje, int IdDia, int IdHorario)
+        public static List<Viajes> ObtenerViajexDiaHorario( int IdDia, int IdHorario)
         {
-            string select = "select * from viajes where IdViaje=" + IdViaje.ToString() + " and IdDia=" + IdDia.ToString() + " and IdHorario="+ IdHorario.ToString();
+            string select = "select * from viajes where IdDia=" + IdDia.ToString() + " and IdHorario="+ IdHorario.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
+            List<Viajes> ListaViajeccDiaHorario = new List<Viajes>();
             Viajes viaje;
             if (dt.Rows.Count > 0)
-            {                              
-                    viaje = ObtenerPorRow(dt.Rows[0]);
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    viaje = ObtenerPorRow(row);
                     viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
                     viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
                     viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
                     viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
-                    return viaje;
+                    ListaViajeccDiaHorario.Add(viaje);
+                }
+                return ListaViajeccDiaHorario;
             }
             else
             {
                 return null;
             }
-            
         }
-        public static Viajes ObtenerViajexIdDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte)
+        public static List<Viajes>  ObtenerViajexDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte)
         {
             string select = "select * from viajes where IdDia=" + IdDia.ToString() + " and IdHorario=" + IdHorario.ToString() + " and IdTransporte=" + IdTransporte.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
+            List<Viajes> ListaViajeccDiaHorarioTransporte = new List<Viajes>();
             Viajes viaje;
             if (dt.Rows.Count > 0)
             {
-                viaje = ObtenerPorRow(dt.Rows[0]);
-                viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
-                viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
-                viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
-                viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
-                return viaje;
+                foreach (DataRow row in dt.Rows)
+                {
+                    viaje = ObtenerPorRow(row);
+                    viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
+                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
+                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
+                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
+                    ListaViajeccDiaHorarioTransporte.Add(viaje);
+                }
+                return ListaViajeccDiaHorarioTransporte;
             }
             else
             {
