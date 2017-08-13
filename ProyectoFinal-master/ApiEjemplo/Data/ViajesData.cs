@@ -84,7 +84,7 @@ namespace ApiEjemplo.Data
 
             select += "SELECT * ";
             select += " FROM viajes as v";
-            select += " WHERE test.Func_Distancia("+ strLat + ", "+ strLng + ", v.DireccionLatitud, v.DireccionLongitud) < 1";
+            select += " WHERE Func_Distancia("+ strLat + ", "+ strLng + ", v.DireccionLatitud, v.DireccionLongitud) < 1";
             
             DataTable dt = DBHelper.EjecutarSelect(select);
             List<Viajes> ListaDesdeHastaViajes = new List<Viajes>();
