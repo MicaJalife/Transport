@@ -78,7 +78,7 @@ namespace ApiEjemplo.Data
         /// <param name="strLng"></param>
         /// <returns></returns>
         public static List<Viajes> ObtenerViajesMasCercanos(string strLat, string strLng)
-        {//"34.434234, 54.222"
+        {    //"34.434234, 54.222"
             //strLat, string strLng
             string select="";
 

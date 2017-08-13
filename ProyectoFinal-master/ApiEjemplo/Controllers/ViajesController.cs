@@ -89,5 +89,13 @@ namespace ApiEjemplo.Controllers
         {
             return ViajesData.DireccionesUsuario(DNI);
         }
+
+        //GET : api/Viajes+cercanos
+        [HttpGet]
+        [Route("api/viajes/+cercanos/{DireccionLatitud}/{DireccionLongitud}")]
+        public List<Viajes> ObtenerViajesMasCercanos(string DireccionLatitud, string DireccionLongitud)
+        {
+            return ViajesData.ObtenerViajesMasCercanos(DireccionLatitud, DireccionLongitud);
+        }
     }
 }
