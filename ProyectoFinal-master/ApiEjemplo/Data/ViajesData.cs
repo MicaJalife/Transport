@@ -98,10 +98,13 @@ namespace ApiEjemplo.Data
                     viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
                     viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
                     ListaDesdeHastaViajes.Add(viaje);
-                }
-                viaje = ObtenerPorRow(dt.Rows[0]);
+                }                
+                return ListaDesdeHastaViajes;
             }
-            return ListaDesdeHastaViajes;
+            else {
+                return null;
+            }
+            
         }
 
         public static List<Viajes> ObtenerViajesccDirecciones()
