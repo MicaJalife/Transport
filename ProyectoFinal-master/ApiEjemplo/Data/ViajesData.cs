@@ -134,6 +134,36 @@ namespace ApiEjemplo.Data
             {
                 return null;
             }
+        }
+
+        public static List<Viajes> ObtenerViajesMasCercanosDiaHorarioTransporte(string strLat, string strLng, int dia, int horario, int transporte)
+        {    //"34.434234, 54.222"
+            //strLat, string strLng
+            string select = "";
+
+            select += "SELECT * ";
+            select += " FROM viajes as v";
+            select += " WHERE test.Func_Distancia(" + strLat + ", " + strLng + ", v.DireccionLatitud, v.DireccionLongitud) < 1 and IdDia=" + dia.ToString() + " and IdHorario=" + horario.ToString()+ " and IdTransporte="+ transporte.ToString();
+
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            List<Viajes> ListaDesdeHastaViajes = new List<Viajes>();
+            Viajes viaje;
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    viaje = ObtenerPorRow(row);
+                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
+                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
+                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
+                    ListaDesdeHastaViajes.Add(viaje);
+                }
+                return ListaDesdeHastaViajes;
+            }
+            else
+            {
+                return null;
+            }
 
 
         }
