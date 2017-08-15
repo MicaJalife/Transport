@@ -80,15 +80,15 @@ namespace ApiEjemplo.Data
         public static List<Viajes> ObtenerViajesMasCercanos(string strLat, string strLng)
         {    //"34.434234, 54.222"
             //strLat, string strLng
-            /*string select="";
+            string select="";
 
             select += "SELECT * ";
             select += " FROM viajes as v";
             select += " WHERE test.Func_Distancia("+ strLat + ", "+ strLng + ", v.DireccionLatitud, v.DireccionLongitud) < 1";
             
-            DataTable dt = DBHelper.EjecutarSelect(select);*/
+            DataTable dt = DBHelper.EjecutarSelect(select);
             List<Viajes> ListaDesdeHastaViajes = new List<Viajes>();
-            /* Viajes viaje;
+            Viajes viaje;
              if (dt.Rows.Count > 0)
              {
                  foreach (DataRow row in dt.Rows)
@@ -103,8 +103,8 @@ namespace ApiEjemplo.Data
              }
              else {
                  return null;
-             }*/
-            return ListaDesdeHastaViajes;
+             }
+            
             
         }
 
