@@ -1,0 +1,412 @@
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+/*Mobile first directamente*/
+body{
+	background-color: #FFFFFF;
+}
+header
+	{
+		background-color: #b60000;
+		font-family:Oswald;
+		
+	}
+	.Titulo
+	{
+		background-color: #b60000;
+		text-align: center;
+		font-family:Oswald;
+		
+	}
+	h1
+	{
+		color: #FFFFFF;
+		margin-bottom: 3%;
+	}
+	
+	.ImagenGallo img{
+		height:auto;
+		width:30%;
+		margin: 0 auto;
+		
+	}
+		.ImagenAñoPasado img{
+		height:auto;
+		width:50%;
+		margin: 0 auto;
+		
+		
+	}
+	h3{
+		color: #b60000;
+		font-family: Oswald;
+		font-size: 25px;
+		margin-top:5%;
+		text-align:center;
+	}
+	h4{
+		color: #000000;
+		font-family: Oswald;
+		font-size: 18px;
+		margin-top:3%;
+		text-align:center;
+		margin-right:3%;
+		margin-left:3%;
+	}
+	h5{
+		background-color: #ffb300;
+		color: black;
+		font-family: Oswald;
+		font-size: 25px;
+		margin-left:10%;
+		margin-right:10%;
+		text-align: center;
+	}
+	h6{
+		background-color: #ffb300;
+		color: black;
+		font-family: Oswald;
+		font-size: 25px;
+		margin-left:35%;
+		margin-right:35%;
+		text-align: center;
+	
+		
+	}
+	
+.foter{
+	
+	background-color:#b60000;
+	height: 25%;
+	width: 100%;
+	margin-top: 3%;
+	margin-bottom: 5%;
+	
+}
+	
+.dropbtn {
+    background-color: #ffb300;
+    color: black;
+    height: 10%;
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    background-color: #ffb300;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 100%;
+}
+
+.dropdown-content {
+display: none;
+position: relative;
+background-color: #ffb300;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+.dropdown-content a {
+color: black;
+padding: 12px 90px;
+text-decoration: none;
+display: block;
+text-align: center;
+}
+
+.dropdown-content a:hover {background-color: #ffb300}
+
+.dropdown:hover .dropdown-content {
+display: block;
+}
+
+.dropdown:hover .dropbtn {
+background-color: #ffb300;
+}
+.bsas img{
+	width:55%;
+	margin-top: 2%;
+	margin-left:22%;
+	margin-bottom:2%;
+}
+.redessociales{
+	width:35%;
+	margin-left: 5%;
+	float: left;
+}
+/*.ImagenesRedes img{
+	width: 30%;
+	margin-left:10%;
+	margin-right:5%;
+	
+}*/
+.Facebook 
+{
+	float: left;
+	width:50%;
+}
+.Facebook img{
+float: left;
+	width:50%;
+}
+.Twitter img{
+	float: left;
+	width:50%;
+	margin-left:25%;
+}
+.Twitter{
+	float: left;
+	width:50%;
+}
+.jalifetarda{
+	
+}
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) { 
+	body{
+		background-color: #48E8CF;
+	}
+	
+	header
+	{
+		background-color: #b60000;
+		font-family:Oswald;
+		
+	}	
+	.Titulo
+	{
+		background-color: #b60000;
+		text-align: center;
+		font-family:Oswald;
+		
+	}
+	h1
+	{
+		color: #FFFFFF;
+		margin-bottom: 3%;
+	}
+	
+	
+	.ImagenGallo img
+	{
+		height:auto;
+		width:30%;
+		margin: 0 auto;
+		
+	}
+		.ImagenAñoPasado img{
+		height:auto;
+		width:50%;
+		margin: 0 auto;
+		
+		
+	}
+	
+	
+	
+	h3{
+		color: #b60000;
+		font-family: Oswald;
+		font-size: 25px;
+		margin-top:5%;
+		text-align:center;
+	}
+	h4{
+		color: #000000;
+		font-family: Oswald;
+		font-size: 18px;
+		margin-top:3%;
+		text-align:center;
+		margin-right:3%;
+		margin-left:3%;
+	}
+	h5{
+		background-color: #ffb300;
+		color: black;
+		font-family: Oswald;
+		font-size: 25px;
+		margin-left:10%;
+		margin-right:10%;
+		text-align: center;
+	}
+	h6{
+		background-color: #ffb300;
+		color: black;
+		font-family: Oswald;
+		font-size: 25px;
+		margin-left:35%;
+		margin-right:35%;
+		text-align: center;
+	
+		
+	}
+	
+.foter{
+	
+	background-color:#b60000;
+	height: 25%;
+	width: 100%;
+	margin-top: 3%;
+	margin-bottom: 5%;
+	
+}
+	
+.bsas img{
+	width:55%;
+	margin-top: 2%;
+	margin-left:22%;
+	margin-bottom:2%;
+}
+.redessociales{
+	width:35%;
+	margin-left: 5%;
+	float: left;
+}
+/*.ImagenesRedes img{
+	width: 30%;
+	margin-left:10%;
+	margin-right:5%;
+	
+}*/
+.Facebook 
+{
+	float: left;
+	width:50%;
+}
+.Facebook img{
+float: left;
+	width:50%;
+}
+.Twitter img{
+	float: left;
+	width:50%;
+	margin-left:25%;
+}
+.Twitter{
+	float: left;
+	width:50%;
+}
+.jalifetarda{
+	
+}
+
+
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) { 
+	body{
+		background-color: #E898D1;
+	}
+	
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+	body{
+		background-color: #E898D1;
+	}
+	header
+	{
+		background-color: #b60000;
+	}
+	.Titulo
+	{
+		background-color: #b60000;
+		text-align: center;
+		font-family:
+	}
+	h1
+	{
+		color: #FFFFFF;
+	}
+	main {
+		
+display: inline-block;
+
+}
+
+nav {
+float: left;
+min-width: 60%;
+}
+
+nav ul {
+list-style-type: none;
+margin: 0;
+padding: 1%;
+overflow: hidden;
+background-color: #E6E750;
+}
+
+li {
+align:center;
+}
+
+li a {
+display: block;
+color: black;
+text-align: center;
+font-family: Oswald;
+padding: 14px 16px;
+text-decoration: none;
+margin-left:120%;
+}
+
+li a:hover {
+background-color: #ffb300;
+margin-left:20%;
+}
+.dropdown {
+display: none;
+}
+
+.menu nav {
+	margin-top:0%;
+display: block;
+width:100%;
+}
+
+main {
+display: inline-block;
+
+}
+
+nav {
+align: center;
+min-width: 60%;
+
+}
+
+nav ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #ffb300;;
+}
+
+li {
+float: left;
+}
+
+li a {
+display: block;
+color: black;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+li a:hover {
+background-color: #ffb300;;
+}
+}
