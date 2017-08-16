@@ -100,17 +100,17 @@ namespace ApiEjemplo.Controllers
 
         //GET : api/ViajescercanosDiaHorario
         [HttpGet]
-        [Route("api/viajes/cercanosdiahorario/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}")]
-        public List<Viajes> ObtenerViajesMasCercanosDiaHorario(string DireccionLatitud, string DireccionLongitud, int IdDia, int IdHorario)
+        [Route("api/viajes/cercanosdiahorario/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}/{DesdeHasta}")]
+        public List<Viajes> ObtenerViajesMasCercanosDiaHorario(string DireccionLatitud, string DireccionLongitud, int IdDia, int IdHorario, int DesdeHasta)
         {
-            return ViajesData.ObtenerViajesMasCercanosDiaHorario(DireccionLatitud, DireccionLongitud, IdDia, IdHorario);
+            return ViajesData.ObtenerViajesMasCercanosDiaHorario(DireccionLatitud, DireccionLongitud, IdDia, IdHorario,DesdeHasta);
         }
         //GET : api/ViajescercanosDiaHorariotransporte
         [HttpGet]
-        [Route("api/viajes/cercanosdiahorario/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}/{IdTransporte}")]
-        public List<Viajes> ObtenerViajesMasCercanosDiaHorarioTransporte(string DireccionLatitud, string DireccionLongitud, int IdDia, int IdHorario, int IdTransporte)
+        [Route("api/viajes/cercanosdiahorario/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}/{DesdeHasta}/{IdTransporte}")]
+        public List<Viajes> ObtenerViajesMasCercanosDiaHorarioTransporte(string DireccionLatitud, string DireccionLongitud, int IdDia, int IdHorario, int DesdeHasta, int IdTransporte)
         {
-            return ViajesData.ObtenerViajesMasCercanosDiaHorarioTransporte(DireccionLatitud, DireccionLongitud, IdDia, IdHorario, IdTransporte);
+            return ViajesData.ObtenerViajesMasCercanosDiaHorarioTransporte(DireccionLatitud, DireccionLongitud, IdDia, IdHorario,DesdeHasta, IdTransporte);
         }
     }
 }

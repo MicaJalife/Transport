@@ -106,14 +106,14 @@ namespace ApiEjemplo.Data
              }                        
         }
 
-        public static List<Viajes> ObtenerViajesMasCercanosDiaHorario(string strLat, string strLng, int dia, int horario)
+        public static List<Viajes> ObtenerViajesMasCercanosDiaHorario(string strLat, string strLng, int dia, int horario, int desdehasta)
         {    //"34.434234, 54.222"
             //strLat, string strLng
             string select = "";
 
             select += "SELECT * ";
             select += " FROM viajes as v";
-            select += " WHERE test.Func_Distancia(" + strLat + ", " + strLng + ", v.DireccionLatitud, v.DireccionLongitud) < 1 and IdDia=" + dia.ToString() + " and IdHorario="+ horario.ToString();
+            select += " WHERE test.Func_Distancia(" + strLat + ", " + strLng + ", v.DireccionLatitud, v.DireccionLongitud) < 1 and IdDia=" + dia.ToString() + " and IdHorario="+ horario.ToString()+" and DesdeHasta="+desdehasta.ToString();
 
             DataTable dt = DBHelper.EjecutarSelect(select);
             List<Viajes> ListaDesdeHastaViajes = new List<Viajes>();
@@ -136,14 +136,14 @@ namespace ApiEjemplo.Data
             }
         }
 
-        public static List<Viajes> ObtenerViajesMasCercanosDiaHorarioTransporte(string strLat, string strLng, int dia, int horario, int transporte)
+        public static List<Viajes> ObtenerViajesMasCercanosDiaHorarioTransporte(string strLat, string strLng, int dia, int horario,int desdehasta, int transporte)
         {    //"34.434234, 54.222"
             //strLat, string strLng
             string select = "";
 
             select += "SELECT * ";
             select += " FROM viajes as v";
-            select += " WHERE test.Func_Distancia(" + strLat + ", " + strLng + ", v.DireccionLatitud, v.DireccionLongitud) < 1 and IdDia=" + dia.ToString() + " and IdHorario=" + horario.ToString()+ " and IdTransporte="+ transporte.ToString();
+            select += " WHERE test.Func_Distancia(" + strLat + ", " + strLng + ", v.DireccionLatitud, v.DireccionLongitud) < 1 and IdDia=" + dia.ToString() + " and IdHorario=" + horario.ToString()+ " and DesdeHasta="+ desdehasta.ToString()+ " and IdTransporte="+ transporte.ToString();
 
             DataTable dt = DBHelper.EjecutarSelect(select);
             List<Viajes> ListaDesdeHastaViajes = new List<Viajes>();
