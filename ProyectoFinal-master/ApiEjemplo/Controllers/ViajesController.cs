@@ -50,7 +50,7 @@ namespace ApiEjemplo.Controllers
             return ViajesData.ObtenerViajesccDirecciones();
         }
 
-        //GET : api/ViajesccIdDiaHorario HAY QUE FIJARSE SI ESTO SE USA!!!!!!!!!!!!
+        //GET :  NO SE USA!!!!!! -----------> api/ViajesccIdDiaHorario
         [HttpGet]
         [Route("api/viajes/ViajesccDiaHorario/{IdDia}/{IdHorario}/{DesdeHasta}")]
         public List<Viajes> ViajesconIdViajeDiaHorario (int IdDia, int IdHorario, int DesdeHasta)
@@ -58,7 +58,7 @@ namespace ApiEjemplo.Controllers
             return ViajesData.ObtenerViajexDiaHorario(IdDia, IdHorario, DesdeHasta);
         }
 
-        //GET : api/ViajesccIdDiaHorarioTransporte HAY QUE FIJARSE SI ESTO SE USA!!!!!!!!!!!!
+        //GET :  NO SE USA!!!!!! ----------> api/ViajesccIdDiaHorarioTransporte
         [HttpGet]
         [Route("api/viajes/ViajesccIdDiaHorarioTransporte/{IdDia}/{IdHorario}/{IdTransporte}/{DesdeHasta}")]
         public List<Viajes> ViajesconIdViajeDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte, int DesdeHasta)

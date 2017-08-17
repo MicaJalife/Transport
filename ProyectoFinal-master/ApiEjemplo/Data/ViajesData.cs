@@ -188,6 +188,8 @@ namespace ApiEjemplo.Data
                 return null;
             }
        }
+
+        //NO SE USA ↓↓↓↓
         public static List<Viajes> ObtenerViajexDiaHorario( int IdDia, int IdHorario, int DesdeHasta)
         {
             string select = "select * from viajes where IdDia=" + IdDia.ToString() + " and IdHorario="+ IdHorario.ToString() + " and DesdeHasta=" + DesdeHasta.ToString();
@@ -212,6 +214,7 @@ namespace ApiEjemplo.Data
                 return null;
             }
         }
+        //NO SE USA ↓↓↓↓
         public static List<Viajes>  ObtenerViajexDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte, int DesdeHasta)
         {
             string select = "select * from viajes where IdDia=" + IdDia.ToString() + " and IdHorario=" + IdHorario.ToString() + " and IdTransporte=" + IdTransporte.ToString() + " and DesdeHasta=" + DesdeHasta.ToString();
