@@ -52,7 +52,7 @@ namespace ApiEjemplo.Data
         }
         public static List<Viajes> ObtenerViajesUsuarioDesdeHasta(int DNI, int DesdeHasta)
         {
-            string select = "select * from viajes where DNI=" + DNI.ToString() + "and DesdeHasta=" + DesdeHasta;
+            string select = "select * from viajes where DNI=" + DNI.ToString() + "and DesdeHasta=" + DesdeHasta.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             List<Viajes> ListaDesdeHastaViajes = new List<Viajes>();
             Viajes viaje;
