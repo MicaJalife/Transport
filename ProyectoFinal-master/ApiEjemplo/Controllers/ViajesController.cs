@@ -100,17 +100,17 @@ namespace ApiEjemplo.Controllers
 
         //GET : api/ViajescercanosDiaHorario
         [HttpGet]
-        [Route("api/viajes/cercanosdiahorario/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}/{DesdeHasta}")]
-        public List<Viajes> ObtenerViajesMasCercanosDiaHorario(string DireccionLatitud, string DireccionLongitud, int IdDia, int IdHorario, int DesdeHasta)
+        [Route("api/viajes/cercanosdiahorario/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}/{DesdeHasta}/{IdUsuario}")]
+        public List<Viajes> ObtenerViajesMasCercanosDiaHorario(string DireccionLatitud, string DireccionLongitud, int IdDia, int IdHorario, int DesdeHasta, int IdUsuario)
         {
-            return ViajesData.ObtenerViajesMasCercanosDiaHorario(DireccionLatitud, DireccionLongitud, IdDia, IdHorario,DesdeHasta);
+            return ViajesData.ObtenerViajesMasCercanosDiaHorario(DireccionLatitud, DireccionLongitud, IdDia, IdHorario,DesdeHasta,IdUsuario);
         }
         //GET : api/ViajescercanosDiaHorariotransporte
         [HttpGet]
-        [Route("api/viajes/cercanosdiahorario/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}/{DesdeHasta}/{IdTransporte}")]
-        public List<Viajes> ObtenerViajesMasCercanosDiaHorarioTransporte(string DireccionLatitud, string DireccionLongitud, int IdDia, int IdHorario, int DesdeHasta, int IdTransporte)
+        [Route("api/viajes/cercanosdiahorario/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}/{DesdeHasta}/{IdTransporte}/{IdUsuario}")]
+        public List<Viajes> ObtenerViajesMasCercanosDiaHorarioTransporte(string DireccionLatitud, string DireccionLongitud, int IdDia, int IdHorario, int DesdeHasta, int IdTransporte, int IdUsuario)
         {
-            return ViajesData.ObtenerViajesMasCercanosDiaHorarioTransporte(DireccionLatitud, DireccionLongitud, IdDia, IdHorario,DesdeHasta, IdTransporte);
+            return ViajesData.ObtenerViajesMasCercanosDiaHorarioTransporte(DireccionLatitud, DireccionLongitud, IdDia, IdHorario,DesdeHasta, IdTransporte, IdUsuario);
         }
     }
 }
