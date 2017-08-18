@@ -52,7 +52,7 @@ namespace ApiEjemplo.Data
         }
         public static List<Viajes> ObtenerViajesUsuarioDesdeHasta(int DNI, int DesdeHasta)
         {
-            string select = "select * from viajes where DNI=" + DNI.ToString() + "and DesdeHasta=" + DesdeHasta.ToString();
+            string select = "select * from viajes where DNI=" + DNI.ToString() + " and DesdeHasta=" + DesdeHasta.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
             List<Viajes> ListaDesdeHastaViajes = new List<Viajes>();
             Viajes viaje;
@@ -123,6 +123,7 @@ namespace ApiEjemplo.Data
                 foreach (DataRow row in dt.Rows)
                 {
                     viaje = ObtenerPorRow(row);
+                    viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
                     viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
                     viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
                     viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
@@ -153,6 +154,7 @@ namespace ApiEjemplo.Data
                 foreach (DataRow row in dt.Rows)
                 {
                     viaje = ObtenerPorRow(row);
+                    viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
                     viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
                     viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
                     viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
