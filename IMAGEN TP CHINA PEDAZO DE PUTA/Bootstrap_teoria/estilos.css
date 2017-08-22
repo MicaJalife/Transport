@@ -251,7 +251,7 @@ float: left;
 .foter{
 	
 	background-color:#b60000;
-	height: 25%;
+	height: 35%;
 	width: 100%;
 	margin-top: 3%;
 	margin-bottom: 5%;
@@ -322,11 +322,20 @@ float: left;
 	{
 		background-color: #b60000;
 		text-align: center;
-		font-family:
+		
 	}
 	h1
 	{
 		color: #FFFFFF;
+	}
+	h4{
+		color: #000000;
+		font-family: Oswald;
+		font-size: 18px;
+		margin-top:3%;		
+		margin-right:3%;
+		text-align:left;
+		
 	}
 	main {
 		
@@ -348,7 +357,10 @@ background-color: #E6E750;
 }
 
 li {
-align:center;
+display: block;
+text-align:center;
+padding: 10px 16px;
+margin-left:8%;
 }
 
 li a {
@@ -356,14 +368,14 @@ display: block;
 color: black;
 text-align: center;
 font-family: Oswald;
-padding: 14px 16px;
+padding: 15px 16px;
 text-decoration: none;
-margin-left:120%;
+margin-left:50%;
 }
 
 li a:hover {
 background-color: #ffb300;
-margin-left:20%;
+margin-left:60%;
 }
 .dropdown {
 display: none;
@@ -402,11 +414,60 @@ li a {
 display: block;
 color: black;
 text-align: center;
-padding: 14px 16px;
+padding: 0px 16px;
 text-decoration: none;
 }
 
 li a:hover {
 background-color: #ffb300;;
+}
+
+.ImagenGallo img{
+		height:auto;
+		width:50%;
+		margin: 0 auto;
+		float:left;
+		
+	}
+.comidas{
+	float: left;
+	
+}
+.foter{
+		background-color:#b60000;
+	height: 20%;
+	width: 100%;
+	margin-top: 3%;
+	margin-bottom: 5%;
+}
+.bsas{
+	height:auto;
+		width:45%;
+		margin: 0 auto;
+		float:left;
+}
+.redessociales{
+	float: left;
+}
+.Facebook 
+{
+	float: left;
+	width:50%;
+}
+.Facebook img{
+float: left;
+	width:50%;
+}
+.Twitter img{
+	float: left;
+	width:50%;
+	margin-left:25%;
+}
+.Twitter{
+	float: left;
+	width:50%;
+}
+.jalifetarda{
+	
 }
 }
