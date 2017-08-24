@@ -208,6 +208,70 @@ float:left;
 	width: 30%;
 	height:auto;
 }
+.ImagenPortada img{
+	height:auto;
+		width:100%;
+		margin: 0 auto;
+		margin-top:2%;
+}
+.AnioNuevoInfo{
+width:90%;
+font-family:Oswald;
+margin-top:5%;
+margin-left:5%;
+}
+.SegundoTextoInfo{
+	font-family:Oswald;
+	margin-top:1%;
+	width:90%;
+	margin-left:5%;
+}
+.TercerTextoInfo{
+	font-family:Oswald;
+	margin-top:1%;
+	width:90%;
+	margin-left:5%;
+	
+}
+.AnioNuevoInfo2
+{
+	font-family:Oswald;
+	width:90%;
+	margin-left:5%;
+}
+.CuartoTextoInfo{
+	font-family:Oswald;
+	width:90%;
+	margin-left:5%;
+}
+
+.ImagenesComidas img
+{
+	width:50%;
+		margin: 0 auto;
+		margin-top:2%;
+		margin-left:1o%;
+}
+.PrimeraSeccion{
+	width:33%
+	float:left;
+	text-align:center;
+}
+.SegundaSeccion{
+	width:33%
+	float:left;
+	text-align:center;
+}
+.TerceraSeccion{
+	width:33%
+	float:left;
+	text-align:center;
+}
+.TextosComidas
+{
+	text-align:center;
+	margin-top:2%;
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991px) { 
@@ -340,7 +404,72 @@ float: left;
 
 
 
+.ImagenPortada img{
+	height:auto;
+		width:100%;
+		margin: 0 auto;
+		margin-top:2%;
 }
+.AnioNuevoInfo{
+width:80%;
+font-family:Oswald;
+margin-top:5%;
+margin-left:10%;
+}
+.SegundoTextoInfo{
+	font-family:Oswald;
+	margin-top:1%;
+	width:80%;
+	margin-left:10%;
+}
+.TercerTextoInfo{
+	font-family:Oswald;
+	margin-top:1%;
+	width:80%;
+	margin-left:10%;
+	
+}
+.AnioNuevoInfo2
+{
+	font-family:Oswald;
+	width:80%;
+	margin-left:10%;
+}
+.CuartoTextoInfo{
+	font-family:Oswald;
+	width:80%;
+	margin-left:10%;
+}
+}
+
+.ImagenesComidas img
+{
+	width:50%;
+		margin: 0 auto;
+		margin-top:2%;
+		margin-left:1o%;
+}
+.PrimeraSeccion{
+	width:33%
+	float:left;
+	text-align:center;
+}
+.SegundaSeccion{
+	width:33%
+	float:left;
+	text-align:center;
+}
+.TerceraSeccion{
+	width:33%
+	float:left;
+	text-align:center;
+}
+.TextosComidas
+{
+	text-align:center;
+	margin-top:2%;
+}
+
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199px) { 
@@ -511,4 +640,66 @@ float: left;
 .jalifetarda{
 	
 }
+.ImagenPortada img{
+	height:auto;
+		width:100%;
+		margin: 0 auto;
+		margin-top:2%;
+		float:left;
+}
+.AnioNuevoInfo{
+width:50%;
+font-family:Oswald;
+margin-left: 0;
+}
+.SegundoTextoInfo{
+	font-family:Oswald;
+	margin-top:1%;
+	width:80%;
+	margin-left:10%;
+}
+.TercerTextoInfo{
+	font-family:Oswald;
+	margin-top:1%;
+	width:80%;
+	margin-left:10%;
+	
+}
+.AnioNuevoInfo2
+{
+	font-family:Oswald;
+	width:80%;
+	margin-left:10%;
+}
+.CuartoTextoInfo{
+	font-family:Oswald;
+	width:80%;
+	margin-left:10%;
+}
+.ImagenesComidas img
+{
+	width:100%;
+		margin: 0 auto;
+		margin-top:2%;
+		float:left;
+}
+.PrimeraSeccion{
+	width:33%
+	float:left;
+	text-align:center;
+}
+.SegundaSeccion{
+	width:33%
+	float:left;
+	text-align:center;
+}
+.TerceraSeccion{
+	float:left;
+	width:33%
+	float:left;
+}
+.TextosComidas
+{
+	text-align:center;
+	margin-top:2%;
 }
