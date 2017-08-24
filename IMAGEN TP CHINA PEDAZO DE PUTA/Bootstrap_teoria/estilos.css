@@ -165,8 +165,49 @@ float: left;
 .jalifetarda{
 	
 }
+.ImagenGaleria{
+	-webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 5s linear infinite;
+	width:25%;
+	height:auto;	
+	float: left;
+	margin-top: 3%;
+	
+	
+}
 
-
+@-moz-keyframes spin { 
+	0% {-moz-transform:scale(0.1);}
+	25% {-moz-transform:scale(0.3);}
+	50% { -moz-transform:scale(1);  } 
+}
+@-webkit-keyframes spin {
+	0% {-webkit-transform:scale(0.1);}
+	25% {-webkit-transform:scale(0.3);}
+	50% {-webkit-transform: scale(1); } 
+}
+@keyframes spin { 
+	0% {transform:scale(0.1);}
+	0% {transform:scale(0.3);}
+	50% { transform:scale(1) }
+}
+.flechaizq img{
+	
+	width:20%;
+	height:auto;
+float:left;	
+}
+.flechaderecha img{
+	
+	width:20%;
+	height:auto;	
+}
+.lagaleria{
+	display: center;
+	width: 30%;
+	height:auto;
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991px) { 
