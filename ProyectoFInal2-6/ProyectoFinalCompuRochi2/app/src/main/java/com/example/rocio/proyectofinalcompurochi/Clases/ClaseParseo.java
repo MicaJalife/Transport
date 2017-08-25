@@ -31,16 +31,39 @@ public class ClaseParseo {
         }
     }
 
-    public Viaje ParseoViajes(JSONObject json)
-    {
+    public Viaje ParseoViajes(JSONObject json) {
         Viaje miviaje = new Viaje();
 
-        /*
-        miviaje.DNI=json.getInt("DNI");
-        miviaje.IdViaje=json.getInt("IdViaje");
-        miviaje.Direccion = json.getString("Direccion");
-        miviaje.Nombre=json.getString("Nombre");
-        */
+        try {
+            miviaje.DNI = Integer.parseInt(json.getString("DNI"));
+            miviaje.Direccion = json.getString("Direccion");
+            miviaje.Nombre = json.getJSONObject("usuario").getString("Nombre");
+
+        }
+        catch(JSONException e)
+        {
+            return null;
+        }
+
+
+        return miviaje;
+    }
+
+    public Viaje ParseoViajesUsuario(JSONObject json) {
+        Viaje miviaje = new Viaje();
+
+        try {
+            miviaje.Horario = json.getJSONObject("horario").getString("Horario");
+            miviaje.Dia = json.getJSONObject("dia").getString("Dia");
+            miviaje.Transporte = json.getJSONObject("transporte").getString("TipoTransporte");
+            miviaje.Direccion = json.getString("Direccion");
+
+        }
+        catch(JSONException e)
+        {
+            return null;
+        }
+
 
         return miviaje;
     }

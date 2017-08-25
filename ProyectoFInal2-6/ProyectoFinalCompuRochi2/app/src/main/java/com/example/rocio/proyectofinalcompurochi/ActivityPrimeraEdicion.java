@@ -25,6 +25,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rocio.proyectofinalcompurochi.Clases.ManejoUsuarios;
 import com.example.rocio.proyectofinalcompurochi.Clases.Usuario;
 import com.example.rocio.proyectofinalcompurochi.Clases.Viaje;
 import com.google.android.gms.ads.formats.NativeAd;
@@ -132,10 +133,11 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                         DatosCompletos.setText(DatosAMostrar);
                         IngresoCorrecto = true;
 
-                        String UrlValidacionDesdeHasta = "http://transportdale.azurewebsites.net/api/viajes/validacion1/" + miViaje.DNI + "/" + miViaje.IdDia + "/" + miViaje.DesdeHasta;
-                        new ValidarCnDesdeHasta().execute(UrlValidacionDesdeHasta);
+                        String UrlValidacionDesdeHasta = "http://transportdale.azurewebsites.net/api/viajes/validacion1/" +  miViaje.DNI + "/" + miViaje.IdDia + "/" + miViaje.DesdeHasta;
+                        new ValidarCnDH().execute(UrlValidacionDesdeHasta);
 
                     } else {
+                        miViaje.DNI = DNI;
                         miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
                         miViaje.IdTransporte = TransporteSeleccionado;
                         miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
@@ -149,14 +151,13 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                         DatosCompletos.setText(DatosAMostrar);
                         IngresoCorrecto = true;
 
-                        String UrlValidacionDesdeHasta = "http://transportdale.azurewebsites.net/api/viajes/validacion1/" + miViaje.DNI + "/" + miViaje.IdDia + "/" + miViaje.DesdeHasta;
-                        new ValidarCnDesdeHasta().execute(UrlValidacionDesdeHasta);
+                        String UrlValidacionDesdeHasta = "http://transportdale.azurewebsites.net/api/viajes/validacion1/" +  miViaje.DNI + "/" + miViaje.IdDia + "/" + miViaje.DesdeHasta;
+                        new ValidarCnDH().execute(UrlValidacionDesdeHasta);
                     }
 
                 }
             }
         }
-
 
     }
 
@@ -164,8 +165,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     {
         if (Validacion== "validacion1")
         {
-            Cartelito = Toast.makeText(this, "Ya ingreso un recorrido de ida/vuelta ese dia", Toast.LENGTH_SHORT);
-            Cartelito.show();
+
         }
         else
         {
@@ -206,7 +206,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     }
 
 
-    private class ValidarCnDesdeHasta extends AsyncTask<String,Void,Viaje>
+    private class ValidarCnDH extends AsyncTask<String,Void,Viaje>
     {
 
         protected void onPostExecute(Viaje datos){
@@ -218,8 +218,8 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
             }
             else {
-                String UrlValidacionHorario = "http://transportdale.azurewebsites.net/api/viajes/validacion2/" + miViaje.DNI + "/" + miViaje.IdDia+ "/" + miViaje.IdHorario;
-                new ValidarCnHorario().execute(UrlValidacionHorario);
+                String UrlValidacionHorario = "http://transportdale.azurewebsites.net/api/viajes/validacion2/" +  miViaje.DNI + "/" + miViaje.IdDia+ "/" + miViaje.IdHorario;
+                new ValidarCnH().execute(UrlValidacionHorario);
             }
         }
         @Override
@@ -272,7 +272,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
 
 
-    private class ValidarCnHorario extends AsyncTask<String,Void,Viaje>{
+    private class ValidarCnH extends AsyncTask<String,Void,Viaje>{
 
         protected void onPostExecute(Viaje datos){
             super.onPostExecute(datos);
@@ -311,7 +311,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                     JSONObject jsonViaje = new JSONObject(resultado);
                     Log.d("crea un nuevo json", "ppppp");
 
-Viaje viaje = new Viaje();
+                        Viaje viaje = new Viaje();
                         Log.d("declara usuario", "ppppp");
 
                         viaje.DNI = jsonViaje.getInt("DNI");
@@ -420,6 +420,8 @@ Viaje viaje = new Viaje();
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_primera_edicion);
+
+        Usuario usuarioActual = ManejoUsuarios.getUsuario();
 
         TextView Nombre;
         Nombre = (TextView) findViewById(R.id.txtnombreyapellido);

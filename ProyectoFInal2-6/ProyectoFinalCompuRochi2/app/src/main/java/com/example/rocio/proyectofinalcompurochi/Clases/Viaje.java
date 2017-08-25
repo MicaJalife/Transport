@@ -19,7 +19,9 @@ public class Viaje {
     public String Direccion;
     public String TipoTransporte;
     public String Nombre;
-
+    public String Horario;
+    public String Dia;
+    public String Transporte;
 
 
 }
