@@ -97,18 +97,26 @@ public class ActivityBuscador extends AppCompatActivity {
             {
                 String dia = spinnerDia.getSelectedItem().toString();
                 String bloque = spinnerBloques.getSelectedItem().toString();
+                String transporte =spinnerTransporte.getSelectedItem().toString();
+                String Direccion = SpinnerDirec.getSelectedItem().toString();
+
+                Direcciones direcslnglatrecibida = new Direcciones();
+                direcslnglatrecibida= DevuelvoLatLngDireccion(Direccion);
+
+                ViajeGuardado.DireccionLatitud=direcslnglatrecibida.Latitud;
+                ViajeGuardado.DireccionLongitud=direcslnglatrecibida.Longitud;
 
                 ViajeGuardado.IdDia=funciones.TraerIdDia(dia);
                 ViajeGuardado.IdHorario=funciones.TraerIdHorario(bloque);
+                ViajeGuardado.IdTransporte= funciones.TraerIdTransporte(transporte);
 
                 if(spinnerTransporte.getSelectedItem()!=null)
                 {
-                    String UrlCnTransporte = "http://transportdale.azurewebsites.net/api/viajes/ViajesccIdDiaHorarioTransporte/" + ViajeGuardado.IdDia+ "/"+ViajeGuardado.IdHorario+"/"+ ViajeGuardado.IdTransporte+"/"+ViajeGuardado.DesdeHasta;
-                    Log.d("Manda url", "ppppp");
+                    String UrlCnTransporte = "http://transportdale.azurewebsites.net/api/viajes/cercanosdiahorario/" + ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
                     new TraerViajes().execute(UrlCnTransporte);
                 }
                 else{
-                    String UrlSinFiltro = "http://transportdale.azurewebsites.net/api/viajes/ViajesccDiaHorario/" + ViajeGuardado.IdDia+ "/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta;
+                    String UrlSinFiltro = "http://transportdale.azurewebsites.net/api/viajes/ViajesccDiaHorario/" + ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta;
                     Log.d("Manda url", "ppppp");
                     new TraerViajes().execute(UrlSinFiltro);
                 }
@@ -176,11 +184,37 @@ public class ActivityBuscador extends AppCompatActivity {
 
     }
 
+    public Direcciones DevuelvoLatLngDireccion(String DireccionABuscar)
+    {
+        //ArrayList<Direcciones>ArrayObjDirecs
+        int PosicionEncontrada=-1;
 
-    public void LlamarAdaptador()
+        for (int i = 0; i < ArrayObjDirecs.size(); i++){
+            Direcciones viajecito;
+            viajecito= ArrayObjDirecs.get(i);
+            if(viajecito.Direccion.compareTo(DireccionABuscar)==0)
+            {
+                PosicionEncontrada=i;
+            }
+
+
+        }
+        return ArrayObjDirecs.get(PosicionEncontrada);
+    }
+
+    private void MostrarCartelitos()
+    {
+            Cartelito = Toast.makeText(this, "No hay ningun viaje en comun", Toast.LENGTH_SHORT);
+            Cartelito.show();
+    }
+
+
+    public void LlamarListViews()
     {
         ListView MiListViewViajes;
         MiListViewViajes = (ListView)findViewById(R.id.ListView_Viajes);
+
+        Log.d("MICA", "LlamarListViews " + ArrayViajes.size() + "");
 
         AdaptadorParaViajes MiAdaptadorDeViajes;
         MiAdaptadorDeViajes = new AdaptadorParaViajes(ArrayViajes, this);
@@ -373,7 +407,10 @@ public class ActivityBuscador extends AppCompatActivity {
             if (datos != null) {
 
                 ArrayViajes = datos;
-                LlamarAdaptador();
+                LlamarListViews();
+            }
+            else {
+                MostrarCartelitos();
             }
 
         }

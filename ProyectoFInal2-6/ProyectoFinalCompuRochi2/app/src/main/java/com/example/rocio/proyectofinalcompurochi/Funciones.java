@@ -109,6 +109,60 @@ public class Funciones {
         }
         return devuelvotransporte;
     }
+    public String TraerElDia (int id)
+    {
+        String devuelvodia="";
+
+        switch (id) {
+            case 1:
+                devuelvodia = "Lunes";
+                break;
+            case 2:
+                devuelvodia = "Martes";
+                break;
+            case 3:
+                devuelvodia = "Miercoles";
+                break;
+            case 4:
+                devuelvodia = "Jueves";
+                break;
+            case 5:
+                devuelvodia = "Viernes";
+                break;
+
+        }
+        return devuelvodia;
+    }
+    public String DevuelvoElHorario(int Id)
+    {
+        String devuelvoelhorario="";
+
+        switch (Id) {
+            case 1:
+                devuelvoelhorario = "7:45";
+                break;
+            case 2:
+                devuelvoelhorario = "9:05";
+                break;
+            case 3:
+                devuelvoelhorario = "10:40";
+                break;
+            case 4:
+                devuelvoelhorario = "12:15";
+                break;
+            case 5:
+                devuelvoelhorario = "14:30";
+                break;
+            case 6:
+                devuelvoelhorario = "16:00";
+                break;
+            case 7:
+                devuelvoelhorario = "17:30";
+                break;
+        }
+        return devuelvoelhorario;
+
+    }
 
 
 }

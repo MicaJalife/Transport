@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import android.os.Parcelable;
 
+import com.example.rocio.proyectofinalcompurochi.Clases.ManejoUsuarios;
 import com.example.rocio.proyectofinalcompurochi.Clases.Usuario;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -42,9 +43,9 @@ public class ActivityIngreso extends AppCompatActivity {
 
     public void BotonIngresar(View Vista)
     {
-            EditText ElDNIText;
-            ElDNIText = (EditText) findViewById(R.id.ingresoDNI);
-            String Dni = ElDNIText.getText().toString();
+        EditText ElDNIText;
+        ElDNIText = (EditText) findViewById(R.id.ingresoDNI);
+        String Dni = ElDNIText.getText().toString();
         if (isNumeric(Dni)==true)
         {
             DNI = Integer.parseInt(Dni);
@@ -103,6 +104,7 @@ public class ActivityIngreso extends AppCompatActivity {
 
 
                 if (ExisteElUsuario == true) {
+
                     DNI = miUsuario.DNI;
                     Nombre = miUsuario.Nombre;
                     Año = miUsuario.Año;
@@ -110,34 +112,37 @@ public class ActivityIngreso extends AppCompatActivity {
                     Imagen = miUsuario.Imagen;
                     PrimeraEdicion = miUsuario.PrimeraEdicion;
 
-                if (PrimeraEdicion == true) {
-                    Bundle EnvioDatos;
-                    EnvioDatos = new Bundle();
-                    EnvioDatos.putInt("DNI", DNI);
-                    EnvioDatos.putString("Nombre", Nombre);
-                    EnvioDatos.putString("Año", Año);
-                    EnvioDatos.putString("Curso", Curso);
-                    EnvioDatos.putString("Imagen", Imagen);
-                    Intent LlamadaActivityPrimeraEdicion;
-                    LlamadaActivityPrimeraEdicion = new Intent(getApplicationContext(), ActivityPrimeraEdicion.class);
-                    LlamadaActivityPrimeraEdicion.putExtras(EnvioDatos);
-                    startActivity(LlamadaActivityPrimeraEdicion);
-                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
-                } else {
-                    Bundle EnvioDatos;
-                    EnvioDatos = new Bundle();
-                    EnvioDatos.putInt("DNI", DNI);
-                    EnvioDatos.putString("Nombre", Nombre);
-                    EnvioDatos.putString("Año", Año);
-                    EnvioDatos.putString("Curso", Curso);
-                    EnvioDatos.putString("Imagen", Imagen);
-                    Intent LlamadaActivityPerfil;
-                    LlamadaActivityPerfil = new Intent(getApplicationContext(), ActivityPerfil.class);
-                    LlamadaActivityPerfil.putExtras(EnvioDatos);
-                    startActivity(LlamadaActivityPerfil);
-                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                    ManejoUsuarios.setUsuario(miUsuario);
+
+
+                    if (PrimeraEdicion == true) {
+                        Bundle EnvioDatos;
+                        EnvioDatos = new Bundle();
+                        EnvioDatos.putInt("DNI", DNI);
+                        EnvioDatos.putString("Nombre", Nombre);
+                        EnvioDatos.putString("Año", Año);
+                        EnvioDatos.putString("Curso", Curso);
+                        EnvioDatos.putString("Imagen", Imagen);
+                        Intent LlamadaActivityPrimeraEdicion;
+                        LlamadaActivityPrimeraEdicion = new Intent(getApplicationContext(), ActivityPrimeraEdicion.class);
+                        LlamadaActivityPrimeraEdicion.putExtras(EnvioDatos);
+                        startActivity(LlamadaActivityPrimeraEdicion);
+                        overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                    } else {
+                        Bundle EnvioDatos;
+                        EnvioDatos = new Bundle();
+                        EnvioDatos.putInt("DNI", DNI);
+                        EnvioDatos.putString("Nombre", Nombre);
+                        EnvioDatos.putString("Año", Año);
+                        EnvioDatos.putString("Curso", Curso);
+                        EnvioDatos.putString("Imagen", Imagen);
+                        Intent LlamadaActivityPerfil;
+                        LlamadaActivityPerfil = new Intent(getApplicationContext(), ActivityPerfil.class);
+                        LlamadaActivityPerfil.putExtras(EnvioDatos);
+                        startActivity(LlamadaActivityPerfil);
+                        overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                    }
                 }
-            }
             } else {
                 Cartelito = Toast.makeText(getApplicationContext(), "El DNI o contraseña es incorrecto", Toast.LENGTH_SHORT);
                 Cartelito.show();
