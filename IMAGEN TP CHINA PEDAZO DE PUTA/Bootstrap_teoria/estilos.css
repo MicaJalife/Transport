@@ -165,14 +165,16 @@ float: left;
 .jalifetarda{
 	
 }
-.ImagenGaleria{
+.ImagenGaleria img{
 	-webkit-animation:spin 2s linear infinite;
     -moz-animation:spin 2s linear infinite;
     animation:spin 5s linear infinite;
-	width:25%;
+	width:20%;
 	height:auto;	
-	float: left;
-	margin-top: 3%;
+	
+	margin-top: 8%;
+	display:block;
+
 	
 	
 }
@@ -192,22 +194,12 @@ float: left;
 	0% {transform:scale(0.3);}
 	50% { transform:scale(1) }
 }
-.flechaizq img{
-	
-	width:20%;
-	height:auto;
-float:left;	
+
+.lasflechas{
+		margin:auto;		
+		display:block;
 }
-.flechaderecha img{
-	
-	width:20%;
-	height:auto;	
-}
-.lagaleria{
-	display: center;
-	width: 30%;
-	height:auto;
-}
+
 .ImagenPortada img{
 	height:auto;
 		width:100%;
@@ -402,7 +394,39 @@ float: left;
 	
 }
 
+.ImagenGaleria img{
+	-webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 5s linear infinite;
+	width:20%;
+	height:auto;		
+	margin-top: 5%;
+	display:block;
+    margin:auto;
+	
+}
 
+@-moz-keyframes spin { 
+	0% {-moz-transform:scale(0.1);}
+	25% {-moz-transform:scale(0.3);}
+	50% { -moz-transform:scale(1);  } 
+}
+@-webkit-keyframes spin {
+	0% {-webkit-transform:scale(0.1);}
+	25% {-webkit-transform:scale(0.3);}
+	50% {-webkit-transform: scale(1); } 
+}
+@keyframes spin { 
+	0% {transform:scale(0.1);}
+	0% {transform:scale(0.3);}
+	50% { transform:scale(1) }
+}
+
+.lasflechas{
+
+		margin: auto;
+	display:block;
+}
 
 .ImagenPortada img{
 	height:auto;
