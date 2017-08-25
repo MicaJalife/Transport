@@ -264,6 +264,60 @@ margin-left:5%;
 	text-align:center;
 	margin-top:2%;
 }
+.Primeraparte{
+	display: block;
+	width: 100%;
+	 overflow: hidden;
+	 margin-left: 20%;
+	 margin-top: 6%;
+}
+.Segundaparte{
+	display: block;
+	width: 100%;
+	overflow: hidden;
+		 margin-left: 20%;
+}
+.Terceraparte{
+	display: block;
+	width: 100%;
+	overflow: hidden;
+		 margin-left: 20%;
+}
+.email{
+	float: left;
+	margin-left: 5%;
+}
+.cuadro img{
+	float: left;
+	margin-left: 2.5%;	
+	height:auto;
+		width:60%;
+		margin: 0 auto;
+}
+.cuadro2 img{
+	float: left;
+	margin-left: 1%;
+	height:auto;
+		width:60%;
+		margin: 0 auto;
+}
+.cuadro3 img{
+	float: left;
+	margin-left: 1%;
+	height:auto;
+		width:60%;
+		margin: 0 auto;
+}
+.asunto{
+	float: left;
+		margin-left: 3%;
+}
+.msj{
+	float: left;
+}
+.divgigante{
+	margin-left:-10%;
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991px) { 
