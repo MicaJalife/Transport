@@ -12,11 +12,12 @@ namespace ApiEjemplo.Data
 
        public static void InsertarViaje (Viajes viaje)
         {
-            //string sInsert = "INSERT into viajes (DNI, IdHorario, IdTransporte, IdDia,DesdeHasta, DetalleTransporte, DireccionLatitud, DireccionLongitud) values ('" + viaje.DNI.ToString() + "','" + viaje.IdHorario.ToString() + "','" + viaje.IdTransporte.ToString() + "','" +viaje.DesdeHasta.ToString() + "','" + viaje.DetalleTransporte + "','" + viaje.DireccionLatitud + "','"  +viaje.DireccionLongitud +"')";
-            string strSQL = string.Format("INSERT into viajes (DNI, IdHorario, IdTransporte, IdDia, DesdeHasta, DetalleTransporte, DireccionLatitud, DireccionLongitud, Direccion) values ({0}, {1}, {2}, {3}, {4}, '{5}', '{6}', '{7}', '{8}');" ,
+            //string sInsert = "INSERT into viajes (DNI, IdHorario, IdTransporte, Cantidad, IdDia, DesdeHasta, DetalleTransporte, DireccionLatitud, DireccionLongitud) values ('" + viaje.DNI.ToString() + "','" + viaje.IdHorario.ToString() + "','" + viaje.IdTransporte.ToString() + "','" +viaje.DesdeHasta.ToString() + "','" + viaje.DetalleTransporte + "','" + viaje.DireccionLatitud + "','"  +viaje.DireccionLongitud +"')";
+            string strSQL = string.Format("INSERT into viajes (DNI, IdHorario, IdTransporte, Cantidad, IdDia, DesdeHasta, DetalleTransporte, DireccionLatitud, DireccionLongitud, Direccion) values ({0}, {1}, {2}, {3}, {4}, '{5}', '{6}', '{7}', '{8}');" ,
                viaje.DNI,
                viaje.IdHorario,
                viaje.IdTransporte,
+               viaje.Cantidad,
                viaje.IdDia,
                ((viaje.DesdeHasta == true) ? '1' : '0'),
                viaje.DetalleTransporte, 
@@ -310,6 +311,7 @@ namespace ApiEjemplo.Data
             v.DNI = row.Field<int>("DNI");
             v.IdHorario = row.Field<int>("IdHorario");
             v.IdTransporte = row.Field<int>("IdTransporte");
+            v.Cantidad= row.Field<int>("Cantidad");
             v.IdDia = row.Field<int>("IdDia");
             v.DesdeHasta = row.Field<bool>("DesdeHasta");
             v.DetalleTransporte= row.Field<string>("DetalleTransporte");
