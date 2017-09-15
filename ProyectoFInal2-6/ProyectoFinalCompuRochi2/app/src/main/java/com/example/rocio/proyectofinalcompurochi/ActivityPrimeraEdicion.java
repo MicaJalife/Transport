@@ -65,6 +65,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     String Año;
     String Curso;
     String Imagen;
+    int CantidadDePasajeros;
 
     EditText direccion;
     TextView dirEncontrada, coordenadas;
@@ -99,6 +100,9 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         DatosCompletos = (TextView) findViewById(R.id.DatosCompletos);
         String DatosCompletados = DatosCompletos.getText().toString();
 
+        EditText EditPasajeros;
+        EditPasajeros = (EditText) findViewById(R.id.IngresoCantidad) ;
+
 
         MaterialBetterSpinner spinnerDia;
         spinnerDia = (MaterialBetterSpinner) findViewById(R.id.SpinnerDia);
@@ -114,6 +118,13 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                 if (TransporteSeleccionado == 2 || TransporteSeleccionado == 3) {
                     EligioTranspPublic = true;
                 }
+                else
+                {
+                    if (TransporteSeleccionado==1)
+                    {
+                        CantidadDePasajeros= Integer.parseInt(EditPasajeros.getText().toString());
+                    }
+                }
                 if (EligioTranspPublic == true && LineasFrec.length() <= 0) {
                     Cartelito = Toast.makeText(this, "Si elige un transporte publico debe especificar las lineas que utiliza", Toast.LENGTH_SHORT);
                     Cartelito.show();
@@ -122,6 +133,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                         miViaje.DNI = DNI;
                         miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
                         miViaje.IdTransporte = TransporteSeleccionado;
+                        miViaje.CantPasajeros = CantidadDePasajeros;
                         miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
                         miViaje.DesdeHasta = 1;
                         miViaje.DetalleTransporte = LineasFrec;
@@ -140,6 +152,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                         miViaje.DNI = DNI;
                         miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
                         miViaje.IdTransporte = TransporteSeleccionado;
+                        miViaje.CantPasajeros = CantidadDePasajeros;
                         miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
                         miViaje.DesdeHasta = 0;
                         miViaje.DetalleTransporte = LineasFrec;
@@ -173,6 +186,13 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
             Cartelito.show();
         }
 
+    }
+
+    public void SumarseViaje(View Vista){
+        Intent LlamadaActivityBuscador;
+        LlamadaActivityBuscador = new Intent(this, ActivityBuscador.class);
+        startActivity(LlamadaActivityBuscador);
+        overridePendingTransition(R.anim.left_in, R.anim.left_out);
     }
 
     public void EligioAuto(View Vista) {
@@ -393,13 +413,6 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
     public void SiguientePrimeraEdicion(View Vista)
     {
-        if  (IngresoCorrecto!=true)
-        {
-            Cartelito = Toast.makeText(this, "Debe ingresar al menos un recorrido", Toast.LENGTH_SHORT);
-            Cartelito.show();
-        }
-        else
-        {
             Bundle EnvioDatos;
             EnvioDatos = new Bundle();
             EnvioDatos.putInt("DNI", DNI);
@@ -412,7 +425,6 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
             LlamadaActivityPerfil.putExtras(EnvioDatos);
             startActivity(LlamadaActivityPerfil);
             overridePendingTransition(R.anim.left_in, R.anim.left_out);
-        }
     }
 
     @Override

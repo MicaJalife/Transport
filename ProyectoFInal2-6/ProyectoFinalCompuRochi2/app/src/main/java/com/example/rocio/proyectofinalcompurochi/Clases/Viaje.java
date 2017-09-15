@@ -11,6 +11,7 @@ public class Viaje {
     public int IdViaje;
     public int IdHorario;
     public int IdTransporte;
+    public int CantPasajeros;
     public int IdDia;
     public int DesdeHasta;
     public String DetalleTransporte;
@@ -22,6 +23,7 @@ public class Viaje {
     public String Horario;
     public String Dia;
     public String Transporte;
+
 
 
 }

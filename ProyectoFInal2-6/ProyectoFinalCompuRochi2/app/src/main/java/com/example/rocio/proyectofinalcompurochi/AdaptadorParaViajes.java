@@ -66,8 +66,8 @@ public class AdaptadorParaViajes extends BaseAdapter {
         Nombree = (TextView) VistaADevolver.findViewById(R.id.Nombretxt);
         ImageView Imagen;
         Imagen = (ImageView) VistaADevolver.findViewById(R.id.Fototxt);
-        ImageButton ImagenAmigo;
-        ImagenAmigo =(ImageButton)VistaADevolver.findViewById(R.id.imagenamigo);
+        //Button BotonSumarse;
+        //BotonSumarse =(Button)VistaADevolver.findViewById(R.id.imagenamigo);
 
         Viaje ViajeDeLaPosicionActual;
         ViajeDeLaPosicionActual = getItem(PosicionActual);
@@ -81,6 +81,9 @@ public class AdaptadorParaViajes extends BaseAdapter {
 
         return VistaADevolver;
     }
+
+
+
 
 
 
