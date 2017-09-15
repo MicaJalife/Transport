@@ -69,15 +69,10 @@ public class ActivityBuscador extends AppCompatActivity {
         RadioButton RadioButtonVuelta;
         RadioButtonVuelta = (RadioButton) findViewById(R.id.RadioButtonVuelta);
 
-        Spinner SpinnerDirec;
-        SpinnerDirec = (Spinner) findViewById(R.id.Spinnerdirecciones);
+        EditText EditDirecs;
+        EditDirecs = (EditText) findViewById(R.id.EditDirecciones);
 
         Viaje ViajeGuardado = new Viaje();
-
-        if (SpinnerDirec.getSelectedItem()!=null)
-        {
-
-
 
         if (RadioButtonIda.isChecked() || RadioButtonVuelta.isChecked())
         {
@@ -98,7 +93,7 @@ public class ActivityBuscador extends AppCompatActivity {
                 String dia = spinnerDia.getSelectedItem().toString();
                 String bloque = spinnerBloques.getSelectedItem().toString();
                 String transporte =spinnerTransporte.getSelectedItem().toString();
-                String Direccion = SpinnerDirec.getSelectedItem().toString();
+                String Direccion = EditDirecs.toString();
 
                 Direcciones direcslnglatrecibida = new Direcciones();
                 direcslnglatrecibida= DevuelvoLatLngDireccion(Direccion);
@@ -135,11 +130,7 @@ public class ActivityBuscador extends AppCompatActivity {
             Cartelito.show();
         }
 
-        }else
-        {
-            Cartelito = Toast.makeText(this, "Debe elegir una de sus direcciones", Toast.LENGTH_SHORT);
-            Cartelito.show();
-        }
+
 
     }
 
@@ -297,105 +288,7 @@ public class ActivityBuscador extends AppCompatActivity {
         spinnerTransporte.setAdapter(AdaptadorTransporte);
 
 
-        String UrlTraerDirec = "http://transportdale.azurewebsites.net/api/viajes/direcionspinner/" + DNI.toString();
-        new TraerDirecciones().execute(UrlTraerDirec);
-
     }
-
-
-
-    private void ListadeDirecciones (ArrayList<String> direcs)
-    {
-        Spinner spinnerDirec2;
-        spinnerDirec2 = (Spinner) findViewById(R.id.Spinnerdirecciones);
-        ArrayAdapter<String> AdaptadorDirecs;
-        AdaptadorDirecs = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, direcs);
-        AdaptadorDirecs.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spinnerDirec2.setAdapter(AdaptadorDirecs);
-    }
-
-
-
-
-    private class TraerDirecciones extends AsyncTask<String, Void, ArrayList<Direcciones>> {
-
-
-        protected void onPostExecute(ArrayList<Direcciones> datos) {
-            super.onPostExecute(datos);
-            Log.d("Devuelve datos", "ppppp");
-
-            if (datos != null) {
-                TraeDireccion = true;
-
-                ArrayList<String> UsuarioDirecs;
-                UsuarioDirecs = new ArrayList<>();
-
-
-                for(int i =0; i<datos.size();i++)
-                {
-                    Direcciones direc;
-                    direc= datos.get(i);
-                    UsuarioDirecs.add(direc.Direccion);
-                }
-               ListadeDirecciones(UsuarioDirecs);
-
-            }
-
-        }
-
-        @Override
-        protected ArrayList<Direcciones> doInBackground(String... parametros) {
-            String url = parametros[0];
-            Log.d("entro al doinbackground", "ppppp");
-
-            ArrayList<Direcciones> ListaDireccion = new ArrayList<Direcciones>();
-
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(url)
-                    .build();
-            Log.d("vuelve desp del build", "ppppp");
-
-            try {
-                Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
-                String resultado = response.body().string();
-
-                Log.d("trae el resultado", "ppppp");
-                try {
-                    JSONArray JsonDirecciones = new JSONArray(resultado);
-                    Log.d("crea un nuevo json", "ppppp");
-
-
-                    for (int i = 0; i < JsonDirecciones.length(); i++){
-                        Direcciones direcs;
-                        direcs = new Direcciones();
-                        JSONObject obj = JsonDirecciones.getJSONObject(i);
-
-                        direcs = parseo.ParseoDireccion(obj);
-
-                        ListaDireccion.add(direcs);
-                    }
-
-                    ArrayObjDirecs= ListaDireccion;
-
-                    return ListaDireccion;
-
-                }catch (JSONException e){
-                    Log.d("Error JSON", e.getMessage());
-                    Log.d("error en el json", "ppppp");
-
-                    return null;
-                }
-            } catch (IOException e) {
-                Log.d("Error",e.getMessage());             // Error de Network
-                Log.d("error de network" + e.getMessage(), "ppppp");
-
-                return null;
-            }
-
-        }
-    }
-
 
     private class TraerViajes extends AsyncTask<String, Void, ArrayList<Viaje>> {
 

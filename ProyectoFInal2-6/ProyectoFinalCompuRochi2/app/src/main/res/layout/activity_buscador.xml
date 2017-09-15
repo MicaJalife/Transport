@@ -70,8 +70,8 @@ xmlns:design="http://schemas.android.com/apk/res-auto"
                         android:textColor="#FFFF"
                         android:textSize="18dp" />
 
-                    <Spinner
-                        android:id="@+id/Spinnerdirecciones"
+                    <EditText
+                        android:id="@+id/EditDirecciones"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="true"

@@ -113,6 +113,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="horizontal">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="SumarseViaje"
+                        android:text="Sumarse a un viaje"
+                        android:background="#74DBEF"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginTop="10dp"
+                        />
+
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -141,6 +151,8 @@
 
                         </RadioGroup>
                     </LinearLayout>
+
+
                 </LinearLayout>
 
 
@@ -265,6 +277,22 @@
                         android:scaleType="fitCenter"
                         android:src="@drawable/caminando" />
                 </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/IngresoCantidad"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese maximo de pasajeros"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:textSize="15dp" />
+                </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="250dp"
