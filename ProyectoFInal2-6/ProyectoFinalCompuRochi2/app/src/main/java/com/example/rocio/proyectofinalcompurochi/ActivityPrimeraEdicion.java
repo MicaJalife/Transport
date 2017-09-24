@@ -189,6 +189,15 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     }
 
     public void SumarseViaje(View Vista){
+
+        Bundle EnvioDatos;
+        EnvioDatos = new Bundle();
+        EnvioDatos.putInt("DNI", DNI);
+        EnvioDatos.putString("Nombre", Nombre);
+        EnvioDatos.putString("Año", Año);
+        EnvioDatos.putString("Curso", Curso);
+        EnvioDatos.putString("Imagen", Imagen);
+
         Intent LlamadaActivityBuscador;
         LlamadaActivityBuscador = new Intent(this, ActivityBuscador.class);
         startActivity(LlamadaActivityBuscador);

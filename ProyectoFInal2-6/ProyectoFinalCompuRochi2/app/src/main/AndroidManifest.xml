@@ -40,7 +40,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCpyBMeQucZj2JZ_4BL_P04ldxATnYDRY4" />
 
-        <activity android:name=".ActivityMapa"></activity>
+        <activity android:name=".ActivityMapa" />
+        <activity android:name=".ActivityViajesCompartidos"></activity>
     </application>
 
 </manifest>
