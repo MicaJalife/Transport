@@ -299,20 +299,13 @@ namespace ApiEjemplo.Data
         {
             string select = "select Cantidad from viajes where IdViaje=" + IdViaje.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
-            Viajes viaje = new Viajes();           
+            Viajes viaje = new Viajes();
+            int cantidad;        
             if (dt.Rows.Count > 0)
             {
-                foreach (DataRow row in dt.Rows)
-                {
-                    viaje = ObtenerPorRow(row);
-                    viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
-                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
-                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
-                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);                    
-                }
-                viaje = ObtenerPorRow(dt.Rows[0]);
+                cantidad = viaje.Cantidad;
             }
-            return viaje;
+            return cantidad;
         }
 
         private static Viajes ObtenerxRowDirecciones(DataRow row)
