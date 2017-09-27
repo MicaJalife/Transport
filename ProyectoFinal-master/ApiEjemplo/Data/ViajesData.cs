@@ -299,11 +299,10 @@ namespace ApiEjemplo.Data
         {
             string select = "select Cantidad from viajes where IdViaje=" + IdViaje.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
-            int resultado=0;                    
-            if (dt.Rows.Count > 0)
-            {
-                resultado= Convert.ToInt32(dt.Rows[0]);
-            }
+            int resultado=0;                
+           
+            resultado= Convert.ToInt32(dt.Rows);
+            
             return resultado;
         }
         
