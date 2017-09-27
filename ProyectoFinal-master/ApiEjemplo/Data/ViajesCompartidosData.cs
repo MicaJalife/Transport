@@ -33,8 +33,7 @@ namespace ApiEjemplo.Data
                 {                    
                     viajescomparten = ObtenerPorRow(row);                    
                     ListaCompartenMismoViaje.Add(viajescomparten);
-                }
-                viajescomparten = ObtenerPorRow(dt.Rows[0]);
+                }               
             }
             int compartiendo = ListaCompartenMismoViaje.Count;
             int calculando = viaje.Cantidad - compartiendo;
