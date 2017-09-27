@@ -118,7 +118,7 @@ namespace ApiEjemplo.Controllers
         [Route("api/viajes/cantidad/{IdViaje}")]
         public int TraerCantidad(int IdViaje)
         {
-            return ViajesData.ObtenerCantidadxId(IdViaje);
+            return ViajesData.ObtenerCantidad(IdViaje);
         }
     }
 }

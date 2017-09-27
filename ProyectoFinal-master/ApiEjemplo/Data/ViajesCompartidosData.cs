@@ -26,7 +26,7 @@ namespace ApiEjemplo.Data
             List<ViajesCompartidos> ListaCompartenMismoViaje = new List<ViajesCompartidos>();
             ViajesCompartidos viajescomparten;
             Viajes viaje = new Viajes();
-            viaje.Cantidad=  ViajesData.ObtenerCantidadxId(Convert.ToInt32(IdViaje));
+            viaje.Cantidad=  ViajesData.ObtenerCantidad(Convert.ToInt32(IdViaje));
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow row in dt.Rows)

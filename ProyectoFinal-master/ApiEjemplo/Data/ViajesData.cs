@@ -295,14 +295,17 @@ namespace ApiEjemplo.Data
             }          
         }
 
-        public static int ObtenerCantidadxId(int IdViaje)
+        public static int ObtenerCantidad(int IdViaje)
         {
-            string select = "select Cantidad from viajes where IdViaje=" + IdViaje.ToString();
+            string select = "select * from viajes where IdViaje=" + IdViaje.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
-            int resultado=0;                
-           
-            resultado= Convert.ToInt32(dt.Rows);
-            
+            Viajes viaje = new Viajes();
+            int resultado = 0;
+            if (dt.Rows.Count > 0)
+            {
+                viaje = ObtenerPorRow(dt.Rows[0]);
+            }
+            resultado = viaje.Cantidad;
             return resultado;
         }
         
