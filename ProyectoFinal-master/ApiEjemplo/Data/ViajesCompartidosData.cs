@@ -25,8 +25,7 @@ namespace ApiEjemplo.Data
             DataTable dt = DBHelper.EjecutarSelect(select);
             List<ViajesCompartidos> ListaCompartenMismoViaje = new List<ViajesCompartidos>();
             ViajesCompartidos viajescomparten;
-            Viajes viaje = new Viajes();
-            viaje.Cantidad=  ViajesData.ObtenerCantidad(Convert.ToInt32(IdViaje));
+            Viajes viaje = new Viajes();            
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow row in dt.Rows)
