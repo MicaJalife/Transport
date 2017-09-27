@@ -10,5 +10,7 @@ namespace ApiEjemplo.Models
         public int IdViajeCompartido { get; set; }
         public int IdViaje { get; set; }
         public int DNI { get; set; }
+        public Viajes viaje { get; set; }
+        public int Cantidad { get; set; }
     }
 }

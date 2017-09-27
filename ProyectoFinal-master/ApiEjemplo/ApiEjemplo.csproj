@@ -208,7 +208,7 @@
     <Compile Include="Data\PersonaData.cs" />
     <Compile Include="Data\TransportesData.cs" />
     <Compile Include="Data\UsuariosData.cs" />
-    <Compile Include="Data\ViajesCompartidos.cs" />
+    <Compile Include="Data\ViajesCompartidosData.cs" />
     <Compile Include="Data\ViajesData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
