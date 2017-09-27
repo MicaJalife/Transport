@@ -14,7 +14,7 @@ namespace ApiEjemplo.Data
             //string sInsert = "INSERT into viajescompartidos (IdViaje, IdUsuario) values ('" + viaje.DNI.ToString() + "','" + viaje.IdHorario.ToString() + "','" + viaje.IdTransporte.ToString() + "','" +viaje.DesdeHasta.ToString() + "','" + viaje.DetalleTransporte + "','" + viaje.DireccionLatitud + "','"  +viaje.DireccionLongitud +"')";
             string strSQL = string.Format("INSERT into viajescompartidos (IdViaje, IdUsuario) values ({0}, {1});",
                viajecompartido.IdViaje,
-               viajecompartido.DNI           
+               viajecompartido.IdUsuario           
                );
             DBHelper.EjecutarIUD(strSQL);
         }
@@ -54,7 +54,7 @@ namespace ApiEjemplo.Data
             ViajesCompartidos v = new ViajesCompartidos();
             v.IdViajeCompartido = row.Field<int>("IdViajeCompartido");
             v.IdViaje = row.Field<int>("IdViaje");    
-            v.DNI= row.Field<int>("IdUsuario");        
+            v.IdUsuario= row.Field<int>("IdUsuario");        
             return v;
         }
 
