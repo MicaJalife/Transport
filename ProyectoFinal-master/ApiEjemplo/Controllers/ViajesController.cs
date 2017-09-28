@@ -115,10 +115,10 @@ namespace ApiEjemplo.Controllers
 
         //GET : api/Viajes
         [HttpGet]
-        [Route("api/viajes/cantidad/{IdViaje}")]
-        public Viajes TraerCantidad(int IdViaje)
+        [Route("api/elviaje/{IdViaje}")]
+        public Viajes TraerViaje(int IdViaje)
         {
-            return ViajesData.ObtenerCantidad(IdViaje);
+            return ViajesData.ObtenerViajexID(IdViaje);
         }
     }
 }

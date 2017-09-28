@@ -295,7 +295,7 @@ namespace ApiEjemplo.Data
             }          
         }
 
-        public static Viajes ObtenerCantidad(int IdViaje)
+        public static Viajes ObtenerViajexID(int IdViaje)
         {
             string select = "select * from viajes where IdViaje=" + IdViaje.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
