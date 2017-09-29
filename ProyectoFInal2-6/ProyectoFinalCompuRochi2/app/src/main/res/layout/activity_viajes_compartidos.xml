@@ -49,7 +49,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
                     android:background="#3F51B5"
-                    android:onClick="BotonBusqueda"
+                    android:onClick="BotonBusqueda2"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_buscador" />
 
@@ -60,7 +60,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/BusquedaDireccion1"
+                        android:id="@+id/BusquedaDireccion12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
@@ -70,7 +70,7 @@
                         android:textSize="18dp" />
 
                     <EditText
-                        android:id="@+id/EditDirecciones"
+                        android:id="@+id/EditDirecciones2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="true"
@@ -91,7 +91,7 @@
 
 
                         <RadioButton
-                            android:id="@+id/RadioButtonIda"
+                            android:id="@+id/RadioButtonIda2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Hasta Ort"
@@ -99,7 +99,7 @@
                             android:textColor="#FFFFFF" />
 
                         <RadioButton
-                            android:id="@+id/RadioButtonVuelta"
+                            android:id="@+id/RadioButtonVuelta2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Desde Ort"
@@ -118,7 +118,7 @@
                 android:orientation="horizontal">
 
                 <Spinner
-                    android:id="@+id/SpinnerDia"
+                    android:id="@+id/SpinnerDia2"
                     android:layout_width="80dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="30dp"
@@ -127,7 +127,7 @@
                     android:textSize="20dp" />
 
                 <Spinner
-                    android:id="@+id/SpinnerBloques"
+                    android:id="@+id/SpinnerBloques2"
                     android:layout_width="70dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
@@ -136,7 +136,7 @@
                     android:textSize="20dp" />
 
                 <Spinner
-                    android:id="@+id/SpinnerTransporte"
+                    android:id="@+id/SpinnerTransporte2"
                     android:layout_width="85dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
@@ -152,7 +152,7 @@
             android:layout_height="370dp">
 
             <ListView
-                android:id="@+id/ListView_Viajes"
+                android:id="@+id/ListView_Viajes2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

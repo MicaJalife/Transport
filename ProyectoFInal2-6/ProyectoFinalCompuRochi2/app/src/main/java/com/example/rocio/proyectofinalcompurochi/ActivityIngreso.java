@@ -57,7 +57,7 @@ public class ActivityIngreso extends AppCompatActivity {
 
 
             if (Dni.length() > 0 && Contraseña.length() > 0) {
-                //String par = "localhost/api/usuario/"+ Dni+"/"+ Contraseñaa;
+                String par = "localhost/api/usuario/"+ Dni+"/"+ Contraseñaa;
                 String Url = "http://transportdale.azurewebsites.net/api/usuario/" + Dni + "/" + Contraseñaa;
                 Log.d("Manda url", "ppppp");
                 new TraerUsuario().execute(Url);
@@ -82,13 +82,23 @@ public class ActivityIngreso extends AppCompatActivity {
             return false;
         }
     }
+   /*
+    //////////////// FIJEMONOS QUE SI TINEE VIAJES LO MANDE AL PERFIL Y SI NO TIENE NINGUNO QUE LO MANDE A
+                    PRIMERA EDICION.
+    private int UsuarioTieneViajes {
+        String Url = "http://transportdale.azurewebsites.net/api/viajes/traerviaje/" + DNI;
+        Log.d("Manda url", "ppppp");
+        new TraerUsuario().execute(Url);
 
+
+    }*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingreso);
         traerUsuario= new TraerUsuario();
     }
+
 
 
     private class TraerUsuario extends AsyncTask<String, Void, Usuario> {
@@ -111,11 +121,8 @@ public class ActivityIngreso extends AppCompatActivity {
                     Curso = miUsuario.Curso;
                     Imagen = miUsuario.Imagen;
                     PrimeraEdicion = miUsuario.PrimeraEdicion;
-
                     ManejoUsuarios.setUsuario(miUsuario);
-
-
-                    if (PrimeraEdicion == true) {
+                     if (PrimeraEdicion == true) {
                         Bundle EnvioDatos;
                         EnvioDatos = new Bundle();
                         EnvioDatos.putInt("DNI", DNI);
@@ -153,7 +160,7 @@ public class ActivityIngreso extends AppCompatActivity {
         @Override
         protected Usuario doInBackground(String... parametros) {
             String url = parametros[0];
-            Log.d("entro al doinbackground", "ppppp");
+            Log.d("usuario", url);
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
                     .url(url)
@@ -164,7 +171,7 @@ public class ActivityIngreso extends AppCompatActivity {
                 Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
                 String resultado = response.body().string();
 
-                Log.d("trae el resultado", "ppppp");
+                Log.d("usuario", resultado);
                 try {
                     JSONObject jsonUsuario = new JSONObject(resultado);
                     Log.d("crea un nuevo json", "ppppp");
@@ -178,7 +185,7 @@ public class ActivityIngreso extends AppCompatActivity {
                     u.Curso = jsonUsuario.getString("Curso");
                     u.Imagen = jsonUsuario.getString("NombreImagen");
                     u.PrimeraEdicion = jsonUsuario.getBoolean("PrimeraEdicion");
-                    Log.d("parsea el json", "ppppp");
+                    Log.d("usuario", u.toString());
 
                     return u;
 

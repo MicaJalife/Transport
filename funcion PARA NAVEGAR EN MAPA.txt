@@ -1,0 +1,65 @@
+1) -34.599659, -58.444705
+2) -34.610910, -58.443160
+3) -34.599077, -58.428096
+4) -34.608746, -58.429083
+
+
+SET @g1 = ST_GeomFromText('Polygon((0 0,0 3,3 3,3 0,0 0))');
+SET @g2 = ST_GeomFromText('Point(4 1)');
+SELECT MBRContains(@g1,@g2), MBRWithin(@g2,@g1);
+
+
+Create function ESTA? (
+	float lat1, float lng1, 
+	float lat2, float lng2,
+	float lat3, float lng3,
+	float lat4, float lng4){
+
+	SET @g1 = ST_GeomFromText('Polygon((lat1 lng1, lat2 lng2, lat3 lng3, lat4 lng4))');
+
+	SELECT 
+		*, 
+		ST_GeomFromText('Point(direccionLatitud direccionLongitud)') AS puntoDelViaje
+	From Viajes 
+	Where MBRContains(@g1,puntoDelViaje) = 1
+}
+
+
+
+DELIMITER $$
+CREATE DEFINER=`azure`@`localhost` PROCEDURE `VerViajes`(`lat1` FLOAT, `lng1` FLOAT, `lat2` FLOAT, `lng2` FLOAT, `lat3` FLOAT, `lng3` FLOAT, `lat4` FLOAT, `lng4` FLOAT) 
+    DETERMINISTIC
+BEGIN 
+  
+	SET @g1 = ST_GeomFromText('Polygon((lat1 lng1,
+                              lat2 lng2, 
+                              lat3 lng3, 
+                              lat4 lng4))');
+	SELECT *, ST_GeomFromText('Point(DireccionLatitud DireccionLongitud)') AS puntoDelViaje
+	From viajes 
+	Where MBRContains(@g1,puntoDelViaje) = 1
+END$$
+DELIMITER ;
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `sp_user_login` $$
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_user_login`(
+  IN loc_username VARCHAR(255),
+  IN loc_password VARCHAR(255)
+)
+BEGIN
+
+  SELECT user_id,
+         user_name,
+         user_emailid,
+         user_profileimage,
+         last_update
+    FROM tbl_user
+   WHERE user_name = loc_username
+     AND password = loc_password
+     AND status = 1;
+
+END $$
+
+DELIMITER ;

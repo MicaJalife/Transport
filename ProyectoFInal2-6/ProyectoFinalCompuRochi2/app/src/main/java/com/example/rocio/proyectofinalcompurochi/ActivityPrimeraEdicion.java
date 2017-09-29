@@ -3,11 +3,13 @@ package com.example.rocio.proyectofinalcompurochi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.service.carrier.CarrierService;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +38,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tagmanager.Container;
+//import com.google.android.gms.tagmanager.Container;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -462,8 +464,16 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         Nombre.setText(ReciboUsuario.getString("Nombre"));
         Anio.setText(ReciboUsuario.getString("Año"));
         Curso.setText(ReciboUsuario.getString("Curso"));
-
         String Imagenn = ReciboUsuario.getString("Imagen");
+
+
+//LA IMAGENNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+        //ACAACACAACNKJLFNSDJKLFNSDJKNFKSDJ ERROR ACA
+        String NombreImagenGuardada= Imagenn;
+        int imageResource = getResources().getIdentifier(NombreImagenGuardada, null, getPackageName());
+        Drawable imagen = ContextCompat.getDrawable(getApplicationContext(), imageResource);
+        Imagen.setImageDrawable(imagen);
+
 
 
         RadioButton RadioIda;
