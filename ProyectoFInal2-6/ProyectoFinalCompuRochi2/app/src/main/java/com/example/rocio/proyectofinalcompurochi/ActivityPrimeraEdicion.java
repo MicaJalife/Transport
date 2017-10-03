@@ -1,5 +1,6 @@
 package com.example.rocio.proyectofinalcompurochi;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -50,7 +51,9 @@ import org.json.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -464,15 +467,20 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         Nombre.setText(ReciboUsuario.getString("Nombre"));
         Anio.setText(ReciboUsuario.getString("Año"));
         Curso.setText(ReciboUsuario.getString("Curso"));
-        String Imagenn = ReciboUsuario.getString("Imagen");
+        String NombreImagenn = ReciboUsuario.getString("Imagen");
 
+        Context context = Imagen.getContext();
+        int id = context.getResources().getIdentifier(NombreImagenn, "drawable", context.getPackageName());
+        Imagen.setImageResource(id);
 
-//LA IMAGENNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-        //ACAACACAACNKJLFNSDJKLFNSDJKNFKSDJ ERROR ACA
-        String NombreImagenGuardada= Imagenn;
+        /* LA IMAGENNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNtodo esto no esta bien
+        CodigoImagenRojo= getResources().getDrawable(R.drawable.rojo).getConstantState();
+        Drawable codigoimagen;
+        codigoimagen=getResources().getDrawable(int, NombreImagenn).getConstantState();
+        String NombreImagenGuardada= NombreImagenn;
         int imageResource = getResources().getIdentifier(NombreImagenGuardada, null, getPackageName());
         Drawable imagen = ContextCompat.getDrawable(getApplicationContext(), imageResource);
-        Imagen.setImageDrawable(imagen);
+        Imagen.setImageDrawable(imagen);*/
 
 
 

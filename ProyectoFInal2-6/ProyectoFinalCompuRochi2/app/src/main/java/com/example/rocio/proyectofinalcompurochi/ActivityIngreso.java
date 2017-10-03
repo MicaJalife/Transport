@@ -185,8 +185,7 @@ public class ActivityIngreso extends AppCompatActivity {
                     u.Curso = jsonUsuario.getString("Curso");
                     u.Imagen = jsonUsuario.getString("NombreImagen");
                     u.PrimeraEdicion = jsonUsuario.getBoolean("PrimeraEdicion");
-                    Log.d("usuario", u.toString());
-
+                    Log.d("usuario", "el usuario completo" + u.toString());
                     return u;
 
                 }catch (JSONException e){
