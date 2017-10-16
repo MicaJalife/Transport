@@ -70,6 +70,7 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     String Año;
     String Curso;
     String Imagen;
+    String EsViajeComp;
     int CantidadDePasajeros;
 
     EditText direccion;
@@ -202,6 +203,10 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         EnvioDatos.putString("Año", Año);
         EnvioDatos.putString("Curso", Curso);
         EnvioDatos.putString("Imagen", Imagen);
+        EsViajeComp="SI";
+
+        EnvioDatos.putString("EsViajesCompartidos", EsViajeComp);
+
 
         Intent LlamadaActivityBuscador;
         LlamadaActivityBuscador = new Intent(this, ActivityBuscador.class);

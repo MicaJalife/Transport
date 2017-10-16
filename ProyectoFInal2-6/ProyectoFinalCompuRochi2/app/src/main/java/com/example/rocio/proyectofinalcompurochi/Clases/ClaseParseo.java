@@ -49,6 +49,27 @@ public class ClaseParseo {
         return miviaje;
     }
 
+    public Viaje ParseoViajesComp(JSONObject json) {
+        Viaje miviaje = new Viaje();
+
+        try {
+            miviaje.DNI = Integer.parseInt(json.getString("DNI"));
+            miviaje.IdViaje = Integer.parseInt(json.getString("IdViaje"));
+            miviaje.Direccion = json.getString("Direccion");
+            miviaje.Nombre = json.getJSONObject("usuario").getString("Nombre");
+            miviaje.Horario = json.getString("Horario");
+            miviaje.Dia = json.getString("Dia");
+            miviaje.Transporte = json.getString("Transporte");
+        }
+        catch(JSONException e)
+        {
+            return null;
+        }
+        return miviaje;
+    }
+
+
+
     public Viaje ParseoViajesUsuario(JSONObject json) {
         Viaje miviaje = new Viaje();
 

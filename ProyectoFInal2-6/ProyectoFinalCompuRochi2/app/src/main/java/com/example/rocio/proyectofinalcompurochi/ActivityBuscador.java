@@ -40,6 +40,7 @@ public class ActivityBuscador extends AppCompatActivity {
     String Año;
     String Curso;
     String Imagen;
+    String EsViajeComp;
 
     ArrayList<Direcciones>ArrayObjDirecs;
     ArrayList<Viaje>ArrayViajes;
@@ -107,13 +108,29 @@ public class ActivityBuscador extends AppCompatActivity {
 
                 if(spinnerTransporte.getSelectedItem()!=null)
                 {
-                    String UrlCnTransporte = "http://transportdale.azurewebsites.net/api/viajes/cercanosdiahorario/" + ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
-                    new TraerViajes().execute(UrlCnTransporte);
+                    if(EsViajeComp=="SI"){
+                        //Traer todos los viajes que tengan lugar y devolver (Nombre, Direccion, Horario, Dia, Transporte, IdViaje)
+                        String UrlViajesDIsponibles = "http://transportdale.azurewebsites.net/api/viajes..."+ ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
+                        new TraerViajesCompDisp().execute(UrlViajesDIsponibles);
+
+                    }else{
+                        String UrlCnTransporte = "http://transportdale.azurewebsites.net/api/viajes/cercanosdiahorario/" + ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
+                        new TraerViajes().execute(UrlCnTransporte);
+                    }
+
+
                 }
                 else{
-                    String UrlSinFiltro = "http://transportdale.azurewebsites.net/api/viajes/ViajesccDiaHorario/" + ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta;
-                    Log.d("Manda url", "ppppp");
-                    new TraerViajes().execute(UrlSinFiltro);
+                    if(EsViajeComp=="SI"){
+                        //Traer todos los viajes que tengan lugar y devolver (Nombre, Direccion, Horario, Dia, Transporte, IdViaje)
+                        String UrlViajesDIsponibles = "http://transportdale.azurewebsites.net/api/viajes..."+ ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
+                        new TraerViajesCompDisp().execute(UrlViajesDIsponibles);
+
+                    }else{
+                        String UrlSinFiltro = "http://transportdale.azurewebsites.net/api/viajes/ViajesccDiaHorario/" + ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta;
+                        Log.d("Manda url", "ppppp");
+                        new TraerViajes().execute(UrlSinFiltro);
+                    }
                 }
                 
             }
@@ -143,6 +160,7 @@ public class ActivityBuscador extends AppCompatActivity {
         EnvioDatos.putString("Año", Año);
         EnvioDatos.putString("Curso", Curso);
         EnvioDatos.putString("Imagen", Imagen);
+        EnvioDatos.putString("EsViajesCompartidos", EsViajeComp);
 
         Intent LlamadaActivityBuscador;
         LlamadaActivityBuscador = new Intent(this, ActivityBuscador.class);
@@ -212,6 +230,20 @@ public class ActivityBuscador extends AppCompatActivity {
         MiListViewViajes.setAdapter(MiAdaptadorDeViajes);
 
     }
+    public void LlamarListViewsViajesComp()
+    {
+        ListView MiListViewViajesComp;
+        MiListViewViajesComp = (ListView)findViewById(R.id.ListView_Viajes);
+
+        Log.d("MICA", "LlamarListViews " + ArrayViajes.size() + "");
+
+        AdaptadorParaViajesComp MiAdaptadorDeViajesComp;
+        MiAdaptadorDeViajesComp = new AdaptadorParaViajesComp(ArrayViajes, this);
+
+        MiListViewViajesComp.setAdapter(MiAdaptadorDeViajesComp);
+
+    }
+
 
 
     @Override
@@ -227,6 +259,7 @@ public class ActivityBuscador extends AppCompatActivity {
         Año = ReciboUsuario.getString("Año");
         Curso = ReciboUsuario.getString("Curso");
         Imagen = ReciboUsuario.getString("Imagen");
+        EsViajeComp = ReciboUsuario.getString("EsViajesCompartidos");
 
 
         Spinner spinnerDia;
@@ -286,8 +319,86 @@ public class ActivityBuscador extends AppCompatActivity {
         AdaptadorTransporte.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerTransporte.setAdapter(AdaptadorTransporte);
 
+        if(EsViajeComp=="SI")
+        {
+            //Traer todos los viajes que tengan lugar y devolver (Nombre, Direccion, Horario, Dia, Transporte, IdViaje)
+            String UrlViajesDIsponibles = "http://transportdale.azurewebsites.net/api/";
+            new TraerViajesCompDisp().execute(UrlViajesDIsponibles);
+        }
 
     }
+
+    private class TraerViajesCompDisp extends AsyncTask<String, Void, ArrayList<Viaje>> {
+
+
+        protected void onPostExecute(ArrayList<Viaje> datos) {
+            super.onPostExecute(datos);
+            Log.d("Devuelve datos", "ppppp");
+
+            if (datos != null) {
+
+                ArrayViajes = datos;
+                LlamarListViewsViajesComp();
+            }
+            else {
+                MostrarCartelitos();
+            }
+
+        }
+
+        @Override
+        protected ArrayList<Viaje> doInBackground(String... parametros) {
+            String url = parametros[0];
+            Log.d("entro al doinbackground", "ppppp");
+
+            ArrayList<Viaje> ArrayViajes = new ArrayList<Viaje>();
+
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Log.d("vuelve desp del build", "ppppp");
+
+            try {
+                Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
+                String resultado = response.body().string();
+
+                Log.d("trae el resultado", "ppppp");
+                try {
+                    JSONArray JsonViajes = new JSONArray(resultado);
+                    Log.d("crea un nuevo json", "ppppp");
+
+                    for (int i = 0; i < JsonViajes.length(); i++){
+                        Viaje ViajeCompartido;
+                        ViajeCompartido = new Viaje();
+                        JSONObject obj = JsonViajes.getJSONObject(i);
+
+                        ViajeCompartido = parseo.ParseoViajesComp(obj);
+
+                        ArrayViajes.add(ViajeCompartido);
+                    }
+
+                    return ArrayViajes;
+
+                }catch (JSONException e){
+                    Log.d("Error JSON", e.getMessage());
+                    Log.d("error en el json", "ppppp");
+
+                    return null;
+                }
+            } catch (IOException e) {
+                Log.d("Error",e.getMessage());             // Error de Network
+                Log.d("error de network" + e.getMessage(), "ppppp");
+
+                return null;
+            }
+
+        }
+    }
+
+
+
+
 
     private class TraerViajes extends AsyncTask<String, Void, ArrayList<Viaje>> {
 

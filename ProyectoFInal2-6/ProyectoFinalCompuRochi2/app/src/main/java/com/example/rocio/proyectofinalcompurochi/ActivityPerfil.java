@@ -43,6 +43,7 @@ public class ActivityPerfil extends AppCompatActivity {
     String Año;
     String Curso;
     String Imagen;
+    String EsViajeComp;
 
     Funciones funciones = new Funciones();
     ArrayList<Viaje>ArrayViajesUsuario;
@@ -57,6 +58,10 @@ public class ActivityPerfil extends AppCompatActivity {
         EnvioDatos.putString("Año", Año);
         EnvioDatos.putString("Curso", Curso);
         EnvioDatos.putString("Imagen", Imagen);
+        EsViajeComp="NO";
+
+        EnvioDatos.putString("EsViajesCompartidos", EsViajeComp);
+
 
         Intent LlamadaActivityBuscador;
         LlamadaActivityBuscador = new Intent(this, ActivityBuscador.class);
@@ -74,6 +79,10 @@ public class ActivityPerfil extends AppCompatActivity {
         EnvioDatos.putString("Año", Año);
         EnvioDatos.putString("Curso", Curso);
         EnvioDatos.putString("Imagen", Imagen);
+        EsViajeComp="SI";
+
+        EnvioDatos.putString("EsViajesCompartidos", EsViajeComp);
+
 
         Intent LLamadaActivityPerfil;
         LLamadaActivityPerfil = new Intent(this, ActivityPerfil.class);
