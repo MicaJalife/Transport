@@ -351,7 +351,8 @@ namespace ApiEjemplo.Data
         private static Viajes ObtenerPorRow(DataRow row)
         {
             Viajes v = new Viajes();
-            v.DNI = row.Field<int>("DNI");
+            v.IdViaje = row.Field<int>("IdViaje");
+            v.DNI = row.Field<int>("DNI");            
             v.IdHorario = row.Field<int>("IdHorario");
             v.IdTransporte = row.Field<int>("IdTransporte");
             v.Cantidad= row.Field<int>("Cantidad");
