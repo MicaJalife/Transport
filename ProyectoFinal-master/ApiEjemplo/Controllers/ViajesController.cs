@@ -50,21 +50,7 @@ namespace ApiEjemplo.Controllers
             return ViajesData.ObtenerViajesccDirecciones();
         }
 
-        //GET :  NO SE USA!!!!!! -----------> api/ViajesccIdDiaHorario
-        [HttpGet]
-        [Route("api/viajes/ViajesccDiaHorario/{IdDia}/{IdHorario}/{DesdeHasta}")]
-        public List<Viajes> ViajesconIdViajeDiaHorario (int IdDia, int IdHorario, int DesdeHasta)
-        {
-            return ViajesData.ObtenerViajexDiaHorario(IdDia, IdHorario, DesdeHasta);
-        }
-
-        //GET :  NO SE USA!!!!!! ----------> api/ViajesccIdDiaHorarioTransporte
-        [HttpGet]
-        [Route("api/viajes/ViajesccIdDiaHorarioTransporte/{IdDia}/{IdHorario}/{IdTransporte}/{DesdeHasta}")]
-        public List<Viajes> ViajesconIdViajeDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte, int DesdeHasta)
-        {
-            return ViajesData.ObtenerViajexDiaHorarioTransporte( IdDia, IdHorario, IdTransporte, DesdeHasta);
-        }
+     
 
         //GET : api/ViajesValidacionInsert1
         [HttpGet]
