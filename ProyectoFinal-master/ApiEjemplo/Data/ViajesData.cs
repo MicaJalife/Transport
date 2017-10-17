@@ -294,7 +294,39 @@ namespace ApiEjemplo.Data
                 return null;
             }          
         }
+        public static List<Viajes> TraerTodoLosViajesDisponibles()
+        {
+            string puede = "";
+            string select = "select * from viajes";
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            List<Viajes> ListaViajesDisponibles = new List<Viajes>();
+            Viajes viaje;
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    viaje = ObtenerPorRow(row);
+                    viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
+                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
+                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
+                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
 
+                    if (viaje.IdTransporte == 1)
+                    {
+                        puede = ViajesCompartidosData.SePuedeUnir(viaje.IdViaje);
+                        if (puede == "SI")
+                        {
+                            ListaViajesDisponibles.Add(viaje);
+                        }
+                    }
+                    else
+                    {
+                        ListaViajesDisponibles.Add(viaje);
+                    }                    
+                }
+            }
+            return ListaViajesDisponibles;
+        }
         public static Viajes ObtenerViajexID(int IdViaje)
         {
             string select = "select * from viajes where IdViaje=" + IdViaje.ToString();

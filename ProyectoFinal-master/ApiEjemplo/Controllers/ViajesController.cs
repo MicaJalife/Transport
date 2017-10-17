@@ -120,5 +120,13 @@ namespace ApiEjemplo.Controllers
         {
             return ViajesData.ObtenerViajexID(IdViaje);
         }
+
+        //GET : api/ViajesDisponibles
+        [HttpGet]
+        [Route("api/viajes/disponibles")]
+        public List<Viajes> ObtenerViajesDisponibles()
+        {
+            return ViajesData.TraerTodoLosViajesDisponibles();
+        }
     }
 }
