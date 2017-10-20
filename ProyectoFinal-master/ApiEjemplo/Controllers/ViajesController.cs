@@ -50,21 +50,7 @@ namespace ApiEjemplo.Controllers
             return ViajesData.ObtenerViajesccDirecciones();
         }
 
-        //GET :  NO SE USA!!!!!! -----------> api/ViajesccIdDiaHorario
-        [HttpGet]
-        [Route("api/viajes/ViajesccDiaHorario/{IdDia}/{IdHorario}/{DesdeHasta}")]
-        public List<Viajes> ViajesconIdViajeDiaHorario (int IdDia, int IdHorario, int DesdeHasta)
-        {
-            return ViajesData.ObtenerViajexDiaHorario(IdDia, IdHorario, DesdeHasta);
-        }
-
-        //GET :  NO SE USA!!!!!! ----------> api/ViajesccIdDiaHorarioTransporte
-        [HttpGet]
-        [Route("api/viajes/ViajesccIdDiaHorarioTransporte/{IdDia}/{IdHorario}/{IdTransporte}/{DesdeHasta}")]
-        public List<Viajes> ViajesconIdViajeDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte, int DesdeHasta)
-        {
-            return ViajesData.ObtenerViajexDiaHorarioTransporte( IdDia, IdHorario, IdTransporte, DesdeHasta);
-        }
+     
 
         //GET : api/ViajesValidacionInsert1
         [HttpGet]
@@ -107,7 +93,7 @@ namespace ApiEjemplo.Controllers
         }
         //GET : api/ViajescercanosDiaHorariotransporte
         [HttpGet]
-        [Route("api/viajes/cercanosdiahorario/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}/{DesdeHasta}/{IdTransporte}/{IdUsuario}")]
+        [Route("api/viajes/cercanosdiahorariotrans/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}/{DesdeHasta}/{IdTransporte}/{IdUsuario}")]
         public List<Viajes> ObtenerViajesMasCercanosDiaHorarioTransporte(string DireccionLatitud, string DireccionLongitud, int IdDia, int IdHorario, int DesdeHasta, int IdTransporte, int IdUsuario)
         {
             return ViajesData.ObtenerViajesMasCercanosDiaHorarioTransporte(DireccionLatitud, DireccionLongitud, IdDia, IdHorario,DesdeHasta, IdTransporte, IdUsuario);
@@ -119,6 +105,14 @@ namespace ApiEjemplo.Controllers
         public Viajes TraerViaje(int IdViaje)
         {
             return ViajesData.ObtenerViajexID(IdViaje);
+        }
+
+        //GET : api/ViajesDisponibles
+        [HttpGet]
+        [Route("api/viajes/disponibles")]
+        public List<Viajes> ObtenerViajesDisponibles()
+        {
+            return ViajesData.TraerTodoLosViajesDisponibles();
         }
     }
 }

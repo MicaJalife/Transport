@@ -140,7 +140,8 @@ namespace ApiEjemplo.Data
 
         public static List<Viajes> ObtenerViajesMasCercanosDiaHorarioTransporte(string strLat, string strLng, int dia, int horario,int desdehasta, int transporte, int idusuario)
         {    //"34.434234, 54.222"
-            //strLat, string strLng
+             //strLat, string strLng
+            string puede = "";
             string select = "";
 
             select += "SELECT * ";
@@ -159,7 +160,19 @@ namespace ApiEjemplo.Data
                     viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
                     viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
                     viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
-                    ListaDesdeHastaViajes.Add(viaje);
+
+                    if (viaje.IdTransporte == 1)
+                    {
+                        puede = ViajesCompartidosData.SePuedeUnir(viaje.IdViaje);
+                        if (puede == "SI")
+                        {
+                            ListaDesdeHastaViajes.Add(viaje);
+                        }
+                    }
+                    else
+                    {
+                        ListaDesdeHastaViajes.Add(viaje);
+                    }
                 }
                 return ListaDesdeHastaViajes;
             }
@@ -192,57 +205,6 @@ namespace ApiEjemplo.Data
             }
        }
 
-        //NO SE USA ↓↓↓↓
-        public static List<Viajes> ObtenerViajexDiaHorario( int IdDia, int IdHorario, int DesdeHasta)
-        {
-            string select = "select * from viajes where IdDia=" + IdDia.ToString() + " and IdHorario="+ IdHorario.ToString() + " and DesdeHasta=" + DesdeHasta.ToString();
-            DataTable dt = DBHelper.EjecutarSelect(select);
-            List<Viajes> ListaViajeccDiaHorario = new List<Viajes>();
-            Viajes viaje;
-            if (dt.Rows.Count > 0)
-            {
-                foreach (DataRow row in dt.Rows)
-                {
-                    viaje = ObtenerPorRow(row);
-                    viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
-                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
-                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
-                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
-                    ListaViajeccDiaHorario.Add(viaje);
-                }
-                return ListaViajeccDiaHorario;
-            }
-            else
-            {
-                return null;
-            }
-        }
-        //NO SE USA ↓↓↓↓
-        public static List<Viajes>  ObtenerViajexDiaHorarioTransporte(int IdDia, int IdHorario, int IdTransporte, int DesdeHasta)
-        {
-            string select = "select * from viajes where IdDia=" + IdDia.ToString() + " and IdHorario=" + IdHorario.ToString() + " and IdTransporte=" + IdTransporte.ToString() + " and DesdeHasta=" + DesdeHasta.ToString();
-            DataTable dt = DBHelper.EjecutarSelect(select);
-            List<Viajes> ListaViajeccDiaHorarioTransporte = new List<Viajes>();
-            Viajes viaje;
-            if (dt.Rows.Count > 0)
-            {
-                foreach (DataRow row in dt.Rows)
-                {
-                    viaje = ObtenerPorRow(row);
-                    viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
-                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
-                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
-                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
-                    ListaViajeccDiaHorarioTransporte.Add(viaje);
-                }
-                return ListaViajeccDiaHorarioTransporte;
-            }
-            else
-            {
-                return null;
-            }
-
-        }
         public static Viajes ValidacionDeInsert1 (int DNI, int IdDia,int DesdeHasta)
         {
             string select = "select * from viajes where DNI=" + DNI.ToString() + " and IdDia=" + IdDia.ToString() + " and DesdeHasta=" + DesdeHasta.ToString();
@@ -294,7 +256,39 @@ namespace ApiEjemplo.Data
                 return null;
             }          
         }
+        public static List<Viajes> TraerTodoLosViajesDisponibles()
+        {            
+            string puede = "";
+            string select = "select * from viajes";
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            List<Viajes> ListaViajesDisponibles = new List<Viajes>();
+            Viajes viaje;
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    viaje = ObtenerPorRow(row);
+                    viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
+                    viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
+                    viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
+                    viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
 
+                    if (viaje.IdTransporte == 1)
+                    {
+                        puede = ViajesCompartidosData.SePuedeUnir(viaje.IdViaje);
+                        if (puede == "SI")
+                        {
+                            ListaViajesDisponibles.Add(viaje);
+                        }
+                    }
+                    else
+                    {
+                        ListaViajesDisponibles.Add(viaje);
+                    }                    
+                }
+            }
+            return ListaViajesDisponibles;
+        }
         public static Viajes ObtenerViajexID(int IdViaje)
         {
             string select = "select * from viajes where IdViaje=" + IdViaje.ToString();
@@ -304,6 +298,10 @@ namespace ApiEjemplo.Data
             if (dt.Rows.Count > 0)
             {
                 viaje = ObtenerPorRow(dt.Rows[0]);
+                viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
+                viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
+                viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
+                viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
             }          
             return viaje;
         }
@@ -319,7 +317,8 @@ namespace ApiEjemplo.Data
         private static Viajes ObtenerPorRow(DataRow row)
         {
             Viajes v = new Viajes();
-            v.DNI = row.Field<int>("DNI");
+            v.IdViaje = row.Field<int>("IdViaje");
+            v.DNI = row.Field<int>("DNI");            
             v.IdHorario = row.Field<int>("IdHorario");
             v.IdTransporte = row.Field<int>("IdTransporte");
             v.Cantidad= row.Field<int>("Cantidad");

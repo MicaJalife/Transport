@@ -47,6 +47,23 @@ namespace ApiEjemplo.Data
             }
             
         }
+        public static List<Viajes> ViajesdelaPersona(int IdUsuario)
+        {
+            string select = "select IdViaje from viajescompartidos where IdUsuario=" + IdUsuario.ToString();
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            List<Viajes> ListaComparte = new List<Viajes>();
+            Viajes viaje = new Viajes();
+            
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {                    
+                    viaje = ViajesData.ObtenerViajexID(Convert.ToInt32(row));
+                    ListaComparte.Add(viaje);
+                }
+                return ListaComparte;
+            }
+        }
 
         private static ViajesCompartidos ObtenerPorRow(DataRow row)
         {

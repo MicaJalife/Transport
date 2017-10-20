@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ProyectoFinalCompuRochi2.iml" filepath="$PROJECT_DIR$/ProyectoFinalCompuRochi2.iml" />
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+=======
+>>>>>>> 579c79f43a096c1d3e8dadbdc80832736a64e22c
     </modules>
   </component>
 </project>
