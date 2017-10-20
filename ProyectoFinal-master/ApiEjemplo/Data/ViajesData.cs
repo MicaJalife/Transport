@@ -298,6 +298,10 @@ namespace ApiEjemplo.Data
             if (dt.Rows.Count > 0)
             {
                 viaje = ObtenerPorRow(dt.Rows[0]);
+                viaje.usuario = UsuariosData.ObtenerPorId(Convert.ToInt32(viaje.DNI));
+                viaje.horario = HorariosData.ObtenerPorId(viaje.IdHorario);
+                viaje.transporte = TransportesData.ObtenerPorId(viaje.IdTransporte);
+                viaje.dia = DiasData.ObtenerPorId(viaje.IdDia);
             }          
             return viaje;
         }

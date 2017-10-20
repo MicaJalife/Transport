@@ -37,6 +37,14 @@ namespace ApiEjemplo.Controllers
             return ViajesCompartidosData.SePuedeUnir(IdViaje);
         }
 
+        //GET : api/ViajesQueComparte
+        [HttpGet]
+        [Route("api/viajesquecomparte/{IdUsuario}")]
+        public List<Viajes> ViajesQueComparte(int IdUsuario)
+        {
+            return ViajesCompartidosData.ViajesdelaPersona(IdUsuario);
+        }
+
     }
 
 

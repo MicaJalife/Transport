@@ -93,7 +93,7 @@ namespace ApiEjemplo.Controllers
         }
         //GET : api/ViajescercanosDiaHorariotransporte
         [HttpGet]
-        [Route("api/viajes/cercanosdiahorario/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}/{DesdeHasta}/{IdTransporte}/{IdUsuario}")]
+        [Route("api/viajes/cercanosdiahorariotrans/{DireccionLatitud}/{DireccionLongitud}/{IdDia}/{IdHorario}/{DesdeHasta}/{IdTransporte}/{IdUsuario}")]
         public List<Viajes> ObtenerViajesMasCercanosDiaHorarioTransporte(string DireccionLatitud, string DireccionLongitud, int IdDia, int IdHorario, int DesdeHasta, int IdTransporte, int IdUsuario)
         {
             return ViajesData.ObtenerViajesMasCercanosDiaHorarioTransporte(DireccionLatitud, DireccionLongitud, IdDia, IdHorario,DesdeHasta, IdTransporte, IdUsuario);
