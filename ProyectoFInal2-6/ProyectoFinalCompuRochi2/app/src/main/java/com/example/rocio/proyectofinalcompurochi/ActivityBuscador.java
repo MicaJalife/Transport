@@ -1,13 +1,17 @@
 package com.example.rocio.proyectofinalcompurochi;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -19,6 +23,13 @@ import com.example.rocio.proyectofinalcompurochi.Clases.ClaseParseo;
 import com.example.rocio.proyectofinalcompurochi.Clases.Direcciones;
 import com.example.rocio.proyectofinalcompurochi.Clases.Usuario;
 import com.example.rocio.proyectofinalcompurochi.Clases.Viaje;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -33,7 +44,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityBuscador extends AppCompatActivity {
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+
+public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCallback {
 
     Integer DNI;
     String Nombre;
@@ -41,6 +55,12 @@ public class ActivityBuscador extends AppCompatActivity {
     String Curso;
     String Imagen;
     String EsViajeComp;
+
+    String direccion;
+    String dirEncontrada, coordenadas;
+    GoogleMap map;
+    double lat;
+    double lng;
 
     ArrayList<Direcciones>ArrayObjDirecs;
     ArrayList<Viaje>ArrayViajes;
@@ -110,8 +130,8 @@ public class ActivityBuscador extends AppCompatActivity {
                 {
                     if(EsViajeComp=="SI"){
                         //Traer todos los viajes que tengan lugar y devolver (Nombre, Direccion, Horario, Dia, Transporte, IdViaje)
-                        String UrlViajesDIsponibles = "http://transportdale.azurewebsites.net/api/viajes..."+ ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
-                        new TraerViajesCompDisp().execute(UrlViajesDIsponibles);
+                        String UrlViajesCompFiltrados = "http://transportdale.azurewebsites.net/api/viajes/cercanosdiahorariotrans/"+ ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
+                        new TraerViajesCommpFiltrados().execute(UrlViajesCompFiltrados);
 
                     }else{
                         String UrlCnTransporte = "http://transportdale.azurewebsites.net/api/viajes/cercanosdiahorario/" + ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
@@ -123,8 +143,8 @@ public class ActivityBuscador extends AppCompatActivity {
                 else{
                     if(EsViajeComp=="SI"){
                         //Traer todos los viajes que tengan lugar y devolver (Nombre, Direccion, Horario, Dia, Transporte, IdViaje)
-                        String UrlViajesDIsponibles = "http://transportdale.azurewebsites.net/api/viajescompartidos/compartirelviaje";
-                        new TraerViajesCompDisp().execute(UrlViajesDIsponibles);
+                        String UrlViajesCompFiltrados = "http://transportdale.azurewebsites.net/api/viajes/cercanosdiahorariotrans/"+ ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
+                        new TraerViajesCommpFiltrados().execute(UrlViajesCompFiltrados);
 
                     }else{
                         String UrlSinFiltro = "http://transportdale.azurewebsites.net/api/viajes/ViajesccDiaHorario/" + ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta;
@@ -192,6 +212,7 @@ public class ActivityBuscador extends AppCompatActivity {
 
     }
 
+
     public Direcciones DevuelvoLatLngDireccion(String DireccionABuscar)
     {
         //ArrayList<Direcciones>ArrayObjDirecs
@@ -235,6 +256,40 @@ public class ActivityBuscador extends AppCompatActivity {
         ListView MiListViewViajesComp;
         MiListViewViajesComp = (ListView)findViewById(R.id.ListView_Viajes);
 
+        //list = (ListView) findViewById(R.id.lv_productos);
+
+        //configura listener.
+        MiListViewViajesComp.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                //Object listItem = list.getItemAtPosition(position);
+                //Toast.makeText(getAplicationContext, "Click en la posición "  + position, Toast.LENGTH_SHORT).show();
+                long viewId = view.getId();
+
+                if (viewId == R.id.BotonSumarsee)
+                {
+                    Viaje viajecito = new Viaje();
+                    viajecito= ArrayViajes.get(position);//HAY QUE VER SI ANDAAA
+
+                    String UrlSumarme = "http://transportdale.azurewebsites.net/api/viajescompartidos/compartirelviaje/" + viajecito.IdViaje + "/"+ DNI;
+                    Log.d("Manda url", "ppppp");
+                    new SumarmeAUnViaje().execute(UrlSumarme);
+
+                }
+                if (viewId == R.id.BotonVerRecorrido)
+                {
+                    Viaje viajecito = new Viaje();
+                    viajecito= ArrayViajes.get(position);//HAY QUE VER SI ANDAAA
+
+                    direccion=viajecito.Direccion;
+
+                }
+
+            }
+        });
+
         Log.d("MICA", "LlamarListViews " + ArrayViajes.size() + "");
 
         AdaptadorParaViajesComp MiAdaptadorDeViajesComp;
@@ -243,8 +298,6 @@ public class ActivityBuscador extends AppCompatActivity {
         MiListViewViajesComp.setAdapter(MiAdaptadorDeViajesComp);
 
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -322,13 +375,224 @@ public class ActivityBuscador extends AppCompatActivity {
         if(EsViajeComp=="SI")
         {
             //Traer todos los viajes que tengan lugar y devolver (Nombre, Direccion, Horario, Dia, Transporte, IdViaje)
-            String UrlViajesDIsponibles = "http://transportdale.azurewebsites.net/api/viajescompartidos/compartirelviaje";
-            new TraerViajesCompDisp().execute(UrlViajesDIsponibles);
+            String UrlViajesDisponibles = "http://transportdale.azurewebsites.net/api/viajes/disponibles";
+            new TraerViajesCompDisp().execute(UrlViajesDisponibles);
+        }
+
+
+
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+    }
+
+
+
+    @Override
+    public void onMapReady(GoogleMap map)
+    {
+        this.map = map;
+        map.getUiSettings().setZoomControlsEnabled(true);
+
+    }
+
+    public void consultarDireccion(View v)
+    {
+        String dirStr = direccion;
+        if (!dirStr.isEmpty()) {
+            new GeolocalizacionTask().execute(dirStr);  // Llamo a clase async con url
+        }
+    }
+
+
+    // Utiliza la clase android.location.Geocoder
+    // Parametros
+    // String - la direccion a buscar que recibe doInBackground
+    // Void -  Progreso (no se usa)
+    // List<Address> - lo que devuelve doInBackground
+    private class GeolocalizacionTask extends AsyncTask<String, Void, List<Address>>
+    {
+
+        @Override
+        protected void onPostExecute(List<Address> direcciones)
+        {
+            super.onPostExecute(direcciones);
+
+            if (!direcciones.isEmpty())
+            {
+                // Muestro la primera direccion recibida
+                Address dirRecibida = direcciones.get(0);  // La primera direccion
+                String addressStr = dirRecibida.getAddressLine(0);  // Primera linea del texto
+
+
+                // Muestro coordenadas
+                lat = dirRecibida.getLatitude(); //
+                lng = dirRecibida.getLongitude();
+                String coordStr = lat + "," + lng;
+
+
+                //Ubico la direccion en el mapa
+
+                if (map != null)
+                {
+                    CameraUpdate center =
+                            CameraUpdateFactory.newLatLng(new LatLng(lat, lng));
+                    CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+                    map.moveCamera(center);
+                    map.animateCamera(zoom);   // Posiciono la camara en las coordenadas recibidas
+
+                    map.addMarker(new MarkerOptions()
+                            .position(new LatLng(lat, lng))
+                            .title(dirRecibida.getAddressLine(0)));  // Dibujo el marker
+                }
+            }
+        }
+
+        @Override
+        protected List<Address> doInBackground(String... params)
+        {
+            String address = params[0];
+
+            Geocoder geocoder = new Geocoder(getApplicationContext());
+            List<Address> addresses = null;
+            try {
+                // Utilizo la clase Geocoder para buscar la direccion. Limito a 10 resultados
+                addresses = geocoder.getFromLocationName(address, 10);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return addresses;
         }
 
     }
 
+
+    private class SumarmeAUnViaje extends AsyncTask<String, Void,  Viaje> {
+        public final MediaType JSON
+                = MediaType.parse("application/json; charset=utf-8");
+
+        @Override
+        protected Viaje doInBackground(String... params) {
+
+            String method = params[0];
+            String urlApi = params[1];
+            String resultado;
+
+            if (method.equals("POST")) {
+                String json = params[2];
+                postViaje(urlApi, json);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Viaje viaje) {
+
+            super.onPostExecute(viaje);
+            //Log.d("ope :",persona.getNombre());
+            if (viaje != null) {
+                Cartelito = Toast.makeText(getApplicationContext(), "Se unio al viaje exitosamente", Toast.LENGTH_SHORT);
+                Cartelito.show();
+            }
+
+        }
+
+
+        private void postViaje(String urlApi, String json) {
+
+            okhttp3.OkHttpClient client = new okhttp3.OkHttpClient();
+
+            RequestBody body = RequestBody.create(JSON, json);
+            okhttp3.Request request = new okhttp3.Request.Builder()
+                    .url(urlApi)
+                    .post(body)
+                    .build();
+
+            try {
+                okhttp3.Response response = client.newCall(request).execute();
+                return;
+            } catch (IOException e) {
+                Log.d("Error :", e.getMessage());
+                return;
+
+            }
+        }
+    }
+
     private class TraerViajesCompDisp extends AsyncTask<String, Void, ArrayList<Viaje>> {
+
+
+        protected void onPostExecute(ArrayList<Viaje> datos) {
+            super.onPostExecute(datos);
+            Log.d("Devuelve datos", "ppppp");
+
+            if (datos != null) {
+
+                ArrayViajes = datos;
+                LlamarListViewsViajesComp();
+            }
+            else {
+                MostrarCartelitos();
+            }
+
+        }
+
+        @Override
+        protected ArrayList<Viaje> doInBackground(String... parametros) {
+            String url = parametros[0];
+            Log.d("entro al doinbackground", "ppppp");
+
+            ArrayList<Viaje> ArrayViajes = new ArrayList<Viaje>();
+
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Log.d("vuelve desp del build", "ppppp");
+
+            try {
+                Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
+                String resultado = response.body().string();
+
+                Log.d("trae el resultado", "ppppp");
+                try {
+                    JSONArray JsonViajes = new JSONArray(resultado);
+                    Log.d("crea un nuevo json", "ppppp");
+
+                    for (int i = 0; i < JsonViajes.length(); i++){
+                        Viaje ViajeCompartido;
+                        ViajeCompartido = new Viaje();
+                        JSONObject obj = JsonViajes.getJSONObject(i);
+
+                        ViajeCompartido = parseo.ParseoViajesComp(obj);
+
+                        ArrayViajes.add(ViajeCompartido);
+                    }
+
+                    return ArrayViajes;
+
+                }catch (JSONException e){
+                    Log.d("Error JSON", e.getMessage());
+                    Log.d("error en el json", "ppppp");
+
+                    return null;
+                }
+            } catch (IOException e) {
+                Log.d("Error",e.getMessage());             // Error de Network
+                Log.d("error de network" + e.getMessage(), "ppppp");
+
+                return null;
+            }
+
+        }
+    }
+
+
+    private class TraerViajesCommpFiltrados extends AsyncTask<String, Void, ArrayList<Viaje>> {
 
 
         protected void onPostExecute(ArrayList<Viaje> datos) {

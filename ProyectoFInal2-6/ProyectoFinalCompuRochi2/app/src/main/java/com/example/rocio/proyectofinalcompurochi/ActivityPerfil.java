@@ -47,6 +47,7 @@ public class ActivityPerfil extends AppCompatActivity {
 
     Funciones funciones = new Funciones();
     ArrayList<Viaje>ArrayViajesUsuario;
+    ArrayList<Viaje>ArrayViajesComp;
     ClaseParseo parseo = new ClaseParseo();
 
     public void BotonBuscador(View Vista)
@@ -119,6 +120,28 @@ public class ActivityPerfil extends AppCompatActivity {
         MiListViewViajesVuelta.setAdapter(MiAdaptadorViajesUsuariosVuelta);
     }
 
+    public void LlamarListViewsViajesCompIda()
+    {
+        ListView MiListViewCompartidosIda;
+        MiListViewCompartidosIda=(ListView) findViewById(R.id.ListView_ViajesCompIda);
+
+        AdaptViajesUsu MiAdaptadorViajesCompartidosIda;
+        MiAdaptadorViajesCompartidosIda = new AdaptViajesUsu(ArrayViajesComp, this);
+
+        MiListViewCompartidosIda.setAdapter(MiAdaptadorViajesCompartidosIda);
+    }
+
+    public void LlamarListViewsViajesCompVuelta()
+    {
+        ListView MiListViewCompartidosVuelta;
+        MiListViewCompartidosVuelta=(ListView) findViewById(R.id.ListView_ViajesCompVuelta);
+
+        AdaptViajesUsu MiAdaptadorViajesCompartidosVuelta;
+        MiAdaptadorViajesCompartidosVuelta = new AdaptViajesUsu(ArrayViajesComp, this);
+
+        MiListViewCompartidosVuelta.setAdapter(MiAdaptadorViajesCompartidosVuelta);
+    }
+
 
 
 
@@ -172,7 +195,147 @@ public class ActivityPerfil extends AppCompatActivity {
         new TraerViajesUsuarioVuelta().execute(UrlViajesUsuariosVuelta);
 
 
+        String UrlViajesCompIda = ""+ 1;
+        new TraigoViajesCompIda().execute(UrlViajesCompIda);
+
+        String UrlViajesCompVuelta = ""+0;
+        new TraigoViajesCompVuelta().execute(UrlViajesCompVuelta);
+
+
     }
+
+    private class TraigoViajesCompIda extends AsyncTask<String, Void, ArrayList<Viaje>> {
+
+
+        protected void onPostExecute(ArrayList<Viaje> datos) {
+            super.onPostExecute(datos);
+            Log.d("Devuelve datos", "ppppp");
+
+            if (datos != null) {
+
+                ArrayViajesComp = datos;
+                LlamarListViewsViajesCompIda();
+            }
+
+        }
+
+        @Override
+        protected ArrayList<Viaje> doInBackground(String... parametros) {
+            String url = parametros[0];
+            Log.d("entro al doinbackground", "ppppp");
+
+            ArrayList<Viaje> ArrayViajes = new ArrayList<Viaje>();
+
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Log.d("vuelve desp del build", "ppppp");
+
+            try {
+                Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
+                String resultado = response.body().string();
+
+                Log.d("trae el resultado", "ppppp");
+                try {
+                    JSONArray JsonViajes = new JSONArray(resultado);
+                    Log.d("crea un nuevo json", "ppppp");
+
+                    for (int i = 0; i < JsonViajes.length(); i++){
+                        Viaje viajecito;
+                        viajecito = new Viaje();
+                        JSONObject obj = JsonViajes.getJSONObject(i);
+
+                        viajecito = parseo.ParseoViajesUsuario(obj);
+
+                        ArrayViajes.add(viajecito);
+                    }
+
+                    return ArrayViajes;
+
+                }catch (JSONException e){
+                    Log.d("Error JSON", e.getMessage());
+                    Log.d("error en el json", "ppppp");
+
+                    return null;
+                }
+            } catch (IOException e) {
+                Log.d("Error",e.getMessage());             // Error de Network
+                Log.d("error de network" + e.getMessage(), "ppppp");
+
+                return null;
+            }
+
+        }
+    }
+
+    private class TraigoViajesCompVuelta extends AsyncTask<String, Void, ArrayList<Viaje>> {
+
+
+        protected void onPostExecute(ArrayList<Viaje> datos) {
+            super.onPostExecute(datos);
+            Log.d("Devuelve datos", "ppppp");
+
+            if (datos != null) {
+
+                ArrayViajesComp = datos;
+                LlamarListViewsViajesCompVuelta();
+            }
+
+        }
+
+        @Override
+        protected ArrayList<Viaje> doInBackground(String... parametros) {
+            String url = parametros[0];
+            Log.d("entro al doinbackground", "ppppp");
+
+            ArrayList<Viaje> ArrayViajes = new ArrayList<Viaje>();
+
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Log.d("vuelve desp del build", "ppppp");
+
+            try {
+                Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
+                String resultado = response.body().string();
+
+                Log.d("trae el resultado", "ppppp");
+                try {
+                    JSONArray JsonViajes = new JSONArray(resultado);
+                    Log.d("crea un nuevo json", "ppppp");
+
+                    for (int i = 0; i < JsonViajes.length(); i++){
+                        Viaje viajecito;
+                        viajecito = new Viaje();
+                        JSONObject obj = JsonViajes.getJSONObject(i);
+
+                        viajecito = parseo.ParseoViajesUsuario(obj);
+
+                        ArrayViajes.add(viajecito);
+                    }
+
+                    return ArrayViajes;
+
+                }catch (JSONException e){
+                    Log.d("Error JSON", e.getMessage());
+                    Log.d("error en el json", "ppppp");
+
+                    return null;
+                }
+            } catch (IOException e) {
+                Log.d("Error",e.getMessage());             // Error de Network
+                Log.d("error de network" + e.getMessage(), "ppppp");
+
+                return null;
+            }
+
+        }
+    }
+
+
+
 
     private class TraerViajesUsuarioIda extends AsyncTask<String, Void, ArrayList<Viaje>> {
 

@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="30dp">
+            android:layout_marginLeft="10dp">
 
             <TextView
                 android:id="@+id/Nombretxt"
@@ -94,16 +94,26 @@
 
             <Button
                 android:layout_width="70dp"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="1dp"
                 android:background="#3F51B5"
                 android:onClick="BotonSumarse"
                 android:id="@+id/BotonSumarsee"
                 android:textColor="#000000"
                 android:textSize="10dp"
-                android:text="Sumarse al recorrido" />
+                android:text="Sumarse" />
+            <Button
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="1dp"
+                android:background="#3F51B5"
+                android:id="@+id/BotonVerRecorrido"
+                android:text="Ver"
+                android:textColor="#000000"
+                android:textSize="10dp" />
 
             <TextView
                 android:id="@+id/Idtxt"

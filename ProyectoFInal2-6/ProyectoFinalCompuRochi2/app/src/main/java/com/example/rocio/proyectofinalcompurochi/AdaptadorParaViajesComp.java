@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.rocio.proyectofinalcompurochi.Clases.Viaje;
@@ -61,7 +62,7 @@ public class AdaptadorParaViajesComp extends BaseAdapter implements View.OnClick
         return PosicionAObtener;
     }
 
-    public View getView(int PosicionActual, final View VistaActual, ViewGroup GrupoActual)
+    public View getView(final int PosicionActual, final View VistaActual, final ViewGroup GrupoActual)
     {
         VistaADevolver=null;
 
@@ -85,9 +86,14 @@ public class AdaptadorParaViajesComp extends BaseAdapter implements View.OnClick
         Id = (TextView) VistaADevolver.findViewById(R.id.Idtxt);
 
 
-        Button BotonSumarse;
+       /* Button BotonSumarse;
         BotonSumarse =(Button)VistaADevolver.findViewById(R.id.BotonSumarsee);
         BotonSumarse.setOnClickListener(this);
+
+        Button BotonVer;
+        BotonVer =(Button)VistaADevolver.findViewById(R.id.BotonVerRecorrido);
+        BotonVer.setOnClickListener(this);*/
+
 
         final Viaje ViajeDeLaPosicionActual;
         ViajeDeLaPosicionActual = getItem(PosicionActual);
@@ -115,6 +121,8 @@ public class AdaptadorParaViajesComp extends BaseAdapter implements View.OnClick
         else{
             DesdeHasta.setText("Vuelve de ort");
         }
+
+
 
         return VistaADevolver;
 

@@ -28,10 +28,24 @@ public class ActivityMapa extends AppCompatActivity implements OnMapReadyCallbac
     double lat;
     double lng;
 
+    Integer DNI;
+    String Nombre;
+    String Año;
+    String Curso;
+    String Imagen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
+
+        Bundle  ReciboUsuario;
+        ReciboUsuario = this.getIntent().getExtras();
+        DNI = ReciboUsuario.getInt("DNI");
+        Nombre = ReciboUsuario.getString("Nombre");
+        Año = ReciboUsuario.getString("Año");
+        Curso = ReciboUsuario.getString("Curso");
+        Imagen = ReciboUsuario.getString("Imagen");
 
         direccion = (EditText) findViewById(R.id.IngresoDireccion);
         dirEncontrada = (TextView) findViewById(R.id.dirEncontrada);
