@@ -107,8 +107,8 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         String DatosCompletados = DatosCompletos.getText().toString();
 
         EditText EditPasajeros;
-        EditPasajeros = (EditText) findViewById(R.id.IngresoCantidad) ;
-
+        EditPasajeros = (EditText) findViewById(R.id.IngresoCantidad);
+        CantidadDePasajeros = Integer.parseInt(EditPasajeros.getText().toString());
 
         MaterialBetterSpinner spinnerDia;
         spinnerDia = (MaterialBetterSpinner) findViewById(R.id.SpinnerDia);
@@ -121,63 +121,64 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
         if (Direc.length() != 0 && TransporteSeleccionado != 0) {
             if (spinnerDia != null && spinnerBloques != null) {
-                if (TransporteSeleccionado == 2 || TransporteSeleccionado == 3) {
-                    EligioTranspPublic = true;
-                }
-                else
-                {
-                    if (TransporteSeleccionado==1)
-                    {
-                        CantidadDePasajeros= Integer.parseInt(EditPasajeros.getText().toString());
-                    }
-                }
-                if (EligioTranspPublic == true && LineasFrec.length() <= 0) {
-                    Cartelito = Toast.makeText(this, "Si elige un transporte publico debe especificar las lineas que utiliza", Toast.LENGTH_SHORT);
-                    Cartelito.show();
-                } else {
-                    if (RadioIda.isChecked() == true) {
-                        miViaje.DNI = DNI;
-                        miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
-                        miViaje.IdTransporte = TransporteSeleccionado;
-                        miViaje.CantPasajeros = CantidadDePasajeros;
-                        miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
-                        miViaje.DesdeHasta = 1;
-                        miViaje.DetalleTransporte = LineasFrec;
-                        miViaje.DireccionLatitud = String.valueOf(lat);
-                        miViaje.DireccionLongitud = String.valueOf(lng);
-                        miViaje.Direccion = dirEncontrada.getText().toString();
-
-                        DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getText().toString() + " a las " + spinnerBloques.getText().toString() + " va desde " + Direc + " con el transporte " + funcion.TraerElTransporte(TransporteSeleccionado);
-                        DatosCompletos.setText(DatosAMostrar);
-                        IngresoCorrecto = true;
-
-                        String UrlValidacionDesdeHasta = "http://transportdale.azurewebsites.net/api/viajes/validacion1/" +  miViaje.DNI + "/" + miViaje.IdDia + "/" + miViaje.DesdeHasta;
-                        new ValidarCnDH().execute(UrlValidacionDesdeHasta);
-
+                if (TransporteSeleccionado == 1) {
+                    if (CantidadDePasajeros == 0) {
+                        Cartelito = Toast.makeText(this, "Si elige auto debe especificar cantidad de pasajeros a llevar", Toast.LENGTH_SHORT);
+                        Cartelito.show();
                     } else {
-                        miViaje.DNI = DNI;
-                        miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
-                        miViaje.IdTransporte = TransporteSeleccionado;
-                        miViaje.CantPasajeros = CantidadDePasajeros;
-                        miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
-                        miViaje.DesdeHasta = 0;
-                        miViaje.DetalleTransporte = LineasFrec;
-                        miViaje.DireccionLatitud = String.valueOf(lat);
-                        miViaje.DireccionLongitud = String.valueOf(lng);
-                        miViaje.Direccion = dirEncontrada.getText().toString();
-
-                        DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getText().toString() + " a las " + spinnerBloques.getText().toString() + " va a " + Direc + " con el transporte " + funcion.TraerElTransporte(TransporteSeleccionado);
-                        DatosCompletos.setText(DatosAMostrar);
-                        IngresoCorrecto = true;
-
-                        String UrlValidacionDesdeHasta = "http://transportdale.azurewebsites.net/api/viajes/validacion1/" +  miViaje.DNI + "/" + miViaje.IdDia + "/" + miViaje.DesdeHasta;
-                        new ValidarCnDH().execute(UrlValidacionDesdeHasta);
+                        if (TransporteSeleccionado == 2 || TransporteSeleccionado == 3) {
+                            EligioTranspPublic = true;
+                        }
                     }
 
+                    if (EligioTranspPublic == true && LineasFrec.length() <= 0) {
+                        Cartelito = Toast.makeText(this, "Si elige un transporte publico debe especificar las lineas que utiliza", Toast.LENGTH_SHORT);
+                        Cartelito.show();
+                    } else {
+                        if (RadioIda.isChecked() == true) {
+                            miViaje.DNI = DNI;
+                            miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
+                            miViaje.IdTransporte = TransporteSeleccionado;
+                            miViaje.CantPasajeros = CantidadDePasajeros;
+                            miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
+                            miViaje.DesdeHasta = 1;
+                            miViaje.DetalleTransporte = LineasFrec;
+                            miViaje.DireccionLatitud = String.valueOf(lat);
+                            miViaje.DireccionLongitud = String.valueOf(lng);
+                            miViaje.Direccion = dirEncontrada.getText().toString();
+
+                            DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getText().toString() + " a las " + spinnerBloques.getText().toString() + " va desde " + Direc + " con el transporte " + funcion.TraerElTransporte(TransporteSeleccionado);
+                            DatosCompletos.setText(DatosAMostrar);
+                            IngresoCorrecto = true;
+
+                            String UrlValidacionDesdeHasta = "http://transportdale.azurewebsites.net/api/viajes/validacion1/" + miViaje.DNI + "/" + miViaje.IdDia + "/" + miViaje.DesdeHasta;
+                            new ValidarCnDH().execute(UrlValidacionDesdeHasta);
+
+                        } else {
+                            miViaje.DNI = DNI;
+                            miViaje.IdHorario = funcion.TraerIdHorario(spinnerBloques.getText().toString());
+                            miViaje.IdTransporte = TransporteSeleccionado;
+                            miViaje.CantPasajeros = CantidadDePasajeros;
+                            miViaje.IdDia = funcion.TraerIdDia(spinnerDia.getText().toString());
+                            miViaje.DesdeHasta = 0;
+                            miViaje.DetalleTransporte = LineasFrec;
+                            miViaje.DireccionLatitud = String.valueOf(lat);
+                            miViaje.DireccionLongitud = String.valueOf(lng);
+                            miViaje.Direccion = dirEncontrada.getText().toString();
+
+                            DatosAMostrar = DatosAMostrar + "\n" + "Los " + spinnerDia.getText().toString() + " a las " + spinnerBloques.getText().toString() + " va a " + Direc + " con el transporte " + funcion.TraerElTransporte(TransporteSeleccionado);
+                            DatosCompletos.setText(DatosAMostrar);
+                            IngresoCorrecto = true;
+
+                            String UrlValidacionDesdeHasta = "http://transportdale.azurewebsites.net/api/viajes/validacion1/" + miViaje.DNI + "/" + miViaje.IdDia + "/" + miViaje.DesdeHasta;
+                            new ValidarCnDH().execute(UrlValidacionDesdeHasta);
+                        }
+
+                    }
                 }
             }
-        }
 
+        }
     }
 
     private void MostrarCartelitos (String Validacion)
@@ -204,7 +205,6 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         EnvioDatos.putString("Curso", Curso);
         EnvioDatos.putString("Imagen", Imagen);
         EsViajeComp="SI";
-
         EnvioDatos.putString("EsViajesCompartidos", EsViajeComp);
 
 

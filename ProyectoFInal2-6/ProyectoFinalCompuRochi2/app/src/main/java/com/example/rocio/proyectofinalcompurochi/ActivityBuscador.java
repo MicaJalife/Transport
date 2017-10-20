@@ -123,7 +123,7 @@ public class ActivityBuscador extends AppCompatActivity {
                 else{
                     if(EsViajeComp=="SI"){
                         //Traer todos los viajes que tengan lugar y devolver (Nombre, Direccion, Horario, Dia, Transporte, IdViaje)
-                        String UrlViajesDIsponibles = "http://transportdale.azurewebsites.net/api/viajes..."+ ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
+                        String UrlViajesDIsponibles = "http://transportdale.azurewebsites.net/api/viajescompartidos/compartirelviaje";
                         new TraerViajesCompDisp().execute(UrlViajesDIsponibles);
 
                     }else{
@@ -322,7 +322,7 @@ public class ActivityBuscador extends AppCompatActivity {
         if(EsViajeComp=="SI")
         {
             //Traer todos los viajes que tengan lugar y devolver (Nombre, Direccion, Horario, Dia, Transporte, IdViaje)
-            String UrlViajesDIsponibles = "http://transportdale.azurewebsites.net/api/";
+            String UrlViajesDIsponibles = "http://transportdale.azurewebsites.net/api/viajescompartidos/compartirelviaje";
             new TraerViajesCompDisp().execute(UrlViajesDIsponibles);
         }
 

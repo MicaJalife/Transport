@@ -18,10 +18,12 @@ import java.util.ArrayList;
  * Created by Rocio on 16/10/2017.
  */
 
-public class AdaptadorParaViajesComp extends BaseAdapter {
+public class AdaptadorParaViajesComp extends BaseAdapter implements View.OnClickListener{
 
     private ArrayList<Viaje> MiListaViajes;
     private Context MiContexto;
+    View VistaADevolver;
+
 
 
     public AdaptadorParaViajesComp (ArrayList<Viaje> ListaDeViajes, Context ContextoAUsar)
@@ -31,10 +33,20 @@ public class AdaptadorParaViajesComp extends BaseAdapter {
         MiContexto=ContextoAUsar;
     }
 
+    @Override
+    public  void onClick(View v){
+        if (v.getId()== VistaADevolver.findViewById(R.id.BotonSumarsee).getId())
+        {
+            //Aca deberia traer el id del viaje del txtid
+        }
+    }
+
     public int getCount()
     {
         return MiListaViajes.size();
     }
+
+
 
     public Viaje getItem (int PosicionAObtener)
     {
@@ -49,9 +61,8 @@ public class AdaptadorParaViajesComp extends BaseAdapter {
         return PosicionAObtener;
     }
 
-    public View getView(int PosicionActual, View VistaActual, ViewGroup GrupoActual)
+    public View getView(int PosicionActual, final View VistaActual, ViewGroup GrupoActual)
     {
-        View VistaADevolver;
         VistaADevolver=null;
 
         LayoutInflater InfladorDeLayouts;
@@ -68,12 +79,17 @@ public class AdaptadorParaViajesComp extends BaseAdapter {
         Dia = (TextView) VistaADevolver.findViewById(R.id.Diatxt);
         TextView Transporte;
         Transporte = (TextView) VistaADevolver.findViewById(R.id.Transportetxt);
+        TextView DesdeHasta;
+        DesdeHasta = (TextView) VistaADevolver.findViewById(R.id.DesdeHastatxt);
         TextView Id;
         Id = (TextView) VistaADevolver.findViewById(R.id.Idtxt);
+
+
         Button BotonSumarse;
         BotonSumarse =(Button)VistaADevolver.findViewById(R.id.BotonSumarsee);
+        BotonSumarse.setOnClickListener(this);
 
-        Viaje ViajeDeLaPosicionActual;
+        final Viaje ViajeDeLaPosicionActual;
         ViajeDeLaPosicionActual = getItem(PosicionActual);
 
 
@@ -82,6 +98,7 @@ public class AdaptadorParaViajesComp extends BaseAdapter {
         String hora = ViajeDeLaPosicionActual.Horario;
         String dia = ViajeDeLaPosicionActual.Dia;
         String transporte = ViajeDeLaPosicionActual.Transporte;
+        int DesHast = ViajeDeLaPosicionActual.DesdeHasta;
         int id = ViajeDeLaPosicionActual.IdViaje;
         Log.d("MICA", "getView: " + nombre+  " :  "+ direc +  " "+ hora+  " :  "+ dia+  " :  "+ transporte+  " :  "+ id+  " :  ");
         //Se va a romper aca
@@ -91,8 +108,17 @@ public class AdaptadorParaViajesComp extends BaseAdapter {
         Dia.setText(ViajeDeLaPosicionActual.Dia);
         Transporte.setText(ViajeDeLaPosicionActual.Transporte);
         Id.setText(ViajeDeLaPosicionActual.IdViaje);
-
+        if (DesHast == 1)
+        {
+            DesdeHasta.setText("Va hasta ort");
+        }
+        else{
+            DesdeHasta.setText("Vuelve de ort");
+        }
 
         return VistaADevolver;
+
     }
+
+
 }

@@ -53,13 +53,14 @@ public class ClaseParseo {
         Viaje miviaje = new Viaje();
 
         try {
-            miviaje.DNI = Integer.parseInt(json.getString("DNI"));
-            miviaje.IdViaje = Integer.parseInt(json.getString("IdViaje"));
-            miviaje.Direccion = json.getString("Direccion");
-            miviaje.Nombre = json.getJSONObject("usuario").getString("Nombre");
-            miviaje.Horario = json.getString("Horario");
-            miviaje.Dia = json.getString("Dia");
-            miviaje.Transporte = json.getString("Transporte");
+
+            miviaje.Horario = json.getJSONObject("horario").getString("Horario");
+            miviaje.Transporte = json.getJSONObject("transporte").getString("TipoTransporte");
+            miviaje.Dia = json.getJSONObject("dia").getString("Dia");
+            miviaje.CantPasajeros = json.getInt("Cantidad");
+            miviaje.Direccion = json.getJSONObject("viaje").getString("Direccion");
+            miviaje.Nombre = json.getJSONObject("viaje").getString("Nombre");
+            miviaje.DesdeHasta = json.getInt("DesdeHasta");
         }
         catch(JSONException e)
         {
