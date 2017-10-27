@@ -16,6 +16,7 @@ public class Usuario {
     public String Curso;
     public String Imagen;
     public boolean PrimeraEdicion;
+    public String Telefono;
 
 
     /*

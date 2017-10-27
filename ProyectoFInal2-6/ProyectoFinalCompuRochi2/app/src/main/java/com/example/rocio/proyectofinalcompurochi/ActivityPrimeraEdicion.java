@@ -207,11 +207,11 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         EsViajeComp="SI";
         EnvioDatos.putString("EsViajesCompartidos", EsViajeComp);
 
-
         Intent LlamadaActivityBuscador;
         LlamadaActivityBuscador = new Intent(this, ActivityBuscador.class);
+        LlamadaActivityBuscador.putExtras(EnvioDatos);
         startActivity(LlamadaActivityBuscador);
-        overridePendingTransition(R.anim.left_in, R.anim.left_out);
+        overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);
     }
 
     public void EligioAuto(View Vista) {

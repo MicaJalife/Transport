@@ -1,5 +1,6 @@
 package com.example.rocio.proyectofinalcompurochi;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteMisuseException;
 import android.os.AsyncTask;
@@ -74,6 +75,8 @@ public class ActivityIngreso extends AppCompatActivity {
 
 
     }
+
+
     private static boolean isNumeric(String cadena){
         try {
             Integer.parseInt(cadena);
@@ -112,15 +115,15 @@ public class ActivityIngreso extends AppCompatActivity {
                 ExisteElUsuario = true;
                 miUsuario = datos;
 
-
                 if (ExisteElUsuario == true) {
-
+                   // if(miUsuario.Telefono==)
                     DNI = miUsuario.DNI;
                     Nombre = miUsuario.Nombre;
                     Año = miUsuario.Año;
                     Curso = miUsuario.Curso;
                     Imagen = miUsuario.Imagen;
                     PrimeraEdicion = miUsuario.PrimeraEdicion;
+
                     ManejoUsuarios.setUsuario(miUsuario);
                      if (PrimeraEdicion == true) {
                         Bundle EnvioDatos;

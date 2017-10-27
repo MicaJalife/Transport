@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.rocio.proyectofinalcompurochi.Clases.AdaptViajesComp;
 import com.example.rocio.proyectofinalcompurochi.Clases.AdaptViajesUsu;
 import com.example.rocio.proyectofinalcompurochi.Clases.ClaseParseo;
 import com.example.rocio.proyectofinalcompurochi.Clases.Usuario;
@@ -125,8 +126,8 @@ public class ActivityPerfil extends AppCompatActivity {
         ListView MiListViewCompartidosIda;
         MiListViewCompartidosIda=(ListView) findViewById(R.id.ListView_ViajesCompIda);
 
-        AdaptViajesUsu MiAdaptadorViajesCompartidosIda;
-        MiAdaptadorViajesCompartidosIda = new AdaptViajesUsu(ArrayViajesComp, this);
+        AdaptViajesComp MiAdaptadorViajesCompartidosIda;
+        MiAdaptadorViajesCompartidosIda = new AdaptViajesComp(ArrayViajesComp, this);
 
         MiListViewCompartidosIda.setAdapter(MiAdaptadorViajesCompartidosIda);
     }
@@ -136,8 +137,8 @@ public class ActivityPerfil extends AppCompatActivity {
         ListView MiListViewCompartidosVuelta;
         MiListViewCompartidosVuelta=(ListView) findViewById(R.id.ListView_ViajesCompVuelta);
 
-        AdaptViajesUsu MiAdaptadorViajesCompartidosVuelta;
-        MiAdaptadorViajesCompartidosVuelta = new AdaptViajesUsu(ArrayViajesComp, this);
+        AdaptViajesComp MiAdaptadorViajesCompartidosVuelta;
+        MiAdaptadorViajesCompartidosVuelta = new AdaptViajesComp(ArrayViajesComp, this);
 
         MiListViewCompartidosVuelta.setAdapter(MiAdaptadorViajesCompartidosVuelta);
     }
@@ -195,10 +196,10 @@ public class ActivityPerfil extends AppCompatActivity {
         new TraerViajesUsuarioVuelta().execute(UrlViajesUsuariosVuelta);
 
 
-        String UrlViajesCompIda = ""+ 1;
+        String UrlViajesCompIda = "http://transportdale.azurewebsites.net/api/viajesquecomparte/"+ DNI.toString()+ "/" +1;
         new TraigoViajesCompIda().execute(UrlViajesCompIda);
 
-        String UrlViajesCompVuelta = ""+0;
+        String UrlViajesCompVuelta = "http://transportdale.azurewebsites.net/api/viajesquecomparte/"+ DNI.toString()+ "/" +0;
         new TraigoViajesCompVuelta().execute(UrlViajesCompVuelta);
 
 
