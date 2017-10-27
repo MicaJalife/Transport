@@ -57,8 +57,9 @@ namespace ApiEjemplo.Data
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow row in dt.Rows)
-                {                    
-                    viaje = ViajesData.ObtenerViajexID(Convert.ToInt32(row));
+                {   
+                                   
+                    viaje = ViajesData.ObtenerViajexID(Convert.ToInt32(row[0]));
                     if (Convert.ToInt32(viaje.DesdeHasta)== IdaVuelta)
                     {
                         ListaComparte.Add(viaje);
