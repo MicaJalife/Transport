@@ -47,7 +47,7 @@ namespace ApiEjemplo.Data
             }
             
         }
-        public static List<Viajes> ViajesdelaPersona(int IdUsuario)
+       public static List<Viajes> ViajesdelaPersona(int IdUsuario, int IdaVuelta)
         {
             string select = "select IdViaje from viajescompartidos where IdUsuario=" + IdUsuario.ToString();
             DataTable dt = DBHelper.EjecutarSelect(select);
@@ -59,10 +59,15 @@ namespace ApiEjemplo.Data
                 foreach (DataRow row in dt.Rows)
                 {                    
                     viaje = ViajesData.ObtenerViajexID(Convert.ToInt32(row));
-                    ListaComparte.Add(viaje);
+                    if (Convert.ToInt32(viaje.DesdeHasta)== IdaVuelta)
+                    {
+                        ListaComparte.Add(viaje);
+                    }
+                   
                 }
                 return ListaComparte;
             }
+            return ListaComparte;
         }
 
         private static ViajesCompartidos ObtenerPorRow(DataRow row)

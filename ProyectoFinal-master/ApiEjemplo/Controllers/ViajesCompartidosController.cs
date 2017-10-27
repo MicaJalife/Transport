@@ -39,10 +39,10 @@ namespace ApiEjemplo.Controllers
 
         //GET : api/ViajesQueComparte
         [HttpGet]
-        [Route("api/viajesquecomparte/{IdUsuario}")]
-        public List<Viajes> ViajesQueComparte(int IdUsuario)
+        [Route("api/viajesquecomparte/{IdUsuario}/{IdaVuelta}")]
+        public List<Viajes> ViajesQueComparte(int IdUsuario, int IdaVuelta)
         {
-            return ViajesCompartidosData.ViajesdelaPersona(IdUsuario);
+            return ViajesCompartidosData.ViajesdelaPersona(IdUsuario, IdaVuelta);
         }
 
     }
