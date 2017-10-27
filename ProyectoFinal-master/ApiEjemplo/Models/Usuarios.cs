@@ -15,5 +15,7 @@ namespace ApiEjemplo.Models
         public string NombreImagen { get; set; }    
         public bool PrimeraEdicion { get; set; }
 
+        public string Telefono { get; set; }
+
     }
 }
