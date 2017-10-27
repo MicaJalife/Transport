@@ -19,12 +19,13 @@ namespace ApiEjemplo.Data
             u.Contrasenia = row.Field<string>("Contrasenia");
             u.NombreImagen = row.Field<string>("Imagen");
             u.PrimeraEdicion = row.Field<bool>("PrimeraEdicion");
+            u.Telefono = row.Field<string>("Telefono");
             return u;
         }
 
         public static Usuarios Login(int DNI, string Contrasenia)
         {
-            string select = "select DNI, Nombre, Anio, Curso, Contrasenia, Imagen, PrimeraEdicion from usuarios where DNI=" + DNI.ToString() + " and Contrasenia='" + Contrasenia+"'";
+            string select = "select DNI, Nombre, Anio, Curso, Contrasenia, Imagen, PrimeraEdicion, Telefono from usuarios where DNI=" + DNI.ToString() + " and Contrasenia='" + Contrasenia+"'";
             DataTable dt = DBHelper.EjecutarSelect(select);
             Usuarios uusuario;
             if (dt.Rows.Count > 0)
