@@ -55,6 +55,7 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
     String Curso;
     String Imagen;
     String EsViajeComp;
+    boolean ConfirmoDirec=false;
 
     String direccion;
     String dirEncontrada, coordenadas;
@@ -92,6 +93,7 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
 
         EditText EditDirecs;
         EditDirecs = (EditText) findViewById(R.id.EditDirecciones);
+        String Direccion = EditDirecs.getText().toString();
 
         Viaje ViajeGuardado = new Viaje();
 
@@ -109,18 +111,21 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
             //PONER BIEN LA URL CON Longitud Latitud Más adelante
 
 
-            if(spinnerDia.getSelectedItem()!=null && spinnerBloques.getSelectedItem()!=null)
+            if(spinnerDia.getSelectedItem()!=null && spinnerBloques.getSelectedItem()!=null && ConfirmoDirec==true)
             {
                 String dia = spinnerDia.getSelectedItem().toString();
                 String bloque = spinnerBloques.getSelectedItem().toString();
                 String transporte =spinnerTransporte.getSelectedItem().toString();
-                String Direccion = EditDirecs.toString();
+
+
+
 
                 Direcciones direcslnglatrecibida = new Direcciones();
-                direcslnglatrecibida= DevuelvoLatLngDireccion(Direccion);
 
-                ViajeGuardado.DireccionLatitud=direcslnglatrecibida.Latitud;
-                ViajeGuardado.DireccionLongitud=direcslnglatrecibida.Longitud;
+
+
+                ViajeGuardado.DireccionLatitud=""+lat+"";
+                ViajeGuardado.DireccionLongitud=""+lng+"";
 
                 ViajeGuardado.IdDia=funciones.TraerIdDia(dia);
                 ViajeGuardado.IdHorario=funciones.TraerIdHorario(bloque);
@@ -128,7 +133,7 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
 
                 if(spinnerTransporte.getSelectedItem()!=null)
                 {
-                    if(EsViajeComp=="SI"){
+                    if(EsViajeComp.equals("SI")){
                         //Traer todos los viajes que tengan lugar y devolver (Nombre, Direccion, Horario, Dia, Transporte, IdViaje)
                         String UrlViajesCompFiltrados = "http://transportdale.azurewebsites.net/api/viajes/cercanosdiahorariotrans/"+ ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
                         new TraerViajesCommpFiltrados().execute(UrlViajesCompFiltrados);
@@ -141,7 +146,7 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
 
                 }
                 else{
-                    if(EsViajeComp=="SI"){
+                    if(EsViajeComp.equals("SI")){
                         //Traer todos los viajes que tengan lugar y devolver (Nombre, Direccion, Horario, Dia, Transporte, IdViaje)
                         String UrlViajesCompFiltrados = "http://transportdale.azurewebsites.net/api/viajes/cercanosdiahorariotrans/"+ ViajeGuardado.DireccionLatitud + "/"+ViajeGuardado.DireccionLongitud+"/"+ ViajeGuardado.IdDia+"/"+ViajeGuardado.IdHorario+"/"+ViajeGuardado.DesdeHasta+ "/" + ViajeGuardado.IdTransporte + "/"+DNI;
                         new TraerViajesCommpFiltrados().execute(UrlViajesCompFiltrados);
@@ -156,7 +161,7 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
             }
             else
             {
-                Cartelito = Toast.makeText(this, "Debe elegir el día y el horario", Toast.LENGTH_SHORT);
+                Cartelito = Toast.makeText(this, "Debe elegir el día y el horario y confirmar la direccion", Toast.LENGTH_SHORT);
                 Cartelito.show();
             }
 
@@ -211,6 +216,21 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
 
 
     }
+
+    public void ConfirmarDirec(View v)
+    {
+        EditText EditDirecs;
+        EditDirecs = (EditText) findViewById(R.id.EditDirecciones);
+        String Direccion = EditDirecs.getText().toString();
+
+        if (!Direccion.isEmpty()) {
+            new GeolocalizacionTask().execute(Direccion);  // Llamo a clase async con url
+            ConfirmoDirec=true;
+        }
+
+
+    }
+
 
 
     public Direcciones DevuelvoLatLngDireccion(String DireccionABuscar)
@@ -398,12 +418,9 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
 
     }
 
-    public void consultarDireccion(View v)
+    public void consultarDireccion()
     {
-        String dirStr = direccion;
-        if (!dirStr.isEmpty()) {
-            new GeolocalizacionTask().execute(dirStr);  // Llamo a clase async con url
-        }
+
     }
 
 

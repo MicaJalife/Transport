@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.content.Context;
 
 import android.os.Parcelable;
 
@@ -37,6 +38,7 @@ public class ActivityIngreso extends AppCompatActivity {
     String Curso;
     String Contraseña;
     String Imagen;
+    String Telefono="";
     boolean PrimeraEdicion;
     Toast Cartelito;
     Usuario miUsuario = new Usuario();
@@ -76,6 +78,12 @@ public class ActivityIngreso extends AppCompatActivity {
 
     }
 
+    /*private String getPhoneNumber(){
+        TelephonyManager mTelephonyManager;
+        mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        return mTelephonyManager.getLine1Number();
+    }*/
+
 
     private static boolean isNumeric(String cadena){
         try {
@@ -102,6 +110,63 @@ public class ActivityIngreso extends AppCompatActivity {
         traerUsuario= new TraerUsuario();
     }
 
+    private class InsertarTelefono extends AsyncTask<String, Void, Usuario> {
+
+
+        protected void onPostExecute(Usuario datos) {
+            super.onPostExecute(datos);
+            Log.d("Devuelve datos", "ppppp");
+
+
+        }
+
+        @Override
+        protected Usuario doInBackground(String... parametros) {
+            String url = parametros[0];
+            Log.d("usuario", url);
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Log.d("vuelve desp del build", "ppppp");
+
+            try {
+                Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
+                String resultado = response.body().string();
+
+                Log.d("usuario", resultado);
+                try {
+                    JSONObject jsonUsuario = new JSONObject(resultado);
+                    Log.d("crea un nuevo json", "ppppp");
+
+                    Usuario u = new Usuario();
+                    Log.d("declara usuario", "ppppp");
+
+                    u.DNI = jsonUsuario.getInt("DNI");
+                    u.Nombre = jsonUsuario.getString("Nombre");
+                    u.Año = jsonUsuario.getString("Anio");
+                    u.Curso = jsonUsuario.getString("Curso");
+                    u.Imagen = jsonUsuario.getString("NombreImagen");
+                    u.PrimeraEdicion = jsonUsuario.getBoolean("PrimeraEdicion");
+                    Log.d("usuario", "el usuario completo" + u.toString());
+                    return u;
+
+                }catch (JSONException e){
+                    Log.d("Error JSON", e.getMessage());
+                    Log.d("error en el json", "ppppp");
+
+                    return null;
+                }
+            } catch (IOException e) {
+                Log.d("Error",e.getMessage());             // Error de Network
+                Log.d("error de network" + e.getMessage(), "ppppp");
+
+                return null;
+            }
+
+        }
+    }
+
 
 
     private class TraerUsuario extends AsyncTask<String, Void, Usuario> {
@@ -115,8 +180,18 @@ public class ActivityIngreso extends AppCompatActivity {
                 ExisteElUsuario = true;
                 miUsuario = datos;
 
+                //Telefono = getPhoneNumber();
+
+
+
+
                 if (ExisteElUsuario == true) {
-                   // if(miUsuario.Telefono==)
+                    if (miUsuario.Telefono != Telefono)
+                    {
+                        //Poner bien la URL
+                        String UrlInsertarTelefono = "http://transportdale.azurewebsites.net/api/viajes/validacion1/" + miUsuario.DNI + "/" + Telefono;
+                        new InsertarTelefono().execute(UrlInsertarTelefono);
+                    }
                     DNI = miUsuario.DNI;
                     Nombre = miUsuario.Nombre;
                     Año = miUsuario.Año;
