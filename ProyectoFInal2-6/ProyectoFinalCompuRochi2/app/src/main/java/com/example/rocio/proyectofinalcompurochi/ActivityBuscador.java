@@ -550,7 +550,19 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
             if (datos != null) {
 
                 ArrayViajes = datos;
-                LlamarListViewsViajesComp();
+                //LlamarListViewsViajesComp();
+
+                for (int i = 0; i < datos.size(); i++){
+                    Viaje ViajeCompartido;
+                    ViajeCompartido = new Viaje();
+
+                    ViajeCompartido= datos.get(i);
+
+
+
+                }
+
+
             }
             else {
                 MostrarCartelitos();
@@ -619,7 +631,37 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
             if (datos != null) {
 
                 ArrayViajes = datos;
-                LlamarListViewsViajesComp();
+                //LlamarListViewsViajesComp();
+
+                for (int i = 0; i < ArrayViajes.size(); i++){
+                    Viaje ViajeCompartido;
+                    ViajeCompartido = new Viaje();
+
+                    ViajeCompartido= ArrayViajes.get(i);
+
+                    Double latitud =Double.parseDouble(ViajeCompartido.DireccionLatitud) ;
+                    Double longitud =Double.parseDouble(ViajeCompartido.DireccionLongitud);
+                    String Direccionn= ViajeCompartido.Direccion;
+
+
+                    //Ubico la direccion en el mapa
+
+                    if (map != null)
+                    {
+                        CameraUpdate center =
+                                CameraUpdateFactory.newLatLng(new LatLng(lat, lng));
+                        CameraUpdate zoom = CameraUpdateFactory.zoomTo(10);
+                        map.moveCamera(center);
+                        map.animateCamera(zoom);   // Posiciono la camara en las coordenadas recibidas
+
+                        map.addMarker(new MarkerOptions()
+                             .position(new LatLng(latitud, longitud)));  // Dibujo el marker
+                    }
+
+                }
+
+
+
             }
             else {
                 MostrarCartelitos();

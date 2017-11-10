@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -78,11 +79,18 @@ public class ActivityIngreso extends AppCompatActivity {
 
     }
 
-    /*private String getPhoneNumber(){
+    private String getPhoneNumber(){
+        String strReturnValue = "";
         TelephonyManager mTelephonyManager;
+
         mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        return mTelephonyManager.getLine1Number();
-    }*/
+        if (mTelephonyManager !=null){
+            strReturnValue = mTelephonyManager.getLine1Number();
+        }else{
+            strReturnValue  = mTelephonyManager.getSimSerialNumber();
+        }
+        return strReturnValue;
+    }
 
 
     private static boolean isNumeric(String cadena){
@@ -180,7 +188,7 @@ public class ActivityIngreso extends AppCompatActivity {
                 ExisteElUsuario = true;
                 miUsuario = datos;
 
-                //Telefono = getPhoneNumber();
+                Telefono = getPhoneNumber();
 
 
 
@@ -263,6 +271,7 @@ public class ActivityIngreso extends AppCompatActivity {
                     u.Curso = jsonUsuario.getString("Curso");
                     u.Imagen = jsonUsuario.getString("NombreImagen");
                     u.PrimeraEdicion = jsonUsuario.getBoolean("PrimeraEdicion");
+                    u.Telefono=jsonUsuario.getString("Telefono");
                     Log.d("usuario", "el usuario completo" + u.toString());
                     return u;
 

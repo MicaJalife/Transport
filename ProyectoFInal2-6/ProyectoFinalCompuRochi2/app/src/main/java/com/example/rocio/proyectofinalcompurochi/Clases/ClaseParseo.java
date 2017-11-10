@@ -59,9 +59,21 @@ public class ClaseParseo {
             miviaje.Transporte = json.getJSONObject("transporte").getString("TipoTransporte");
             miviaje.Dia = json.getJSONObject("dia").getString("Dia");
             miviaje.CantPasajeros = json.getInt("Cantidad");
-            miviaje.Direccion = json.getJSONObject("viaje").getString("Direccion");
-            miviaje.Nombre = json.getJSONObject("viaje").getString("Nombre");
-            miviaje.DesdeHasta = json.getInt("DesdeHasta");
+            miviaje.Direccion = json.getString("Direccion");
+            miviaje.DireccionLongitud = json.getString("DireccionLongitud");
+            miviaje.DireccionLatitud = json.getString("DireccionLatitud");
+            miviaje.Nombre = json.getJSONObject("usuario").getString("Nombre");
+
+            boolean DesdeHas = json.getBoolean("DesdeHasta");
+            if(DesdeHas== true)
+            {
+                miviaje.DesdeHasta = 1;
+            }
+            else{
+                miviaje.DesdeHasta=0;
+            }
+
+
         }
         catch(JSONException e)
         {
