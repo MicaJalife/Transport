@@ -82,8 +82,8 @@ public class AdaptadorParaViajesComp extends BaseAdapter implements View.OnClick
         Transporte = (TextView) VistaADevolver.findViewById(R.id.Transportetxt);
         TextView DesdeHasta;
         DesdeHasta = (TextView) VistaADevolver.findViewById(R.id.DesdeHastatxt);
-        TextView Id;
-        Id = (TextView) VistaADevolver.findViewById(R.id.Idtxt);
+        TextView TxtId;
+        TxtId = (TextView) VistaADevolver.findViewById(R.id.Idtxt);
 
 
        /* Button BotonSumarse;
@@ -105,15 +105,15 @@ public class AdaptadorParaViajesComp extends BaseAdapter implements View.OnClick
         String dia = ViajeDeLaPosicionActual.Dia;
         String transporte = ViajeDeLaPosicionActual.Transporte;
         int DesHast = ViajeDeLaPosicionActual.DesdeHasta;
-        int id = ViajeDeLaPosicionActual.IdViaje;
-        Log.d("MICA", "getView: " + nombre+  " :  "+ direc +  " "+ hora+  " :  "+ dia+  " :  "+ transporte+  " :  "+ id+  " :  ");
+        int idd = ViajeDeLaPosicionActual.IdViaje;
+        Log.d("MICA", "getView: " + nombre+  " :  "+ direc +  " "+ hora+  " :  "+ dia+  " :  "+ transporte+  " :  "+ idd+  " :  ");
         //Se va a romper aca
         Nombree.setText(ViajeDeLaPosicionActual.Nombre);
         Direc.setText(ViajeDeLaPosicionActual.Direccion);
         Hora.setText(ViajeDeLaPosicionActual.Horario);
         Dia.setText(ViajeDeLaPosicionActual.Dia);
         Transporte.setText(ViajeDeLaPosicionActual.Transporte);
-        Id.setText(ViajeDeLaPosicionActual.IdViaje);
+        //TxtId.setText(idd);
         if (DesHast == 1)
         {
             DesdeHasta.setText("Va hasta ort");

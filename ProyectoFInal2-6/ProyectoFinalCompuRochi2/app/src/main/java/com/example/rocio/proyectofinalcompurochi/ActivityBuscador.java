@@ -298,14 +298,6 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
                     new SumarmeAUnViaje().execute(UrlSumarme);
 
                 }
-                if (viewId == R.id.BotonVerRecorrido)
-                {
-                    Viaje viajecito = new Viaje();
-                    viajecito= ArrayViajes.get(position);//HAY QUE VER SI ANDAAA
-
-                    direccion=viajecito.Direccion;
-
-                }
 
             }
         });
@@ -550,7 +542,7 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
             if (datos != null) {
 
                 ArrayViajes = datos;
-                //LlamarListViewsViajesComp();
+                LlamarListViewsViajesComp();
 
                 for (int i = 0; i < datos.size(); i++){
                     Viaje ViajeCompartido;
@@ -631,7 +623,7 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
             if (datos != null) {
 
                 ArrayViajes = datos;
-                //LlamarListViewsViajesComp();
+                LlamarListViewsViajesComp();
 
                 for (int i = 0; i < ArrayViajes.size(); i++){
                     Viaje ViajeCompartido;
