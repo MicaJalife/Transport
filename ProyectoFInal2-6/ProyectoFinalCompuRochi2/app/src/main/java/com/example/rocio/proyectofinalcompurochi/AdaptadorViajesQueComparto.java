@@ -55,12 +55,19 @@ public class AdaptadorViajesQueComparto extends BaseAdapter {
 
         LayoutInflater InfladorDeLayouts;
         InfladorDeLayouts=(LayoutInflater) MiContexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        VistaADevolver=InfladorDeLayouts.inflate(R.layout.listview_viajes_detalle_elementos, GrupoActual, false);
+        VistaADevolver=InfladorDeLayouts.inflate(R.layout.listview_viajesusuarios_detalle_elementos, GrupoActual, false);
 
-        TextView Nombree;
-        Nombree = (TextView) VistaADevolver.findViewById(R.id.Nombretxt);
-        ImageView Imagen;
-        Imagen = (ImageView) VistaADevolver.findViewById(R.id.Fototxt);
+
+        TextView Diaa;
+        Diaa = (TextView) VistaADevolver.findViewById(R.id.TextViewDia);
+        TextView Horaa;
+        Horaa = (TextView) VistaADevolver.findViewById(R.id.TextViewHora);
+        TextView Direcc;
+        Direcc = (TextView) VistaADevolver.findViewById(R.id.TextViewDirec);
+        TextView Transpp;
+        Transpp = (TextView) VistaADevolver.findViewById(R.id.TextViewTransporte);
+
+
         //Button BotonSumarse;
         //BotonSumarse =(Button)VistaADevolver.findViewById(R.id.imagenamigo);
 
@@ -68,11 +75,15 @@ public class AdaptadorViajesQueComparto extends BaseAdapter {
         ViajeDeLaPosicionActual = getItem(PosicionActual);
 
 
-        String nombre = ViajeDeLaPosicionActual.Nombre;
-        String direc = ViajeDeLaPosicionActual.Direccion;
-        Log.d("MICA", "getView: " + nombre+  " :  "+ direc +  "");
-        //Se va a romper aca
-        Nombree.setText(ViajeDeLaPosicionActual.Nombre);
+        String Dia = ViajeDeLaPosicionActual.Dia;
+        String Hora = ViajeDeLaPosicionActual.Horario;
+        String Direc = ViajeDeLaPosicionActual.Direccion;
+        String Transp = ViajeDeLaPosicionActual.Transporte;
+
+        Diaa.setText(Dia);
+        Horaa.setText(Hora);
+        Direcc.setText(Direc);
+        Transpp.setText(Transp);
 
         return VistaADevolver;
     }

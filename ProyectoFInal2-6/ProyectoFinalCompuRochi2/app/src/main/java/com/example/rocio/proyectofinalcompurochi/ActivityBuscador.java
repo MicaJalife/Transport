@@ -214,6 +214,18 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
     public void BotonChats(View Vista)
     {
 
+        Bundle EnvioDatos;
+        EnvioDatos = new Bundle();
+        EnvioDatos.putInt("DNI", DNI);
+        EnvioDatos.putString("Nombre", Nombre);
+        EnvioDatos.putString("Año", Año);
+        EnvioDatos.putString("Curso", Curso);
+        EnvioDatos.putString("Imagen", Imagen);
+        Intent LlamadaActivityPrimeraEdicion;
+        LlamadaActivityPrimeraEdicion = new Intent(getApplicationContext(), ActivityPrimeraEdicion.class);
+        LlamadaActivityPrimeraEdicion.putExtras(EnvioDatos);
+        startActivity(LlamadaActivityPrimeraEdicion);
+        overridePendingTransition(R.anim.left_in, R.anim.left_out);
 
     }
 
@@ -276,38 +288,36 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
         ListView MiListViewViajesComp;
         MiListViewViajesComp = (ListView)findViewById(R.id.ListView_Viajes);
 
-        //list = (ListView) findViewById(R.id.lv_productos);
-
-        //configura listener.
-        MiListViewViajesComp.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-                //Object listItem = list.getItemAtPosition(position);
-                //Toast.makeText(getAplicationContext, "Click en la posición "  + position, Toast.LENGTH_SHORT).show();
-                long viewId = view.getId();
-
-                if (viewId == R.id.BotonSumarsee)
-                {
-                    Viaje viajecito = new Viaje();
-                    viajecito= ArrayViajes.get(position);//HAY QUE VER SI ANDAAA
-
-                    String UrlSumarme = "http://transportdale.azurewebsites.net/api/viajescompartidos/compartirelviaje/" + viajecito.IdViaje + "/"+ DNI;
-                    Log.d("Manda url", "ppppp");
-                    new SumarmeAUnViaje().execute(UrlSumarme);
-
-                }
-
-            }
-        });
-
         Log.d("MICA", "LlamarListViews " + ArrayViajes.size() + "");
 
         AdaptadorParaViajesComp MiAdaptadorDeViajesComp;
         MiAdaptadorDeViajesComp = new AdaptadorParaViajesComp(ArrayViajes, this);
 
         MiListViewViajesComp.setAdapter(MiAdaptadorDeViajesComp);
+
+        MiListViewViajesComp.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int Pos = position;
+
+                Viaje viajeciito = new Viaje();
+
+                viajeciito= ArrayViajes.get(Pos);
+
+                String UrlSumarme = "http://transportdale.azurewebsites.net/api/viajescompartidos/compartirelviaje/" + viajeciito.IdViaje + "/"+ DNI;
+                Log.d("Manda url", "ppppp");
+                new SumarmeAUnViaje().execute(UrlSumarme);
+
+                CartelitoSumarse();
+            }
+        });
+
+
+    }
+    public void CartelitoSumarse()
+    {
+        Cartelito = Toast.makeText(this, "Se pudo sumar correctamente", Toast.LENGTH_SHORT);
+        Cartelito.show();
 
     }
 
@@ -478,8 +488,60 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
 
     }
 
+    private class SumarmeAUnViaje extends AsyncTask<String, Void, Viaje> {
+        protected void onPostExecute(Viaje datos) {
+            super.onPostExecute(datos);
+            Log.d("Devuelve datos", "ppppp");
+        }
 
-    private class SumarmeAUnViaje extends AsyncTask<String, Void,  Viaje> {
+        @Override
+        protected Viaje doInBackground(String... parametros) {
+            String url = parametros[0];
+            Log.d("entro al doinbackground", "ppppp");
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Log.d("vuelve desp del build", "ppppp");
+
+            try {
+                Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
+                String resultado = response.body().string();
+
+                Log.d("trae el resultado", "ppppp");
+
+                   try {
+
+                       JSONObject JsonViaje = new JSONObject(resultado);
+                       Log.d("crea un nuevo json", "ppppp");
+
+                       Viaje ViajeCompartido;
+                       ViajeCompartido = new Viaje();
+
+
+                       ViajeCompartido = parseo.ParseoViajesComp(JsonViaje);
+
+
+                       return ViajeCompartido;
+
+                }catch (JSONException e){
+                    Log.d("Error JSON", e.getMessage());
+                    Log.d("error en el json", "ppppp");
+
+                    return null;
+                }
+            } catch (IOException e) {
+                Log.d("Error",e.getMessage());             // Error de Network
+                Log.d("error de network" + e.getMessage(), "ppppp");
+
+                return null;
+            }
+
+        }
+    }
+
+
+    private class SumarmeAUnViajeee extends AsyncTask<String, Void,  Viaje> {
         public final MediaType JSON
                 = MediaType.parse("application/json; charset=utf-8");
 
@@ -531,6 +593,7 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
             }
         }
     }
+
 
     private class TraerViajesCompDisp extends AsyncTask<String, Void, ArrayList<Viaje>> {
 

@@ -22,7 +22,7 @@ import java.util.ArrayList;
  * Created by Rocio on 10/8/2017.
  */
 
-public class AdaptadorParaViajes extends BaseAdapter {
+public class  AdaptadorParaViajes extends BaseAdapter {
 
     private ArrayList<Viaje> MiListaViajes;
     private Context MiContexto;

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,12 +20,13 @@ import java.util.ArrayList;
  * Created by Rocio on 16/10/2017.
  */
 
-public class AdaptadorParaViajesComp extends BaseAdapter implements View.OnClickListener{
+public class AdaptadorParaViajesComp extends BaseAdapter {
 
     private ArrayList<Viaje> MiListaViajes;
     private Context MiContexto;
     View VistaADevolver;
 
+    ActivityBuscador ActividadAnfitriona;
 
 
     public AdaptadorParaViajesComp (ArrayList<Viaje> ListaDeViajes, Context ContextoAUsar)
@@ -34,13 +36,6 @@ public class AdaptadorParaViajesComp extends BaseAdapter implements View.OnClick
         MiContexto=ContextoAUsar;
     }
 
-    @Override
-    public  void onClick(View v){
-        if (v.getId()== VistaADevolver.findViewById(R.id.BotonSumarsee).getId())
-        {
-            //Aca deberia traer el id del viaje del txtid
-        }
-    }
 
     public int getCount()
     {
@@ -86,11 +81,8 @@ public class AdaptadorParaViajesComp extends BaseAdapter implements View.OnClick
         TxtId = (TextView) VistaADevolver.findViewById(R.id.Idtxt);
 
 
-       /* Button BotonSumarse;
-        BotonSumarse =(Button)VistaADevolver.findViewById(R.id.BotonSumarsee);
-        BotonSumarse.setOnClickListener(this);
 
-        Button BotonVer;
+        /*Button BotonVer;
         BotonVer =(Button)VistaADevolver.findViewById(R.id.BotonVerRecorrido);
         BotonVer.setOnClickListener(this);*/
 
@@ -113,7 +105,7 @@ public class AdaptadorParaViajesComp extends BaseAdapter implements View.OnClick
         Hora.setText(ViajeDeLaPosicionActual.Horario);
         Dia.setText(ViajeDeLaPosicionActual.Dia);
         Transporte.setText(ViajeDeLaPosicionActual.Transporte);
-        //TxtId.setText(idd);
+        TxtId.setText(idd+"");
         if (DesHast == 1)
         {
             DesdeHasta.setText("Va hasta ort");
@@ -127,6 +119,8 @@ public class AdaptadorParaViajesComp extends BaseAdapter implements View.OnClick
         return VistaADevolver;
 
     }
+
+
 
 
 }

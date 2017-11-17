@@ -454,14 +454,14 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
         Usuario usuarioActual = ManejoUsuarios.getUsuario();
 
-        TextView Nombre;
-        Nombre = (TextView) findViewById(R.id.txtnombreyapellido);
+        TextView Nombree;
+        Nombree = (TextView) findViewById(R.id.txtnombreyapellido);
 
-        TextView Anio;
-        Anio = (TextView) findViewById(R.id.txtaño);
+        TextView Anioo;
+        Anioo = (TextView) findViewById(R.id.txtaño);
 
-        TextView Curso;
-        Curso = (TextView) findViewById(R.id.txtcurso);
+        TextView Cursoo;
+        Cursoo = (TextView) findViewById(R.id.txtcurso);
 
         ImageView Imagen;
         Imagen = (ImageView) findViewById(R.id.fotoperfil);
@@ -469,16 +469,20 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
         Bundle  ReciboUsuario;
         ReciboUsuario = this.getIntent().getExtras();
         DNI = ReciboUsuario.getInt("DNI");
-        Nombre.setText(ReciboUsuario.getString("Nombre"));
-        Anio.setText(ReciboUsuario.getString("Año"));
-        Curso.setText(ReciboUsuario.getString("Curso"));
+        Nombre=ReciboUsuario.getString("Nombre");
+        Año=ReciboUsuario.getString("Año");
+        Curso=ReciboUsuario.getString("Curso");
         String NombreImagenn = ReciboUsuario.getString("Imagen");
 
+        Nombree.setText(Nombre);
+        Anioo.setText(Año);
+        Cursoo.setText(Curso);
+
         Context context = Imagen.getContext();
-        int id = context.getResources().getIdentifier(NombreImagenn, "drawable", context.getPackageName());
+        /*int id = context.getResources().getIdentifier(NombreImagenn, "drawable", context.getPackageName());
         Imagen.setImageResource(id);
 
-        /* LA IMAGENNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNtodo esto no esta bien
+         LA IMAGENNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNtodo esto no esta bien
         CodigoImagenRojo= getResources().getDrawable(R.drawable.rojo).getConstantState();
         Drawable codigoimagen;
         codigoimagen=getResources().getDrawable(int, NombreImagenn).getConstantState();

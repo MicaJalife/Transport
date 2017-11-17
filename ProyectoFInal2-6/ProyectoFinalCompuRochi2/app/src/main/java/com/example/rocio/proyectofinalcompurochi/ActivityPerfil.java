@@ -95,30 +95,41 @@ public class ActivityPerfil extends AppCompatActivity {
     }
     public void BotonChats(View Vista)
     {
-
+        Bundle EnvioDatos;
+        EnvioDatos = new Bundle();
+        EnvioDatos.putInt("DNI", DNI);
+        EnvioDatos.putString("Nombre", Nombre);
+        EnvioDatos.putString("Año", Año);
+        EnvioDatos.putString("Curso", Curso);
+        EnvioDatos.putString("Imagen", Imagen);
+        Intent LlamadaActivityPrimeraEdicion;
+        LlamadaActivityPrimeraEdicion = new Intent(getApplicationContext(), ActivityPrimeraEdicion.class);
+        LlamadaActivityPrimeraEdicion.putExtras(EnvioDatos);
+        startActivity(LlamadaActivityPrimeraEdicion);
+        overridePendingTransition(R.anim.left_in, R.anim.left_out);
 
     }
 
     public void LlamarListViewsViajesUsuariosIda()
     {
-        ListView MiListViewViajesIda;
-        MiListViewViajesIda=(ListView) findViewById(R.id.ListView_ViajesUsuarioIda);
+        ListView ListViewMisViajesIda;
+        ListViewMisViajesIda=(ListView) findViewById(R.id.ListView_ViajesUsuarioIda);
 
-        AdaptViajesUsu MiAdaptadorViajesUsuariosIda;
-        MiAdaptadorViajesUsuariosIda = new AdaptViajesUsu(ArrayViajesUsuario, this);
+        AdaptadorViajesQueComparto MiAdaptadorViajesUsuariosIda;
+        MiAdaptadorViajesUsuariosIda = new AdaptadorViajesQueComparto(ArrayViajesUsuario, this);
 
-        MiListViewViajesIda.setAdapter(MiAdaptadorViajesUsuariosIda);
+        ListViewMisViajesIda.setAdapter(MiAdaptadorViajesUsuariosIda);
     }
 
     public void LlamarListViewsViajesUsuariosVuelta()
     {
-        ListView MiListViewViajesVuelta;
-        MiListViewViajesVuelta=(ListView) findViewById(R.id.ListView_ViajesUsuarioVuelta);
+        ListView ListViewMisViajesVuelta;
+        ListViewMisViajesVuelta=(ListView) findViewById(R.id.ListView_ViajesUsuarioVuelta);
 
-        AdaptViajesUsu MiAdaptadorViajesUsuariosVuelta;
-        MiAdaptadorViajesUsuariosVuelta = new AdaptViajesUsu(ArrayViajesUsuario, this);
+        AdaptadorViajesQueComparto MiAdaptadorViajesUsuariosVuelta;
+        MiAdaptadorViajesUsuariosVuelta = new AdaptadorViajesQueComparto(ArrayViajesUsuario, this);
 
-        MiListViewViajesVuelta.setAdapter(MiAdaptadorViajesUsuariosVuelta);
+        ListViewMisViajesVuelta.setAdapter(MiAdaptadorViajesUsuariosVuelta);
     }
 
     public void LlamarListViewsViajesCompIda()
@@ -126,8 +137,8 @@ public class ActivityPerfil extends AppCompatActivity {
         ListView MiListViewCompartidosIda;
         MiListViewCompartidosIda=(ListView) findViewById(R.id.ListView_ViajesCompIda);
 
-        AdaptViajesComp MiAdaptadorViajesCompartidosIda;
-        MiAdaptadorViajesCompartidosIda = new AdaptViajesComp(ArrayViajesComp, this);
+        AdaptadorViajesUsuComp MiAdaptadorViajesCompartidosIda;
+        MiAdaptadorViajesCompartidosIda = new AdaptadorViajesUsuComp(ArrayViajesComp, this);
 
         MiListViewCompartidosIda.setAdapter(MiAdaptadorViajesCompartidosIda);
     }
@@ -137,8 +148,8 @@ public class ActivityPerfil extends AppCompatActivity {
         ListView MiListViewCompartidosVuelta;
         MiListViewCompartidosVuelta=(ListView) findViewById(R.id.ListView_ViajesCompVuelta);
 
-        AdaptViajesComp MiAdaptadorViajesCompartidosVuelta;
-        MiAdaptadorViajesCompartidosVuelta = new AdaptViajesComp(ArrayViajesComp, this);
+        AdaptadorViajesUsuComp MiAdaptadorViajesCompartidosVuelta;
+        MiAdaptadorViajesCompartidosVuelta = new AdaptadorViajesUsuComp(ArrayViajesComp, this);
 
         MiListViewCompartidosVuelta.setAdapter(MiAdaptadorViajesCompartidosVuelta);
     }
@@ -200,7 +211,7 @@ public class ActivityPerfil extends AppCompatActivity {
         new TraigoViajesCompIda().execute(UrlViajesCompIda);
 
         String UrlViajesCompVuelta = "http://transportdale.azurewebsites.net/api/viajesquecomparte/"+ DNI.toString()+ "/" +0;
-        new TraigoViajesCompVuelta().execute(UrlViajesCompVuelta);
+       new TraigoViajesCompVuelta().execute(UrlViajesCompVuelta);
 
 
     }
@@ -467,6 +478,8 @@ public class ActivityPerfil extends AppCompatActivity {
 
         }
     }
+
+
 
     private class TraerViaje extends AsyncTask<String, Void, Viaje>
     {

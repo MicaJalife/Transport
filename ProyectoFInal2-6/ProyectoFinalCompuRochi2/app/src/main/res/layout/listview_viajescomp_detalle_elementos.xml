@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="30dp">
+            android:layout_marginLeft="8dp">
 
             <TextView
                 android:id="@+id/Horatxt"
@@ -91,18 +91,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:background="#3F51B5"
-                android:onClick="BotonSumarse"
-                android:id="@+id/BotonSumarsee"
-                android:textColor="#000000"
-                android:textSize="10dp"
-                android:text="Sumarse" />
 
             <TextView
                 android:id="@+id/Idtxt"
