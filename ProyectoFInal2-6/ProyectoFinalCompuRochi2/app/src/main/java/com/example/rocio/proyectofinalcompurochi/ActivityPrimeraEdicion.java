@@ -88,6 +88,9 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
     Viaje miViaje = new Viaje();
 
     public void BotonAgregarDireccion(View Vista) {
+
+        try{
+
         RadioButton RadioIda;
         RadioIda = (RadioButton) findViewById(R.id.RadioButtonIda);
 
@@ -178,6 +181,12 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
                 }
             }
 
+        }
+        }catch(Exception e) {
+            Log.d("Error",e.getMessage());             // Error de Network
+            Log.d("error " + e.getMessage(), "ppppp");
+            Cartelito = Toast.makeText(this, "Error "+ e.getMessage(), Toast.LENGTH_SHORT);
+            Cartelito.show();
         }
     }
 

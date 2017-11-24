@@ -12,8 +12,10 @@ namespace ApiEjemplo.Data
         public static void InsertarViaje(ViajesCompartidos viajecompartido)
         {
             string unirse;
+            string mismapersona;
             unirse = SePuedeUnir(viajecompartido.IdViaje);
-            if (unirse == "SI")
+            mismapersona = EsLaMismaPersona(viajecompartido.IdViaje, viajecompartido.IdUsuario);
+            if (unirse == "SI" && mismapersona== "NO")
             {
                 //string sInsert = "INSERT into viajescompartidos (IdViaje, IdUsuario) values ('" + viaje.DNI.ToString() + "','" + viaje.IdHorario.ToString() + "','" + viaje.IdTransporte.ToString() + "','" +viaje.DesdeHasta.ToString() + "','" + viaje.DetalleTransporte + "','" + viaje.DireccionLatitud + "','"  +viaje.DireccionLongitud +"')";
                 string strSQL = string.Format("INSERT into viajescompartidos (IdViaje, IdUsuario) values ({0}, {1});",
@@ -22,8 +24,9 @@ namespace ApiEjemplo.Data
                    );
                 DBHelper.EjecutarIUD(strSQL);
             }
-        }
+        }   
 
+    
         public static string SePuedeUnir(int IdViaje)
         {
             string select = "select * from viajescompartidos where IdViaje=" + IdViaje.ToString();
@@ -50,6 +53,32 @@ namespace ApiEjemplo.Data
             {
                 return "SI";
             }
+            
+        }
+
+        public static string EsLaMismaPersona (int IdViaje, int IdUsuario)
+        {
+            string select = "select * from viajescompartidos where IdViaje=" + IdViaje.ToString();
+            string MismaPersona= "NO";
+            
+            DataTable dt = DBHelper.EjecutarSelect(select);
+            ViajesCompartidos viajescomparten;
+            Viajes viaje;
+            viaje = ViajesData.ObtenerViajexID(IdViaje);
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    viajescomparten = ObtenerPorRow(row);
+                    if (viajescomparten.IdUsuario == IdUsuario)
+                    {
+                        MismaPersona = "SI";
+                    }              
+                    
+                }
+            }
+
+            return MismaPersona;
             
         }
        public static List<Viajes> ViajesdelaPersona(int IdUsuario, int IdaVuelta)
