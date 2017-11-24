@@ -36,7 +36,7 @@ namespace ApiEjemplo.Data
             }
             int compartiendo = ListaCompartenMismoViaje.Count;
             viaje = ViajesData.ObtenerViajexID(IdViaje);
-            int calculando = viaje.Cantidad - compartiendo;
+            int calculando = viaje.CantPasajeros - compartiendo;
             if (calculando <= 0)
             {
                 return "NO";

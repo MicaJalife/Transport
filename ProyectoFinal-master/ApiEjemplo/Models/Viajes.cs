@@ -12,7 +12,7 @@ namespace ApiEjemplo.Models
 
         public int IdHorario { get; set; }
         public int IdTransporte{ get; set; }
-        public int Cantidad { get; set; }
+        public int CantPasajeros { get; set; }
         
         public int IdDia { get; set; }
 

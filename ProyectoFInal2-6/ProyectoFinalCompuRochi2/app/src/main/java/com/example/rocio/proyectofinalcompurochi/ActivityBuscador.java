@@ -23,6 +23,7 @@ import com.example.rocio.proyectofinalcompurochi.Clases.ClaseParseo;
 import com.example.rocio.proyectofinalcompurochi.Clases.Direcciones;
 import com.example.rocio.proyectofinalcompurochi.Clases.Usuario;
 import com.example.rocio.proyectofinalcompurochi.Clases.Viaje;
+import com.example.rocio.proyectofinalcompurochi.Clases.ViajeCompartido;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,6 +31,8 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -304,9 +307,17 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
 
                 viajeciito= ArrayViajes.get(Pos);
 
-                String UrlSumarme = "http://transportdale.azurewebsites.net/api/viajescompartidos/compartirelviaje/" + viajeciito.IdViaje + "/"+ DNI;
+                ViajeCompartido viajesumo = new ViajeCompartido();
+                viajesumo.IdViaje=viajeciito.IdViaje;
+                viajesumo.IdUsuario= DNI;
+
+                GsonBuilder builder = new GsonBuilder();
+                Gson gson = builder.create();
+                System.out.println(gson.toJson(viajesumo));
+
+                String UrlSumarme = "http://transportdale.azurewebsites.net/api/viajescompartidos/compartirelviaje/" + viajesumo;
                 Log.d("Manda url", "ppppp");
-                new SumarmeAUnViaje().execute(UrlSumarme);
+                new SumarmeAUnViaje().execute("POST",UrlSumarme, gson.toJson(viajesumo));
 
                 CartelitoSumarse();
             }
@@ -488,55 +499,56 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
 
     }
 
-    private class SumarmeAUnViaje extends AsyncTask<String, Void, Viaje> {
-        protected void onPostExecute(Viaje datos) {
-            super.onPostExecute(datos);
-            Log.d("Devuelve datos", "ppppp");
+    private class SumarmeAUnViaje extends AsyncTask<String, Void,  Viaje> {
+        public final MediaType JSON
+                = MediaType.parse("application/json; charset=utf-8");
+
+        @Override
+        protected Viaje doInBackground(String... params) {
+
+            String method = params[0];
+            String urlApi = params[1];
+            String resultado;
+
+            if (method.equals("POST")) {
+                String json = params[2];
+                postViaje(urlApi, json);
+            }
+
+            return null;
         }
 
         @Override
-        protected Viaje doInBackground(String... parametros) {
-            String url = parametros[0];
-            Log.d("entro al doinbackground", "ppppp");
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(url)
-                    .build();
-            Log.d("vuelve desp del build", "ppppp");
+        protected void onPostExecute(Viaje viaje) {
 
-            try {
-                Response response = client.newCall(request).execute();  // Llamo al API Rest servicio1 en ejemplo.com
-                String resultado = response.body().string();
-
-                Log.d("trae el resultado", "ppppp");
-
-                   try {
-
-                       JSONObject JsonViaje = new JSONObject(resultado);
-                       Log.d("crea un nuevo json", "ppppp");
-
-                       Viaje ViajeCompartido;
-                       ViajeCompartido = new Viaje();
-
-
-                       ViajeCompartido = parseo.ParseoViajesComp(JsonViaje);
-
-
-                       return ViajeCompartido;
-
-                }catch (JSONException e){
-                    Log.d("Error JSON", e.getMessage());
-                    Log.d("error en el json", "ppppp");
-
-                    return null;
-                }
-            } catch (IOException e) {
-                Log.d("Error",e.getMessage());             // Error de Network
-                Log.d("error de network" + e.getMessage(), "ppppp");
-
-                return null;
+            super.onPostExecute(viaje);
+            //Log.d("ope :",persona.getNombre());
+            if (viaje != null) {
+                Cartelito = Toast.makeText(getApplicationContext(), "Se pudo sumar al viaje", Toast.LENGTH_SHORT);
+                Cartelito.show();
             }
 
+        }
+
+
+        private void postViaje(String urlApi, String json) {
+
+            okhttp3.OkHttpClient client = new okhttp3.OkHttpClient();
+
+            RequestBody body = RequestBody.create(JSON, json);
+            okhttp3.Request request = new okhttp3.Request.Builder()
+                    .url(urlApi)
+                    .post(body)
+                    .build();
+
+            try {
+                okhttp3.Response response = client.newCall(request).execute();
+                return;
+            } catch (IOException e) {
+                Log.d("Error :", e.getMessage());
+                return;
+
+            }
         }
     }
 
