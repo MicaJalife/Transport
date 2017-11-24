@@ -315,11 +315,11 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
                 Gson gson = builder.create();
                 System.out.println(gson.toJson(viajesumo));
 
-                String UrlSumarme = "http://transportdale.azurewebsites.net/api/viajescompartidos/compartirelviaje/" + viajesumo;
+                String UrlSumarme = "http://transportdale.azurewebsites.net/api/viajescompartidos/compartirelviaje/";
                 Log.d("Manda url", "ppppp");
                 new SumarmeAUnViaje().execute("POST",UrlSumarme, gson.toJson(viajesumo));
 
-                CartelitoSumarse();
+                //CartelitoSumarse();
             }
         });
 
@@ -522,11 +522,11 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
         protected void onPostExecute(Viaje viaje) {
 
             super.onPostExecute(viaje);
-            //Log.d("ope :",persona.getNombre());
-            if (viaje != null) {
+
+
                 Cartelito = Toast.makeText(getApplicationContext(), "Se pudo sumar al viaje", Toast.LENGTH_SHORT);
                 Cartelito.show();
-            }
+
 
         }
 
@@ -701,14 +701,13 @@ public class ActivityBuscador extends AppCompatActivity implements OnMapReadyCal
                 LlamarListViewsViajesComp();
 
                 for (int i = 0; i < ArrayViajes.size(); i++){
-                    Viaje ViajeCompartido;
-                    ViajeCompartido = new Viaje();
+                    Viaje ViajeCompartidoo= new Viaje();
 
-                    ViajeCompartido= ArrayViajes.get(i);
+                    ViajeCompartidoo= ArrayViajes.get(i);
 
-                    Double latitud =Double.parseDouble(ViajeCompartido.DireccionLatitud) ;
-                    Double longitud =Double.parseDouble(ViajeCompartido.DireccionLongitud);
-                    String Direccionn= ViajeCompartido.Direccion;
+                    Double latitud =Double.parseDouble(ViajeCompartidoo.DireccionLatitud) ;
+                    Double longitud =Double.parseDouble(ViajeCompartidoo.DireccionLongitud);
+                    String Direccionn= ViajeCompartidoo.Direccion;
 
 
                     //Ubico la direccion en el mapa

@@ -401,10 +401,10 @@ public class ActivityPrimeraEdicion extends AppCompatActivity implements OnMapRe
 
             super.onPostExecute(viaje);
             //Log.d("ope :",persona.getNombre());
-            if (viaje != null) {
+
                 Cartelito = Toast.makeText(getApplicationContext(), "Guardo su viaje con exito", Toast.LENGTH_SHORT);
                 Cartelito.show();
-            }
+
 
         }
 

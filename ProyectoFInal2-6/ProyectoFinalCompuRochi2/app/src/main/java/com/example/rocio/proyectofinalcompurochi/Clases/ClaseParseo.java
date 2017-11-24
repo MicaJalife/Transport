@@ -58,7 +58,7 @@ public class ClaseParseo {
             miviaje.Horario = json.getJSONObject("horario").getString("Horario");
             miviaje.Transporte = json.getJSONObject("transporte").getString("TipoTransporte");
             miviaje.Dia = json.getJSONObject("dia").getString("Dia");
-            miviaje.CantPasajeros = json.getInt("Cantidad");
+            miviaje.CantPasajeros = json.getInt("CantPasajeros");
             miviaje.Direccion = json.getString("Direccion");
             miviaje.DireccionLongitud = json.getString("DireccionLongitud");
             miviaje.DireccionLatitud = json.getString("DireccionLatitud");
@@ -104,6 +104,25 @@ public class ClaseParseo {
 
         return miviaje;
     }
+    public Viaje ParseoViajesUsuarioComp(JSONObject json) {
+        Viaje miviaje = new Viaje();
+
+        try {
+            miviaje.Nombre= json.getJSONObject("usuario").getString("Nombre");
+            miviaje.Horario = json.getJSONObject("horario").getString("Horario");
+            miviaje.Dia = json.getJSONObject("dia").getString("Dia");
+            miviaje.Transporte = json.getJSONObject("transporte").getString("TipoTransporte");
+            miviaje.Direccion = json.getString("Direccion");
+
+        }
+        catch(JSONException e)
+        {
+            return null;
+        }
+
+
+        return miviaje;
+    }
 
 
     public Viaje ParseoViajesCompartidos(JSONObject json) {
@@ -114,7 +133,7 @@ public class ClaseParseo {
             miviaje.Dia = json.getJSONObject("dia").getString("Dia");
             miviaje.Transporte = json.getJSONObject("transporte").getString("TipoTransporte");
             miviaje.Direccion = json.getString("Direccion");
-            miviaje.CantPasajeros=json.getInt("Cantidad");
+            miviaje.CantPasajeros=json.getInt("CantPasajeros");
 
         }
         catch(JSONException e)

@@ -258,7 +258,7 @@ public class ActivityPerfil extends AppCompatActivity {
                         viajecito = new Viaje();
                         JSONObject obj = JsonViajes.getJSONObject(i);
 
-                        viajecito = parseo.ParseoViajesUsuario(obj);
+                        viajecito = parseo.ParseoViajesUsuarioComp(obj);
 
                         ArrayViajes.add(viajecito);
                     }
@@ -323,7 +323,7 @@ public class ActivityPerfil extends AppCompatActivity {
                         viajecito = new Viaje();
                         JSONObject obj = JsonViajes.getJSONObject(i);
 
-                        viajecito = parseo.ParseoViajesUsuario(obj);
+                        viajecito = parseo.ParseoViajesUsuarioComp(obj);
 
                         ArrayViajes.add(viajecito);
                     }
